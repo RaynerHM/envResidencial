@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Cuenta Creada</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static '/materialize/css/materialize.min.css' %}" media="screen,projection">
+</head>
+
+<body class="">
+    <style>
+        body {
+            background-color: #fff;
+        }
+        
+        div {
+            text-align: center;
+            padding-top: 100px;
+        }
+        
+        h1 {
+            color: #00c853;
+        }
+    </style>
+    <div class="center-align">
+        <div class="center-align">
+            <h1>¡Felicidades, {{ propietario }}!</h1>
+            <h3>Su cuenta ha sido creada exitosamente.</h3>
+        </div>
+        <div>
+            <a href="/login" class="btn">Acceder a su cuenta</a>
+        </div>
+    </div>
+</body>
+
+</html>

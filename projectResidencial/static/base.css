@@ -1,0 +1,32 @@
+                      
+#container {
+  height: 780px;
+}
+
+
+/* box */
+
+#box {
+  width: 500px;
+  margin: 100px auto auto;  
+}
+
+
+/*  Inspired by http://particletree.com/features/rediscovering-the-button-element */
+
+a.button:link, a.button:visited, a.button:hover, a.button:active, button.button {
+  border:0;
+  border-radius: 6px;
+  height: 35px;
+  background-color: #0097a7 !important;
+  color: #fff !important;
+  font-size: 1.2em;
+  line-height: 1.3em;
+  font-weight:bold;
+}
+
+button.button {
+  width: 150px;
+  height: 45px;
+
+}

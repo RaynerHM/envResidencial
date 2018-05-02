@@ -1,0 +1,137 @@
+body {
+    background-color: white;
+}
+
+.container {
+    width: 100%;
+}
+
+
+/*---------- Barra de Navegacion ----------*/
+
+nav {
+    background-color: #00afb5;
+    padding: 0px 9px;
+    margin: 0px 10px 10px 0px;
+    height: 50px;
+}
+
+
+/*---------- Fin Barra de Navegacion ----------*/
+
+
+/*-----------------------------------------------------------------------------------------------*/
+
+
+/* ----- Login ----- */
+
+#mensaje {
+    background-color: red;
+    color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    margin: 5% 25% 0 25%;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.fondo {
+    background-color: #fff;
+    margin: 5% 33% 0 33%;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+h3 {
+    margin-top: 35px;
+    color: #fff;
+    font-family: Cambria;
+}
+
+#login {
+    background-color: #40c4ff;
+}
+
+.row {
+    margin-top: 20px;
+}
+
+.row button {
+    background-color: #00c853;
+}
+
+.row button,
+.row a {
+    padding: 0 5% 0 5%;
+    width: 150px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.row a {
+    background-color: #40c4ff;
+}
+
+
+/* -------- Estado de Cuenta -------- */
+
+#nav-mobile a {
+    height: 50px;
+}
+
+.btn {
+    text-transform: none;
+}
+
+#tabla-deuda {
+    margin: 50px 0 0 20px;
+    width: 85%;
+    background-color: #f1f1f1;
+    border-radius: 15px;
+}
+
+.advertencia {
+    text-align: center;
+    background-color: #cde1f1;
+    color: blue;
+    height: auto;
+    border-radius: 8px;
+    padding: 0 10px 0 10px;
+    margin: 0 25px 0 25px;
+}
+
+.advertencia h6 {
+    padding: 15px 0;
+}
+
+#boton {
+    padding: 15px 100px 15px 15px;
+}
+
+#deuda {
+    background-color: #cde1f1;
+    color: #428bca;
+    width: 90%;
+    height: auto;
+    border-radius: 8px;
+    padding: 0 10px 0 10px;
+    margin: 0 20px 0 0;
+    font-size: 13px;
+}
+
+@media only screen and (min-width: 992px) {
+    #asd {
+        position: fixed;
+        right: 0px;
+        left: 0px;
+    }
+}
+
+#deuda .uno {
+    margin: 5px;
+}
+
+#deuda .dos {
+    font-weight: 900;
+    text-align: right;
+}

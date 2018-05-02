@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Estado de Cuenta</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    
+    <link rel="stylesheet" href="{% static '/materialize/css/materialize.min.css' %}" media="screen,projection">
+    <link rel="stylesheet" href="{% static '/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+</head>
+
+<body class="">
+
+        <div class="col m12 s12 x12 navbar-fixed">
+            <nav>
+                <span class="left brand-logo text-darken-2">
+                    <i onclick="Materialize.showStaggeredList('#slide-out')" id="btnMenu" data-activates="slide-out" class="deslizar icono-menu fa fa-bars fa-2x "></i>
+                </span>
+                <h4 class="center-align ">
+                    <span class="hide-on-small-only">Estado de</span> Cuenta</h4>
+                </nav>
+            </div>
+            <div class="advertencia">
+                <h6>Los pagos de las mensualidades vencen los días 30 de cada mes, luego de esta fecha el Residencial le concede <b> días</b> adicionales para realizar los mismos sin cargos. A partir de los <b>días 6</b> se generarán cargos del 10% por pago atrasado.</h6>
+            </div>
+                
+                
+                <div class="row">
+                    <div class="col l9 m12 s12 center-align">
+                        <table id="tabla-deuda" class="centered highlight responsive-table z-depth-3">
+                            <thead>
+                                <th>Fecha</th>
+                                <th>No Edificion</th>
+                                <th>Cantidad Pagada</th>
+                                <th>Concepto</th>
+                                <th>Deuda Pendiente</th>
+                                <th>Recargo</th>
+                                <th>Concepto</th>
+                            </thead>
+                            <tbody>
+                                {% for p in pago %}
+                                <tr>
+                                    <td>{{ p.fecha }}</td>
+                                    <td>{{ p.no_edificio }}</td>
+                                    <td>RD$ {{ p.pagos }}</td>
+                                    <td>{{ p.concepto }}</td>
+                                    <td>RD$ {{ p.deuda_pendiente }}</td>
+                                    <td>RD$ {{ p.recargo }}</td>
+                                    <td>{{ p.concepto_deuda}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+
+                    <div class="col l3 m12 s12 center-align">
+                        
+                        <div class="row">
+                            <div class="col m6">
+                                <a href="/logout" class="btn">Cerrar Sesion</a>
+                            </div>
+                            <div class="col m6">
+                                <a href="/hello_pdf" class="btn">Descargar PDF</a>
+                            </div>
+                        </div>
+                        <div id="deuda" class="col l3 m12 z-depth-3 ">
+                            <table class="">
+                                <thead>
+                                    
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="uno ">
+                                                Total Deuda Por Recargo:
+                                            </div>
+                                            <div class="uno ">
+                                                Total Deuda Pendiente:
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="dos ">
+                                                RD$ {{ deuda }}
+                                            </div>
+                                            <div class="dos ">
+                                                RD$ 10,000.00
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+                
+    <script src="{% static '/jquery/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static '/materialize/js/materialize.min.js' %}"></script>
+    <script src="{% static '/style.js' %}"></script>
+</body>
+</html>
