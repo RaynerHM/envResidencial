@@ -82,7 +82,6 @@ def authenticate(request=None, **credentials):
 
 
 def _authenticate_with_backend(backend, backend_path, request, credentials):
-    credentials = credentials.copy()  # Prevent a mutation from propagating.
     args = (request,)
     # Does the backend accept a request argument?
     try:

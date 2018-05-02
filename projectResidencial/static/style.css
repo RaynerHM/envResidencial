@@ -132,6 +132,11 @@ h3 {
 }
 
 #deuda .dos {
+    margin: 5px;
     font-weight: 900;
     text-align: right;
+}
+
+.fa {
+    font-size: 25px;
 }

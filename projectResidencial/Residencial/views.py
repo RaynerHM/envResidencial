@@ -10,6 +10,8 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from io import BytesIO
 from reportlab.pdfgen import canvas
+from datetime import *
+from dateutil.relativedelta import *
 
 
 def Login(request):
@@ -52,9 +54,9 @@ def Registrar(request):
         #Crear registro del Residente
             residente = Residente.objects.create(
                                             nombre=(v_nombre +
-                                             ' ' + v_apellido),
-                no_apartamento=v_no_apartamento,
-                edificio=v_edificio,
+                                            ' ' + v_apellido),
+                                            no_apartamento=v_no_apartamento,
+                                            edificio=v_edificio,
                                             correo=v_correo, 
                                             telefono=v_telefono,
                                             cedula=v_cedula,
@@ -62,12 +64,13 @@ def Registrar(request):
                                             )
 
         #Crear usuario del Residente, para poder iniciar sesion
-            usuario = User.objects.create_user(username=v_correo,
-                                                password=v_clave,
-                                                first_name=v_nombre,
-                                                last_name=v_apellido,
-                                                email=v_correo
-                                                )
+            usuario = User.objects.create_user(
+                                            username=v_correo,
+                                            password=v_clave,
+                                            first_name=v_nombre,
+                                            last_name=v_apellido,
+                                            email=v_correo
+                                            )
             is_active = True
             usuario.is_staff = True
             usuario.save()
@@ -113,13 +116,19 @@ def EstadosCuenta(request):
     pago = Pago.objects.all()
     deuda=0
     deuda_pendiente=0
+    total_pagado=0
 
     for d in pago:
         deuda += d.recargo
         deuda_pendiente = (d.deuda_pendiente + d.recargo)
-        total_pagado  =+ d.pagos
+        total_pagado  += d.pagos
     return render(request, "estadosDeCuenta.html", 
-    {'pago': pago, 'deuda': deuda, 'deuda_pendiente': deuda_pendiente, 'total_pagado': total_pagado })
+        {'pago': pago,
+        'deuda': deuda,
+        'deuda_pendiente': deuda_pendiente,
+        'total_pagado': total_pagado,       
+        'usuariofull': request.user.get_full_name,
+        'usuario': request.user })
 
 
     

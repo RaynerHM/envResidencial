@@ -28,6 +28,7 @@ urlpatterns = [
     #path('accounts/login/', views.Login, name='login'),
     #path('accounts/logout/', views.Logout, name='logout'),
     path('sesion/', views.Sesion, name='sesion'),
+    path('', views.EstadosCuenta, name='estado'),
     path('estado-de-cuenta/', views.EstadosCuenta, name='estado'),
 
 

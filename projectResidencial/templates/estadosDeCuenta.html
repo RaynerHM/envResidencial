@@ -17,10 +17,16 @@
     <div class="col m12 s12 x12 navbar-fixed">
         <nav>
             <div class="nav-wrapper">
-                <a href="/" class="brand-logo center">Estado de Cuenta</a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <a href="/" class="brand-logo center"><span class="hide-on-small-only"> Estado de </span>Cuenta</a>
+                <ul>
+                    <li class="left">
+                        <i class="fa fa-user-circle hide-on-large-only"> {{ usuario}}</i>
+                        <i class="fa fa-user-circle hide-on-med-and-down"> {{ usuariofull }}</i>
+                    </li>
+                </ul>
+                <ul id="nav-mobile" class="right">
                     <li class="">
-                        <a href="/logout" class="">Cerrar Sesion <i class="fa fa-sign-out 3x"></i></a>
+                        <a href="/logout" class=""> <span class="hide-on-med-and-down"> Cerrar Sesion</span> <i class="fa fa-sign-out "></i></a>
                     </li>
                 </ul>
             </div>
@@ -30,7 +36,6 @@
     <div class="advertencia">
         <h6>Los pagos de las mensualidades vencen los días 30 de cada mes, luego de esta fecha el Residencial le concede <b> días</b> adicionales para realizar los mismos sin cargos. A partir de los <b>días 6</b> se generarán cargos del 10% por pago atrasado.</h6>
     </div>
-
 
     <div class="row">
         <div class="col l9 m12 s12 center-align">
