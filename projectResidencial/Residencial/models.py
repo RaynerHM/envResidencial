@@ -27,7 +27,7 @@ class Apartamento(models.Model):
 class Pago(models.Model):
 
 	propietario = models.ForeignKey('Residente',on_delete=models.CASCADE, blank=False, null=False)
-	fecha = models.DateField(_("Date"), auto_now_add=True)
+	fecha = models.DateField(_("Fecha"), auto_now_add=True)
 	no_edificio = models.ForeignKey('Apartamento',on_delete=models.CASCADE, blank=False, null=False, default='0')
 	pagos = models.DecimalField(max_digits=10, decimal_places=2, blank=False, null=False)
 	concepto = models.CharField(max_length=70, blank=False, null=False)
@@ -38,3 +38,20 @@ class Pago(models.Model):
 	def __str__(self):
 		return self.fecha.strftime('%M')
 
+
+class Ajuste(models.Model):
+
+	fecha_Para_Facturar = models.DateField(_("Fecha Para Facturar"), editable=True, blank=False, null=False)
+	monto_Manteniento = models.DecimalField(max_digits=10, decimal_places=2, blank=False, null=False)
+	fecha_Limite_Pago = models.DateField(_("Fecha Limite De Pago"), editable=True, blank=False, null=False)
+	pago_Recargo = models.DecimalField(max_digits=10, decimal_places=2, blank=False, null=False)
+
+	# def __str__(self):
+	# 	return self.fecha_Para_Facturar
+
+
+class Estado(models.Model):
+	estado= models.CharField(max_length=20, blank=True, null=False)
+	
+	def __str__(self):
+		return self.estado

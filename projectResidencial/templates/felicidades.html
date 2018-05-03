@@ -17,19 +17,37 @@
         
         div {
             text-align: center;
+        }
+        .padding{
             padding-top: 100px;
         }
         
         h1 {
             color: #00c853;
         }
+        .color{
+            color:blue;
+            font-size: 28px;
+            padding-bottom:0px;
+
+        }
+        .usuario{
+            margin-bottom:0px;
+            padding-bottom:0px;
+        }
     </style>
-    <div class="center-align">
-        <div class="center-align">
-            <h1>¡Felicidades, {{ propietario }}!</h1>
+
+    <div class="center-align padding">
+        <div class="center-align padding">
+            <h1>¡Felicidades, {{ nombre }}!</h1>
             <h3>Su cuenta ha sido creada exitosamente.</h3>
         </div>
-        <div>
+        <div class="padding usuario">
+           <h5> Su usuario es: </h5>
+           <br>
+           <div class="color">{{ correo }}</div>
+        </div>
+        <div class="padding">
             <a href="/login" class="btn">Acceder a su cuenta</a>
         </div>
     </div>

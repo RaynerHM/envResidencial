@@ -76,7 +76,7 @@ def Registrar(request):
             usuario.save()
 
             return render(request, "felicidades.html",
-            {'nombre': v_nombre})
+            {'nombre': v_nombre, 'correo': v_correo})
         else:
             return render(request, "registro_residente.html")
     return render(request, "registro_residente.html")
@@ -113,15 +113,18 @@ def Sesion(request):
 
 @login_required
 def EstadosCuenta(request):
-    pago = Pago.objects.all()
+    usuario= request.user.get_full_name()
+    #usuario= 'Rayner Hernandez'
+    pago = Pago.objects.all().filter(propietario__nombre=usuario)
+    #pago = Pago.objects.all()
     deuda=0
     deuda_pendiente=0
     total_pagado=0
 
-    for d in pago:
-        deuda += d.recargo
-        deuda_pendiente = (d.deuda_pendiente + d.recargo)
-        total_pagado  += d.pagos
+    for p in pago:
+        deuda += p.recargo
+        deuda_pendiente = (p.deuda_pendiente + p.recargo)
+        total_pagado  += p.pagos
     return render(request, "estadosDeCuenta.html", 
         {'pago': pago,
         'deuda': deuda,
@@ -130,6 +133,23 @@ def EstadosCuenta(request):
         'usuariofull': request.user.get_full_name,
         'usuario': request.user })
 
+
+
+@login_required
+def GenerarFactura(request):
+    deuda=0
+    deuda_pendiente=0
+    total_pagado=0
+    usuario= request.user.get_full_name()
+
+    pago = Pago.objects.all().filter(propietario=usuario)
+
+    for p in pago:
+        deuda += p.recargo
+        total_A_pagar += (p.deuda_pendiente + p.recargo)
+        
+
+    return render(request, )
 
     
 @login_required

@@ -1,0 +1,11 @@
+*.pyc
+__pycache__
+myvenv
+.DS_Store
+*.sublime-workspace
+lib
+include
+bin
+pip-selfcheck.json
+Scripts
+tcl

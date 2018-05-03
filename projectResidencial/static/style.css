@@ -6,7 +6,6 @@ body {
     width: 100%;
 }
 
-
 /*---------- Barra de Navegacion ----------*/
 
 nav {
@@ -16,12 +15,13 @@ nav {
     height: 50px;
 }
 
+nav div .nav-wrappe {
+    line-height: 50px;
+}
 
 /*---------- Fin Barra de Navegacion ----------*/
 
-
 /*-----------------------------------------------------------------------------------------------*/
-
 
 /* ----- Login ----- */
 
@@ -72,8 +72,11 @@ h3 {
     background-color: #40c4ff;
 }
 
-
 /* -------- Estado de Cuenta -------- */
+
+nav .nav-wrapper i {
+    line-height: 0px;
+}
 
 #nav-mobile a {
     height: 50px;
@@ -86,7 +89,7 @@ h3 {
 #tabla-deuda {
     margin: 50px 0 0 20px;
     width: 85%;
-    background-color: #f1f1f1;
+    background-color: rgba(0, 228, 152, 0.19);
     border-radius: 15px;
 }
 
@@ -139,4 +142,8 @@ h3 {
 
 .fa {
     font-size: 25px;
+}
+
+.sesion {
+    font-size: 18px;
 }
