@@ -6,6 +6,7 @@ body {
     width: 100%;
 }
 
+
 /*---------- Barra de Navegacion ----------*/
 
 nav {
@@ -19,9 +20,12 @@ nav div .nav-wrappe {
     line-height: 50px;
 }
 
+
 /*---------- Fin Barra de Navegacion ----------*/
 
+
 /*-----------------------------------------------------------------------------------------------*/
+
 
 /* ----- Login ----- */
 
@@ -71,6 +75,7 @@ h3 {
 .row a {
     background-color: #40c4ff;
 }
+
 
 /* -------- Estado de Cuenta -------- */
 
@@ -147,3 +152,89 @@ nav .nav-wrapper i {
 .sesion {
     font-size: 18px;
 }
+
+
+/* -------- Reporte PDF -------- */
+
+
+/* 
+#reporte h3 {
+    width: 320px;
+    margin: 0px;
+    color: #fff;
+    font-family: Cambria;
+}
+
+#reporte nav .nav-wrapper i {
+    line-height: 0px;
+}
+
+#reporte #nav-mobile a {
+    height: 50px;
+}
+
+#reporte #tabla-deuda {
+    margin: 50px 0 15px;
+    width: 100%;
+    background-color: rgba(0, 228, 152, 0.19);
+    border-radius: 5px;
+}
+}
+#reporte #tabla-deuda tbody{
+font-size: 12px;
+}
+
+#reporte .advertencia {
+    text-align: center;
+    background-color: #cde1f1;
+    color: blue;
+    height: auto;
+    border-radius: 8px;
+    padding: 0 10px 0 10px;
+    margin: 0 25px 0 25px;
+}
+
+#reporte .advertencia h6 {
+    padding: 15px 0;
+}
+
+#reporte #boton {
+    padding: 15px 100px 15px 15px;
+}
+
+#reporte #deuda {
+    background-color: #cde1f1;
+    color: #428bca;
+    width: 90%;
+    height: auto;
+    border-radius: 8px;
+    padding: 0 10px 0 10px;
+    margin: 0 20px 0 0;
+    font-size: 13px;
+}
+
+@media only screen and (min-width: 992px) {
+    #reporte #asd {
+        position: fixed;
+        right: 0px;
+        left: 0px;
+    }
+}
+
+#reporte #deuda .uno {
+    margin: 5px;
+}
+
+#reporte #deuda .dos {
+    margin: 5px;
+    font-weight: 900;
+    text-align: right;
+}
+
+#reporte .fa {
+    font-size: 25px;
+}
+
+#reporte .sesion {
+    font-size: 18px;
+} */

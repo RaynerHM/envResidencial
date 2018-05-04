@@ -1,0 +1,169 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Estado de Cuenta</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+    <link rel="stylesheet" href="{% static '/materialize/css/materialize.min.css' %}" media="screen,projection">
+    <link rel="stylesheet" href="{% static '/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+</head>
+<style>
+body {
+    background-color: white;
+}
+
+.container {
+    width: 100%;
+}
+
+
+/*---------- Barra de Navegacion ----------*/
+
+nav {
+    background-color: #00afb5;
+    padding: 0px 9px;
+    margin: 0px 10px 10px 0px;
+    height: 50px;
+}
+
+nav div .nav-wrappe {
+    line-height: 50px;
+}
+#reporte h3 {
+    width: 320px;
+    margin: 0px;
+    color: #fff;
+    font-family: Cambria;
+}
+
+#reporte nav .nav-wrapper i {
+    line-height: 0px;
+}
+
+#reporte #nav-mobile a {
+    height: 50px;
+}
+
+#reporte #tabla-deuda {
+    margin: 50px 0 15px;
+    width: 100%;
+    background-color: rgba(0, 228, 152, 0.19);
+    border-radius: 25px;
+}
+#reporte #tabla-deuda tbody{
+font-size: 10px;
+}
+#reporte .advertencia {
+    text-align: center;
+    background-color: #cde1f1;
+    color: blue;
+    height: auto;
+    border-radius: 8px;
+    padding: 0 10px 0 10px;
+    margin: 0 25px 0 25px;
+}
+
+#reporte .advertencia h6 {
+    padding: 15px 0;
+}
+
+#reporte #boton {
+    padding: 15px 100px 15px 15px;
+}
+
+#reporte #deuda {
+    background-color: #cde1f1;
+    color: #428bca;
+    width: 90%;
+    height: auto;
+    border-radius: 8px;
+    padding: 0 10px 0 10px;
+    margin: 0 20px 0 0;
+    font-size: 13px;
+}
+
+@media only screen and (min-width: 992px) {
+    #reporte #asd {
+        position: fixed;
+        right: 0px;
+        left: 0px;
+    }
+}
+
+#reporte #deuda .uno {
+    margin: 5px;
+}
+
+#reporte #deuda .dos {
+    margin: 5px;
+    font-weight: 900;
+    text-align: right;
+}
+
+#reporte .fa {
+    font-size: 25px;
+}
+
+#reporte .sesion {
+    font-size: 18px;
+}
+</style>
+<body id="reporte">
+
+    <div class="col m12 s12 x12 navbar-fixed">
+        <nav>
+            <div class="nav-wrapper">
+                <ul class="">
+                    <li class="left">
+                        <h3>Estado de Cuenta</h3>
+                    </li>
+                    <li class="right">
+                        <i class="fa fa-user-circle"> {{ usuariofull }}</i>
+                    </li>
+                </ul>                
+            </div>
+        </nav>
+    </div>
+    <div class="advertencia">
+        <h6>Los pagos de las mensualidades vencen los días 30 de cada mes, luego de esta fecha el Residencial le concede <b> días</b> adicionales para realizar los mismos sin cargos. A partir de los <b>días 6</b> se generarán cargos del 10% por pago atrasado.</h6>
+    </div>
+
+    <div class="row">
+        <div class="col l12 m12 s12 center">
+            <table id="tabla-deuda" class="centered highlight responsive-table z-depth-3">
+                <thead>
+                    <th>Fecha</th>
+                    <th>No Edificion</th>
+                    <th>Cantidad Pagada</th>
+                    <th>Concepto</th>
+                    <th>Recargo</th>
+                    <th>Deuda Pendiente</th>
+                    <th>Concepto</th>
+                </thead>
+                <tbody>
+                    {% for p in pago %}
+                    <tr>
+                        <td>{{ p.fecha }}</td>
+                        <td>{{ p.no_edificio }}</td>
+                        <td>RD$ {{ p.pagos }}</td>
+                        <td>{{ p.concepto }}</td>
+                        <td>RD$ {{ p.recargo }}</td>
+                        <td>RD$ {{ p.deuda_pendiente }}</td>
+                        <td>{{ p.concepto_deuda}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="{% static '/jquery/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static '/materialize/js/materialize.min.js' %}"></script>
+    <script src="{% static '/style.js' %}"></script>
+</body>
+
+</html>

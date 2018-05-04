@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Residencial import views
+# from Residencial import GenerarPDF
 from django.contrib.auth.views import login, logout
 
 
@@ -30,6 +31,8 @@ urlpatterns = [
     path('sesion/', views.Sesion, name='sesion'),
     path('', views.EstadosCuenta, name='estado'),
     path('estado-de-cuenta/', views.EstadosCuenta, name='estado'),
+    path('reporte/pdf/', views.GenerarPDF.get, name='reporte'),
 
 
 ]
+# 809-383-9415

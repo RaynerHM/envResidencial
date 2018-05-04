@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic import View
 
 from .models import Residente, Apartamento, Pago
 
@@ -12,6 +13,8 @@ from io import BytesIO
 from reportlab.pdfgen import canvas
 from datetime import *
 from dateutil.relativedelta import *
+
+from .pdf import render_pdf
 
 
 def Login(request):
@@ -125,7 +128,7 @@ def EstadosCuenta(request):
         deuda += p.recargo
         deuda_pendiente = (p.deuda_pendiente + p.recargo)
         total_pagado  += p.pagos
-    return render(request, "estadosDeCuenta.html", 
+    return render(request, "reporte.html", 
         {'pago': pago,
         'deuda': deuda,
         'deuda_pendiente': deuda_pendiente,
@@ -139,7 +142,7 @@ def EstadosCuenta(request):
 def GenerarFactura(request):
     deuda=0
     deuda_pendiente=0
-    total_pagado=0
+    total_A_pagar=0
     usuario= request.user.get_full_name()
 
     pago = Pago.objects.all().filter(propietario=usuario)
@@ -152,28 +155,58 @@ def GenerarFactura(request):
     return render(request, )
 
     
+# @login_required
+# def hello_pdf(request):
+#     # Create the HttpResponse object with the appropriate PDF headers.
+#     response = HttpResponse(content_type='application/pdf')
+#     response['Content-Disposition'] = 'attachment; filename="prueba.pdf"'
+
+#     buffer = BytesIO()
+
+#     # Create the PDF object, using the BytesIO object as its "file."
+#     p = canvas.Canvas(buffer)
+
+#     # Draw things on the PDF. Here's where the PDF generation happens.
+#     # See the ReportLab documentation for the full list of functionality.
+
+#     p.drawString(100, 100, "p.propietario")
+
+#     # Close the PDF object cleanly.
+#     p.showPage()
+#     p.save()
+
+#     # Get the value of the BytesIO buffer and write it to the response.
+#     pdf = buffer.getvalue()
+#     buffer.close()
+#     response.write(pdf)
+#     return response
+
+
+
 @login_required
-def hello_pdf(request):
-    # Create the HttpResponse object with the appropriate PDF headers.
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="prueba.pdf"'
+class GenerarPDF(View):
+    
+    def get(request, *args, **kwargs):
+        
+        usuario= request.user.get_full_name()
+        #usuario= 'Rayner Hernandez'
+        pago = Pago.objects.all().filter(propietario__nombre=usuario)
+        #pago = Pago.objects.all()
+        deuda=0
+        deuda_pendiente=0
+        total_pagado=0
 
-    buffer = BytesIO()
+        for p in pago:
+            deuda += p.recargo
+            deuda_pendiente = (p.deuda_pendiente + p.recargo)
+            total_pagado  += p.pagos
+       
 
-    # Create the PDF object, using the BytesIO object as its "file."
-    p = canvas.Canvas(buffer)
-
-    # Draw things on the PDF. Here's where the PDF generation happens.
-    # See the ReportLab documentation for the full list of functionality.
-
-    p.drawString(100, 100, "p.propietario")
-
-    # Close the PDF object cleanly.
-    p.showPage()
-    p.save()
-
-    # Get the value of the BytesIO buffer and write it to the response.
-    pdf = buffer.getvalue()
-    buffer.close()
-    response.write(pdf)
-    return response
+        pdf = render_pdf("reporte.html", 
+            {'pago': pago,
+            'deuda': deuda,
+            'deuda_pendiente': deuda_pendiente,
+            'total_pagado': total_pagado,       
+            'usuariofull': request.user.get_full_name,
+            'usuario': request.user })
+        return HttpResponse(pdf, content_type="application/pdf")

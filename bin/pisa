@@ -1,0 +1,10 @@
+#!/home/local/BELLBANK/rhernandez/Desktop/proyectos/envResidencial/bin/python3
+# EASY-INSTALL-ENTRY-SCRIPT: 'xhtml2pdf==0.2.2','console_scripts','pisa'
+__requires__ = 'xhtml2pdf==0.2.2'
+import sys
+from pkg_resources import load_entry_point
+
+if __name__ == '__main__':
+    sys.exit(
+        load_entry_point('xhtml2pdf==0.2.2', 'console_scripts', 'pisa')()
+    )
