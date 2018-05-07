@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import View
 
-from .models import Residente, Apartamento, Pago
+from .models import Residente, Apartamento, Pago, Ajuste
 
 from django.contrib import auth
 from django.contrib.auth.models import User
@@ -117,9 +117,16 @@ def Sesion(request):
 @login_required
 def EstadosCuenta(request):
     usuario= request.user.get_full_name()
-    #usuario= 'Rayner Hernandez'
+    
+    ajuste = Ajuste.objects.all()
+    # for a in ajustes:
+    #     fecha_Para_Facturar = a.fecha_Para_Facturar
+    #     monto_Manteniento = a.monto_Manteniento
+    #     fecha_Limite_Pago = a.fecha_Limite_Pago
+    #     pago_Recargo = a.pago_Recargo
+
+
     pago = Pago.objects.all().filter(propietario__nombre=usuario)
-    #pago = Pago.objects.all()
     deuda=0
     deuda_pendiente=0
     total_pagado=0
@@ -129,7 +136,9 @@ def EstadosCuenta(request):
         deuda_pendiente = (p.deuda_pendiente + p.recargo)
         total_pagado  += p.pagos
     return render(request, "reporte.html", 
-        {'pago': pago,
+        {
+            'ajuste': ajuste,
+            'pago': pago,
         'deuda': deuda,
         'deuda_pendiente': deuda_pendiente,
         'total_pagado': total_pagado,       

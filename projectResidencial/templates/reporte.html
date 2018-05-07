@@ -55,7 +55,7 @@ nav div .nav-wrappe {
     border-radius: 25px;
 }
 #reporte #tabla-deuda tbody{
-font-size: 10px;
+font-size: 12px;
 }
 #reporte .advertencia {
     text-align: center;
@@ -128,8 +128,10 @@ font-size: 10px;
             </div>
         </nav>
     </div>
-    <div class="advertencia">
-        <h6>Los pagos de las mensualidades vencen los días 30 de cada mes, luego de esta fecha el Residencial le concede <b> días</b> adicionales para realizar los mismos sin cargos. A partir de los <b>días 6</b> se generarán cargos del 10% por pago atrasado.</h6>
+    <div class="advertencia">    
+    {% for a in ajuste %}        
+        <h6>Los pagos de las mensualidades vencen los días <b>{{a.fecha_Para_Facturar|date:"d" }}</b> de cada mes, luego de esta fecha el Residencial le concede <b>5 días</b> adicionales para realizar los mismos sin cargos. A partir de los <b>días {{a.fecha_Limite_Pago|date:"d" }}</b> se generarán cargos de <b>RD${{ a.pago_Recargo }}</b> pesos por pagos atrasado.</h6>
+    {% endfor %}
     </div>
 
     <div class="row">

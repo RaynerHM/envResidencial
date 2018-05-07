@@ -20,6 +20,10 @@ nav div .nav-wrappe {
     line-height: 50px;
 }
 
+li {
+    list-style: none;
+}
+
 
 /*---------- Fin Barra de Navegacion ----------*/
 

@@ -1,5 +1,5 @@
 *.pyc
-__pycache__
+pycache__
 myvenv
 .DS_Store
 *.sublime-workspace
@@ -9,3 +9,6 @@ bin
 pip-selfcheck.json
 Scripts
 tcl
+lib64
+share
+pyvenv.cfg
