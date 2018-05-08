@@ -11,117 +11,123 @@
     <link rel="stylesheet" href="{% static '/font-awesome/css/font-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static '/style.css' %}">
 </head>
+
 <style>
-body {
-    background-color: white;
-}
-
-.container {
-    width: 100%;
-}
-
-
-/*---------- Barra de Navegacion ----------*/
-
-nav {
-    background-color: #00afb5;
-    padding: 0px 9px;
-    margin: 0px 10px 10px 0px;
-    height: 50px;
-}
-
-nav div .nav-wrappe {
-    line-height: 50px;
-}
-#reporte h3 {
-    width: 320px;
-    margin: 0px;
-    color: #fff;
-    font-family: Cambria;
-}
-
-#reporte nav .nav-wrapper i {
-    line-height: 0px;
-}
-
-#reporte #nav-mobile a {
-    height: 50px;
-}
-
-#reporte #tabla-deuda {
-    margin: 50px 0 15px;
-    width: 100%;
-    background-color: rgba(0, 228, 152, 0.19);
-    border-radius: 25px;
-}
-#reporte #tabla-deuda tbody{
-font-size: 12px;
-}
-#reporte .advertencia {
-    text-align: center;
-    background-color: #cde1f1;
-    color: blue;
-    height: auto;
-    border-radius: 8px;
-    padding: 0 10px 0 10px;
-    margin: 0 25px 0 25px;
-}
-
-#reporte .advertencia h6 {
-    padding: 15px 0;
-}
-
-#reporte #boton {
-    padding: 15px 100px 15px 15px;
-}
-
-#reporte #deuda {
-    background-color: #cde1f1;
-    color: #428bca;
-    width: 90%;
-    height: auto;
-    border-radius: 8px;
-    padding: 0 10px 0 10px;
-    margin: 0 20px 0 0;
-    font-size: 13px;
-}
-
-@media only screen and (min-width: 992px) {
-    #reporte #asd {
-        position: fixed;
-        right: 0px;
-        left: 0px;
+    body {
+        background-color: white;
     }
-}
 
-#reporte #deuda .uno {
-    margin: 5px;
-}
+    .container {
+        width: 100%;
+    }
 
-#reporte #deuda .dos {
-    margin: 5px;
-    font-weight: 900;
-    text-align: right;
-}
+    li {
+        list-style: none;
+    }
 
-#reporte .fa {
-    font-size: 25px;
-}
+    /*---------- Barra de Navegacion ----------*/
 
-#reporte .sesion {
-    font-size: 18px;
-}
+    nav {
+        background-color: #00afb5;
+        padding: 0px 9px;
+        margin: 0px 10px 10px 0px;
+        height: 50px;
+    }
+
+    nav div .nav-wrappe {
+        line-height: 50px;
+    }
+    #reporte h3 {
+        width: 320px;
+        margin: 0px;
+        color: #fff;
+        font-family: Cambria;
+    }
+
+    #reporte nav .nav-wrapper i {
+        line-height: 0px;
+    }
+
+    #reporte #nav-mobile a {
+        height: 50px;
+    }
+
+    #reporte #tabla-deuda {
+        margin: 50px 0 15px;
+        width: 100%;
+        background-color: rgba(0, 228, 152, 0.19);
+        border-radius: 25px;
+    }
+    #reporte #tabla-deuda tbody{
+    font-size: 10px;
+    }
+    #reporte .advertencia {
+        text-align: center;
+        background-color: #cde1f1;
+        color: blue;
+        height: auto;
+        border-radius: 8px;
+        padding: 0 10px 0 10px;
+        margin: 0 25px 0 25px;
+    }
+
+    #reporte .advertencia h6 {
+        padding: 15px 0;
+    }
+
+    #reporte #boton {
+        padding: 15px 100px 15px 15px;
+    }
+
+    #reporte #deuda {
+        background-color: #cde1f1;
+        color: #428bca;
+        width: 90%;
+        height: auto;
+        border-radius: 8px;
+        padding: 0 10px 0 10px;
+        margin: 0 20px 0 0;
+        font-size: 13px;
+    }
+
+    @media only screen and (min-width: 992px) {
+        #reporte #asd {
+            position: fixed;
+            right: 0px;
+            left: 0px;
+        }
+    }
+
+    #reporte #deuda .uno {
+        margin: 5px;
+    }
+
+    #reporte #deuda .dos {
+        margin: 5px;
+        font-weight: 900;
+        text-align: right;
+    }
+
+    #reporte .fa {
+        font-size: 20px;
+        text-align: right;
+    }
+
+    #reporte .sesion {
+        font-size: 18px;
+    }
 </style>
+
 <body id="reporte">
 
-    <div class="col m12 s12 x12 navbar-fixed">
+    <div class="col m12 s12 x12 navbar-fixed" style="border-radius: 25px;">
         <nav>
-            <div class="nav-wrapper">
+            <div class="nav-wrapper" style="border-radius: 25px;">
                 <ul class="">
                     <li class="left">
                         <h3>Estado de Cuenta</h3>
                     </li>
-                    <li class="right">
+                    <li class="right" style="text-align: right;">
                         <i class="fa fa-user-circle"> {{ usuariofull }}</i>
                     </li>
                 </ul>                
@@ -136,7 +142,7 @@ font-size: 12px;
 
     <div class="row">
         <div class="col l12 m12 s12 center">
-            <table id="tabla-deuda" class="centered highlight responsive-table z-depth-3">
+            <table id="tabla-deuda" class="">
                 <thead>
                     <th>Fecha</th>
                     <th>No Edificion</th>

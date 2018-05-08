@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.views.generic import View
 
 from .models import Residente, Apartamento, Pago, Ajuste
 
@@ -9,9 +8,17 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+
+from django.conf import settings
 from io import BytesIO
 from reportlab.pdfgen import canvas
-from datetime import *
+from reportlab.platypus.tables import Table, TableStyle
+from reportlab.lib.pagesizes import letter
+from reportlab.lib import colors
+from django.views.generic import View
+
+# import datetime
+import time
 from dateutil.relativedelta import *
 
 from .pdf import render_pdf
@@ -85,7 +92,7 @@ def Registrar(request):
     return render(request, "registro_residente.html")
         
 
-
+# ------------ Pendiente por terminar ------------
 @login_required
 def CambiarClave(request):
     v_clave_Vieja = request.POST.get("pass-last")
@@ -135,15 +142,16 @@ def EstadosCuenta(request):
         deuda += p.recargo
         deuda_pendiente = (p.deuda_pendiente + p.recargo)
         total_pagado  += p.pagos
-    return render(request, "reporte.html", 
-        {
-            'ajuste': ajuste,
-            'pago': pago,
-        'deuda': deuda,
-        'deuda_pendiente': deuda_pendiente,
-        'total_pagado': total_pagado,       
-        'usuariofull': request.user.get_full_name,
-        'usuario': request.user })
+    return render(request, "estadosDeCuenta.html", 
+            {
+                'ajuste': ajuste,
+                'pago': pago,
+                'deuda': deuda,
+                'deuda_pendiente': deuda_pendiente,
+                'total_pagado': total_pagado,       
+                'usuariofull': request.user.get_full_name,
+                'usuario': request.user 
+            })
 
 
 
@@ -191,16 +199,14 @@ def GenerarFactura(request):
 #     return response
 
 
-
 @login_required
 class GenerarPDF(View):
     
     def get(request, *args, **kwargs):
         
         usuario= request.user.get_full_name()
-        #usuario= 'Rayner Hernandez'
         pago = Pago.objects.all().filter(propietario__nombre=usuario)
-        #pago = Pago.objects.all()
+        
         deuda=0
         deuda_pendiente=0
         total_pagado=0
@@ -219,3 +225,97 @@ class GenerarPDF(View):
             'usuariofull': request.user.get_full_name,
             'usuario': request.user })
         return HttpResponse(pdf, content_type="application/pdf")
+
+
+
+class ReportePersonasPDF(View):
+    
+    def cabecera(self,pdf):
+        #Utilizamos el archivo logo_django.png que está guardado en la carpeta media/imagenes
+        archivo_imagen = settings.MEDIA_ROOT+'/logo_github.png'
+        #Definimos el tamaño de la imagen a cargar y las coordenadas correspondientes
+        pdf.drawImage(archivo_imagen, 30, 710, 120, 90, preserveAspectRatio=True)
+        #Establecemos el tamaño de letra en 16 y el tipo de letra Helvetica
+        pdf.setFont("Helvetica", 16)
+        #Dibujamos una cadena en la ubicación X,Y especificada
+        pdf.drawString(230, 755, u"Residencial Brisa Fresca")
+        pdf.setFont("Helvetica", 14)
+        pdf.drawString(260, 735, u"Estado de Cuenta")
+        pdf.setFont("Helvetica", 9)
+        pdf.drawString(550, 770, u"%s" %time.strftime("%x"))
+
+
+    def tabla(self,pdf,y):
+        #Creamos una tupla de encabezados para neustra tabla
+        encabezados = ('Propietario', 'Fecha', '# Edif.', 'Pagos', 'Concepto', 'Pendiente' , 'Recargo', 'Concepto Deuda')
+        #Creamos una lista de tuplas que van a contener a las personas
+        detalles = [(p.propietario, p.fecha, p.no_edificio, 'RD$%s' %p.pagos, p.concepto, 'RD$%s' %p.deuda_pendiente, 'RD$%s' %p.recargo, p.concepto_deuda) for p in Pago.objects.all()]
+        #Establecemos el tamaño de cada una de las columnas de la tabla
+        detalle_orden = Table([encabezados] + detalles, rowHeights=15, colWidths=[
+            25 * 5, 12 * 5, 10 * 4, 10 * 5, 20 * 5, 10 * 5, 10 * 5, 20 * 5])
+        #Aplicamos estilos a las celdas de la tabla
+        detalle_orden.setStyle(TableStyle(
+        [
+                #La primera fila(encabezados) va a estar centrada
+                ('ALIGN',(0,0),(0,0),'CENTER'),
+                #Los bordes de todas las celdas serán de color negro y con un grosor de 1
+                ('GRID', (0, 0), (-1, -1), 1, colors.black),
+                #El tamaño de las letras de cada una de las celdas será de 10
+                ('FONTSIZE', (0, 0), (-1, -1), 12),
+                ('BACKGROUND', (0, 0), (8, 0), colors.lavender),
+                ('FONTSIZE', (0, 0), (-1, -1), 8),
+                ]
+        ))
+        #Establecemos el tamaño de la hoja que ocupará la tabla
+        detalle_orden.wrapOn(pdf, 1000, 800)
+        #Definimos la coordenada donde se dibujará la tabla
+        detalle_orden.drawOn(pdf, 20, y)
+
+
+    def get(self, request, *args, **kwargs):
+        #Indicamos el tipo de contenido a devolver, en este caso un pdf
+        response = HttpResponse(content_type='application/pdf')
+        #La clase io.BytesIO permite tratar un array de bytes como un fichero binario, se utiliza como almacenamiento temporal
+        buffer = BytesIO()
+        #Canvas nos permite hacer el reporte con coordenadas X y Y
+        pdf = canvas.Canvas(buffer, pagesize=letter)
+        #Llamo al método cabecera donde están definidos los datos que aparecen en la cabecera del reporte.
+        self.cabecera(pdf)
+        y = 600
+        self.tabla(pdf, y)
+        #Con show page hacemos un corte de página para pasar a la siguiente
+        pdf.showPage()
+        pdf.save()
+        pdf = buffer.getvalue()
+        buffer.close()
+        response.write(pdf)
+        return response
+
+
+
+        doc = SimpleDocTemplate("simple_table_grid.pdf", pagesize=letter)
+        # container for the 'Flowable' objects
+        elements = []
+        
+        data= [['00', '01', '02', '03', '04'],
+            ['10', '11', '12', '13', '14'],
+            ['20', '21', '22', '23', '24'],
+            ['30', '31', '32', '33', '34']]
+        t=Table(data,5*[0.4*inch], 4*[0.4*inch])
+        t.setStyle(TableStyle([('ALIGN',(1,1),(-2,-2),'RIGHT'),
+                            ('TEXTCOLOR',(1,1),(-2,-2),colors.red),
+                            ('VALIGN',(0,0),(0,-1),'TOP'),
+                            ('TEXTCOLOR',(0,0),(0,-1),colors.blue),
+                            ('ALIGN',(0,-1),(-1,-1),'CENTER'),
+                            ('VALIGN',(0,-1),(-1,-1),'MIDDLE'),
+                            ('TEXTCOLOR',(0,-1),(-1,-1),colors.green),
+                            ('INNERGRID', (0,0), (-1,-1), 0.25, colors.black),
+                            ('BOX', (0,0), (-1,-1), 0.25, colors.black),
+                            ]))
+        
+        elements.append(t)
+        # write the document to disk
+        doc.build(elements)
+
+
+# Libreria para PDF -- wkxhtm2pdf

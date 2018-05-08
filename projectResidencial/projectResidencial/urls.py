@@ -31,8 +31,8 @@ urlpatterns = [
     path('sesion/', views.Sesion, name='sesion'),
     path('', views.EstadosCuenta, name='estado'),
     path('estado-de-cuenta/', views.EstadosCuenta, name='estado'),
-    path('reporte/pdf/', views.GenerarPDF.get, name='reporte'),
+    # path('reporte/pdf/', views.GenerarPDF.get, name='reporte'),
+    path('reporte/pdf/', views.ReportePersonasPDF.as_view(), name='reporte'),
 
 
 ]
-# 809-383-9415
