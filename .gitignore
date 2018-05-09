@@ -1,5 +1,5 @@
 *.pyc
-pycache__
+__pycache__
 myvenv
 .DS_Store
 *.sublime-workspace
