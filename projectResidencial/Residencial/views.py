@@ -175,35 +175,6 @@ def GenerarFactura(request):
 
 
 
-@login_required(login_url='/login/')
-class GenerarPDF(View):
-
-	def get(request, *args, **kwargs):
-
-		usuario= request.user.get_full_name()
-		pago = Pago.objects.all().filter(propietario__nombre=usuario)
-
-		deuda=0
-		deuda_pendiente=0
-		total_pagado=0
-
-		for p in pago:
-			deuda += p.recargo
-			deuda_pendiente = (p.deuda_pendiente + p.recargo)
-			total_pagado  += p.pagos
-
-
-		pdf = render_pdf("reporte.html",
-			{'pago': pago,
-			'deuda': deuda,
-			'deuda_pendiente': deuda_pendiente,
-			'total_pagado': total_pagado,
-			'usuariofull': request.user.get_full_name,
-			'usuario': request.user })
-		return HttpResponse(pdf, content_type="application/pdf")
-
-
-
 class ReportePersonasPDF(View):
 
 	def cabecera(self,request,pdf):
@@ -213,40 +184,41 @@ class ReportePersonasPDF(View):
 		#Utilizamos el archivo logo_django.png que está guardado en la carpeta media/imagenes
 		archivo_imagen = settings.MEDIA_ROOT+'Logo2.png'
 		#Definimos el tamaño de la imagen a cargar y las coordenadas correspondientes
-		pdf.drawImage(archivo_imagen, 30, 710, 120, 90, preserveAspectRatio=True)
+		pdf.drawImage(archivo_imagen, 30, 700, 120, 90, preserveAspectRatio=True)
 		pdf.setFont("Helvetica", 9)
 		pdf.drawString(550, 770, u"%s" %time.strftime("%x"))
 
 		#Creamos una tupla de encabezados para neustra tabla
 		encabezados = ['Estado de Cuenta'.upper()]
 		#Creamos una lista de tuplas que van a contener a las personas
-		for p in propietario:
-			apartament = p.no_apartamento
-			edific = p.edificio
+		# for p in propietario:
+		# 	apartament = p.no_apartamento
+		# 	edific = p.edificio
 
 
-		detalles = [('%s' %usuario), (', Edificio %s' %edific), (', Apartamento %s' %apartament)]
+		detalles = [('%s, Edificio %s, Apartamento %s' %(usuario, p.edificio, p.no_apartamento)) for p in Residente.objects.filter(nombre=usuario)]
+		# detalles = [('%s' %usuario), (', Edificio %s' %edific), (', Apartamento %s' %apartament)]
 
 		#Establecemos el tamaño de cada una de las columnas de la tabla
-		detalle_orden = Table([encabezados] + [detalles], rowHeights=25, colWidths=[575])
+		detalle_orden = Table([encabezados] + [detalles], rowHeights=50, colWidths=[575])
 		#Aplicamos estilos a las celdas de la tabla
 		detalle_orden.setStyle(TableStyle(
 		[
 				#La primera fila(encabezados) va a estar centrada
 				('VALIGN',(0,0),(-1,-1),'MIDDLE'),
 				('ALIGN',(0,0),(0,-1),'CENTER'),
-				('FONTSIZE', (0, 0), (-1, -1), 14),
+				('FONTSIZE', (0, 0), (-1, -1), 12),
 				('VALIGN',(0,0),(-1,-1),'MIDDLE'),
 				('ALIGN',(0,0),(0,0),'CENTER'),
 				('FONTSIZE', (0, 0), (-1, 0), 16),
-				('TEXTCOLOR',(0,1),(-1,-1),colors.blue),
+				('TEXTCOLOR',(0,1),(-1,-1),colors.black),
 				]
 		))
 
 		#Establecemos el tamaño de la hoja que ocupará la tabla
 		detalle_orden.wrapOn(pdf, 1000, 800)
 		#Definimos la coordenada donde se dibujará la tabla
-		detalle_orden.drawOn(pdf, 15, 720)
+		detalle_orden.drawOn(pdf, 15, 660)
 
 	def tabla(self,request,pdf,y):
 		usuario = request.user.get_full_name()
@@ -266,10 +238,10 @@ class ReportePersonasPDF(View):
 				('INNERGRID', (0,0), (-1,-1), 0.25, colors.black),
 				('BOX', (0,0), (-1,-1), 0.75, colors.black),
 				#El tamaño de las letras de cada una de las celdas será de 10
-				('BACKGROUND', (0, 0), (8, 0), colors.lavender),
+				('BACKGROUND', (0, 0), (8, 0), colors.lightblue),
 				('ALIGN', (0, 0), (-5,-1), 'CENTER'),
 				('ALIGN', (4, 0), (-2,-1), 'CENTER'),
-				('FONTSIZE', (0, 0), (-1, -1), 8),
+				('FONTSIZE', (0, 0), (-1, -1), 7),
 				('ALIGN',(0,0),(-1,0),'CENTER'),
 				('VALIGN',(0,0),(-1,-1),'MIDDLE'),
 				('FONTSIZE', (0, 0), (-1, 0), 9),
