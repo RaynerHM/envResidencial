@@ -21,7 +21,8 @@ class Apartamento(models.Model):
 	propietario = models.ForeignKey('Residente', on_delete=models.CASCADE, blank=False, null=True)
 	
 	def __str__(self):
-		return self.no_edificio
+		apartament = self.no_edificio +' - '+ self.no_apartamento
+		return apartament
 
 
 class Pago(models.Model):
