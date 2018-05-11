@@ -70,7 +70,7 @@
                 <!--  Telefono Propietario o Inquilino  -->
                 <div class="input-field">
                     <i class="prefix fa fa-phone fa-3x"></i>
-                    <input id="telefono" name="telefono" type="text" required>
+                    <input id="telefono" name="telefono" type="text" required autocomplete="off">
                     <label for="telefono" class="active">Telefono</label>
                 </div>
 
@@ -86,18 +86,24 @@
                     <button class="btn hoverable waves-effect" type="submit">Registrar</button>
                 </div>
             </form>
+            <div id="message"> 
+                <ul>
+                    <i id="lengthCounter"><b>Numero de Caracteres:</b></i>
+                    <i id="PSWlength" class="invalid"><b>Minimo 8 Caracteres</b></i>
+                    <i id="upper" class="invalid"><b>Letra Mayuscula</b></i>
+                    <i id="lower" class="invalid"><b>Letra Minuscula</b></i>
+                    <i id="number" class="invalid"><b>Numeros</b></i>
+                    <i id="symbol" class="invalid"><b>Símbolos</b></i>
+                </ul>               
+            </div>
         </div>
     </div>
-
-
-
-
 
 
     <script src="{% static '/jquery/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static '/materialize/js/materialize.min.js' %}"></script>
     <script src="{% static '/style.js' %}"></script>
+    <script src="{% static '/validarClave.js' %}"></script>
 
 </body>
-
 </html>

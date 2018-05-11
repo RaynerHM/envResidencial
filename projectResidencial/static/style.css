@@ -1,3 +1,9 @@
+@media only screen and (min-width: 1200px) {
+    html {
+        font-size: 14px;
+    }
+}
+
 body {
     background-color: white;
 }
@@ -96,10 +102,17 @@ nav .nav-wrapper i {
 }
 
 #tabla-deuda {
-    margin: 50px 0 0 20px;
-    width: 85%;
+    margin: 50px 0 0 10px;
+    width: 90%;
     background-color: rgba(0, 228, 152, 0.19);
     border-radius: 15px;
+}
+
+@media only screen and (min-width: 993px) {
+    .row .col.l9 {
+        width: 80%;
+        padding-right: 0px;
+    }
 }
 
 .advertencia {
@@ -113,7 +126,7 @@ nav .nav-wrapper i {
 }
 
 .advertencia h6 {
-    padding: 15px 0;
+    padding: 5px 0;
 }
 
 #boton {
@@ -150,7 +163,7 @@ nav .nav-wrapper i {
 }
 
 .fa {
-    font-size: 25px;
+    font-size: 18px;
 }
 
 .sesion {
@@ -158,87 +171,46 @@ nav .nav-wrapper i {
 }
 
 
-/* -------- Reporte PDF -------- */
+/* -------- Registro Residente - Clave -------- */
 
-
-/* 
-#reporte h3 {
-    width: 320px;
-    margin: 0px;
-    color: #fff;
-    font-family: Cambria;
+#message {
+    color: #000;
+    position: relative;
+    padding: 20px;
+    margin-top: 10px;
 }
 
-#reporte nav .nav-wrapper i {
-    line-height: 0px;
+#message i {
+    padding: 15px;
+    font-size: 15px;
 }
 
-#reporte #nav-mobile a {
-    height: 50px;
-}
-
-#reporte #tabla-deuda {
-    margin: 50px 0 15px;
-    width: 100%;
-    background-color: rgba(0, 228, 152, 0.19);
-    border-radius: 5px;
-}
-}
-#reporte #tabla-deuda tbody{
-font-size: 12px;
-}
-
-#reporte .advertencia {
+h3 {
     text-align: center;
-    background-color: #cde1f1;
-    color: blue;
-    height: auto;
-    border-radius: 8px;
-    padding: 0 10px 0 10px;
-    margin: 0 25px 0 25px;
 }
 
-#reporte .advertencia h6 {
-    padding: 15px 0;
+
+/* Add a green text color and a checkmark when the requirements are right */
+
+.valid {
+    color: green;
 }
 
-#reporte #boton {
-    padding: 15px 100px 15px 15px;
+.valid:before {
+    position: relative;
+    left: -5px;
+    content: "✓";
 }
 
-#reporte #deuda {
-    background-color: #cde1f1;
-    color: #428bca;
-    width: 90%;
-    height: auto;
-    border-radius: 8px;
-    padding: 0 10px 0 10px;
-    margin: 0 20px 0 0;
-    font-size: 13px;
+
+/* Add a red text color and an Xmark when the requirements are wrong */
+
+.invalid {
+    color: red;
 }
 
-@media only screen and (min-width: 992px) {
-    #reporte #asd {
-        position: fixed;
-        right: 0px;
-        left: 0px;
-    }
+.invalid:after {
+    position: relative;
+    left: 5px;
+    content: "✗";
 }
-
-#reporte #deuda .uno {
-    margin: 5px;
-}
-
-#reporte #deuda .dos {
-    margin: 5px;
-    font-weight: 900;
-    text-align: right;
-}
-
-#reporte .fa {
-    font-size: 25px;
-}
-
-#reporte .sesion {
-    font-size: 18px;
-} */

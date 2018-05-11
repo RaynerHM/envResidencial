@@ -107,21 +107,6 @@ def CambiarClave(request):
 		else:
 			mensaje = "Fallo al cambiar la clave"
 		return render(request, "password.html", {'mensaje': mensaje})
-
-
-		# if v_clave_Vieja != '' and v_clave_Nueva != '':
-		#     try:
-		#         clave = User.objects.get(username=request.user)
-		#         if clave == v_clave_Vieja:
-		#             clave.set_password(v_clave_Nueva)
-		#             clave.save()
-		#             mensaje="Clave cambiada exitosamente"
-		#         else:
-		#             mensaje="Fallo al cambiar la clave"
-		#         return render(request, "password.html", {'mensaje': mensaje})
-
-		#     except User.DoesNotExist:
-		#         clave = None
 	return render(request, "password.html")
 
 
@@ -153,7 +138,7 @@ def EstadosCuenta(request):
 				'deuda_pendiente': deuda_pendiente,
 				'total_pagado': total_pagado,
 				'usuariofull': request.user.get_full_name,
-				'usuario': request.user
+				'nombre': request.user.first_name
 			})
 
 

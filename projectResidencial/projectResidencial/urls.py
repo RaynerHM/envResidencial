@@ -32,7 +32,7 @@ urlpatterns = [
     path('', views.EstadosCuenta, name='estado'),
     path('estado-de-cuenta/', views.EstadosCuenta, name='estado'),
     # path('reporte/pdf/', views.GenerarPDF.get, name='reporte'),
-    path('reporte/pdf/', views.ReportePersonasPDF.as_view(), name='reporte'),
+    path('reporte/estadoDeCuenta/pdf/', views.ReportePersonasPDF.as_view(), name='reporte'),
 
 
 ]
