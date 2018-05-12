@@ -21,7 +21,7 @@ from django.views.generic import View
 import time
 from dateutil.relativedelta import *
 
-from .pdf import render_pdf
+from django.core.mail import send_mail, BadHeaderError, EmailMultiAlternatives
 
 
 def Login(request):
@@ -37,6 +37,67 @@ def Login(request):
 		else:
 			mensaje = 'Usuario o clave incorrecto'
 	return render(request, 'login.html', {'mensaje': mensaje})
+
+
+# @login_required(login_url='/login/')
+def EnviarCorreo(request):
+	try:
+		usuario = request.user.first_name
+		correo = request.user.email
+		url = 'http://10.1.100.200:8000/login'
+		
+		html_content = ("""
+			<style>
+				body { background-color: #fff;}        
+				div { text-align: center; }
+				.padding { padding-top: 20px; }        
+				.felicidad { color: #00c853; font-size: 46px }
+				h3 { font-size: 20px }
+				.color { color:blue; font-size: 24px; padding-bottom:0px; }
+				.usuario { margin-bottom:0px; padding-bottom:0px; font-size: 20px }
+				a { font-size: 16px }
+			</style>
+
+			<div class="center-align padding">
+				<div class="center-align padding">
+					<div class="felicidad">¡Felicidades, %s!</div>
+					<h3>Su cuenta ha sido creada exitosamente.</h3>
+				</div>
+				<div class="padding usuario">
+				<h3> Su usuario es:</h3>
+				<br>
+				<div class="color"> %s</div>
+				</div>
+				<div class="padding">
+					<a href="%s" class="btn">Acceder a su cuenta</a>
+				</div>
+			</div>
+			""" %(usuario, correo, url))
+
+		subject, from_email, to = 'Cuenta Residencial Brisa Fresca', 'raynel95@gmail.com', 'rhernandez@bellbank.com'
+		text_content = 'Credenciales de su cuenta Residencial Brisa Fresca.'
+		msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+		msg.attach_alternative(html_content, "text/html")
+		msg.send()
+
+
+	except BadHeaderError:
+		return HttpResponse('No se pudo enviar el correo.')
+	return HttpResponseRedirect('/')
+	
+    # asunto = request.POST.get('subject', '')
+    # mensaje = request.POST.get('message', '')
+    # desde = 'raynel95@gmail.com'
+    # if asunto and mensaje and from_email:
+    #     try:
+    #         send_mail(asunto, mensaje, desde, 'Enviar a:')
+    #     except BadHeaderError:
+    #         return HttpResponse('No se pudo enviar el correo.')
+    #     return HttpResponseRedirect('/')
+    # else:
+    #     # In reality we'd use a form class
+    #     # to get proper validation errors.
+    #     return HttpResponse('Asegúrese de que todos los campos estén ingresados ​​y sean válidos.')
 
 
 @login_required(login_url='/login/')
@@ -59,7 +120,7 @@ def Registrar(request):
 		if (v_nombre != '' and v_apellido != '' and v_correo != ''
 			and v_telefono != '' and   v_cedula != ''  and  v_clave!= ''):
 
-		#Crear registro del Residente
+			# Crear registro del Residente
 			residente = Residente.objects.create(
 											nombre=(v_nombre +
 											' ' + v_apellido),
@@ -71,7 +132,7 @@ def Registrar(request):
 											clave=v_clave
 											)
 
-		#Crear usuario del Residente, para poder iniciar sesion
+			# Crear usuario del Residente, para poder iniciar sesion
 			usuario = User.objects.create_user(
 											username=v_correo,
 											password=v_clave,
@@ -79,9 +140,49 @@ def Registrar(request):
 											last_name=v_apellido,
 											email=v_correo
 											)
-			is_active = True
+			usuario.is_active = True
 			usuario.is_staff = True
 			usuario.save()
+
+			# Enviar correo con el usuario creado
+			try:
+				url = 'http://10.1.100.200:8000/login'
+				
+				html_content = ("""
+					<style>
+						body { background-color: #fff;}        
+						div { text-align: center; }
+						.padding { padding-top: 20px; }        
+						.felicidad { color: #00c853; font-size: 46px }
+						h3 { font-size: 20px }
+						.color { color:blue; font-size: 24px; padding-bottom:0px; }
+						.usuario { margin-bottom:0px; padding-bottom:0px; font-size: 20px }
+						a { font-size: 16px }
+					</style>
+
+					<div class="center-align padding">
+						<div class="center-align padding">
+							<div class="felicidad">¡Felicidades, %s!</div>
+							<h3>Su cuenta ha sido creada exitosamente.</h3>
+						</div>
+						<div class="padding usuario">
+						<h3> Su usuario es:</h3>
+						<br>
+						<div class="color"> %s</div>
+						</div>
+						<div class="padding">
+							<a href="%s" class="btn">Acceder a su cuenta</a>
+						</div>
+					</div>
+					""" %(v_nombre, v_correo, url))
+
+				subject, from_email, to = 'Cuenta Residencial Brisa Fresca', 'raynel95@gmail.com', v_correo
+				text_content = 'Credenciales de su cuenta Residencial Brisa Fresca.'
+				msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+				msg.attach_alternative(html_content, "text/html")
+				msg.send()
+			except BadHeaderError:
+				return HttpResponse('No se pudo enviar el correo.')			
 
 			return render(request, "felicidades.html",
 			{'nombre': v_nombre, 'correo': v_correo})
@@ -125,7 +226,6 @@ def EstadosCuenta(request):
 	deuda=0
 	deuda_pendiente=0
 	total_pagado=0
-
 	for p in pago:
 		deuda += p.recargo
 		deuda_pendiente = (p.deuda_pendiente + p.recargo)
@@ -141,7 +241,7 @@ def EstadosCuenta(request):
 				'nombre': request.user.first_name
 			})
 
-
+# ------------ Pendiente por terminar ------------
 @login_required(login_url='/login/')
 def GenerarFactura(request):
 	deuda=0
@@ -155,7 +255,6 @@ def GenerarFactura(request):
 		deuda += p.recargo
 		total_A_pagar += (p.deuda_pendiente + p.recargo)
 
-
 	return render(request, )
 
 
@@ -164,10 +263,10 @@ class ReportePersonasPDF(View):
 
 	def cabecera(self,request,pdf):
 		usuario = request.user.get_full_name()
-		propietario = Residente.objects.filter(nombre=usuario)
 
 		#Utilizamos el archivo logo_django.png que está guardado en la carpeta media/imagenes
 		archivo_imagen = settings.MEDIA_ROOT+'Logo2.png'
+
 		#Definimos el tamaño de la imagen a cargar y las coordenadas correspondientes
 		pdf.drawImage(archivo_imagen, 30, 700, 120, 90, preserveAspectRatio=True)
 		pdf.setFont("Helvetica", 9)
@@ -175,17 +274,13 @@ class ReportePersonasPDF(View):
 
 		#Creamos una tupla de encabezados para neustra tabla
 		encabezados = ['Estado de Cuenta'.upper()]
+
 		#Creamos una lista de tuplas que van a contener a las personas
-		# for p in propietario:
-		# 	apartament = p.no_apartamento
-		# 	edific = p.edificio
-
-
 		detalles = [('%s, Edificio %s, Apartamento %s' %(usuario, p.edificio, p.no_apartamento)) for p in Residente.objects.filter(nombre=usuario)]
-		# detalles = [('%s' %usuario), (', Edificio %s' %edific), (', Apartamento %s' %apartament)]
-
+		
 		#Establecemos el tamaño de cada una de las columnas de la tabla
 		detalle_orden = Table([encabezados] + [detalles], rowHeights=50, colWidths=[575])
+
 		#Aplicamos estilos a las celdas de la tabla
 		detalle_orden.setStyle(TableStyle(
 		[
@@ -208,12 +303,13 @@ class ReportePersonasPDF(View):
 	def tabla(self,request,pdf,y):
 		usuario = request.user.get_full_name()
 		#Creamos una tupla de encabezados para neustra tabla
-		encabezados = ( 'FECHA', 'APTO', 'PAGO', 'CONCEPTO', 'PENDIENTE' , 'RECARGO', 'CONCEPTO REC.')
+		encabezados = ( 'FECHA', 'PAGO', 'CONCEPTO', 'PENDIENTE' , 'RECARGO', 'CONCEPTO RECARGO')
 		#Creamos una lista de tuplas que van a contener a las personas
-		detalles = [(p.fecha, p.no_edificio, 'RD$%s%s' %(p.pagos, '.00'), p.concepto, 'RD$%s%s' %(p.deuda_pendiente, '.00'), 'RD$%s%s' %(p.recargo, '.00'), p.concepto_deuda) for p in Pago.objects.filter(propietario__nombre=usuario)]
+		detalles = [(p.fecha, 'RD$%s%s' %(p.pagos, '.00'), p.concepto, 'RD$%s%s' %(p.deuda_pendiente, '.00'), 'RD$%s%s' %(p.recargo, '.00'), p.concepto_deuda) for p in Pago.objects.filter(propietario__nombre=usuario)]
+
 		#Establecemos el tamaño de cada una de las columnas de la tabla
 		detalle_orden = Table([encabezados] + detalles, rowHeights=15, colWidths=[
-			12 * 5, 10 * 4, 15 * 5, 25 * 5, 15 * 5, 15 * 5, 25 * 5])
+			12 * 5, 15 * 5, 30 * 5, 15 * 5, 15 * 5, 30 * 5])
 		#Aplicamos estilos a las celdas de la tabla
 		detalle_orden.setStyle(TableStyle(
 		[
@@ -237,10 +333,47 @@ class ReportePersonasPDF(View):
 		#Definimos la coordenada donde se dibujará la tabla
 		detalle_orden.drawOn(pdf, 15, y)
 
+	def totales(self,request,pdf,y):
+		usuario = request.user.get_full_name()
+		#Creamos una tupla de encabezados para neustra tabla
+		encabezados = ['TOTALES']
+		#Creamos una lista de tuplas que van a contener a las personas
+		deuda=0
+		deuda_pendiente=0
+		total_pagado=0
+		pago = Pago.objects.all().filter(propietario__nombre=usuario)
+		for p in pago:
+			deuda += p.recargo
+			deuda_pendiente = (p.deuda_pendiente + p.recargo)
+			total_pagado  += p.pagos
+		detalles = [
+		['Total Deuda                                   RD$%s.00' %deuda],
+		['Total Deuda Por Recargo              RD$%s.00' %deuda_pendiente],
+		['Total Pagado                                 RD$%s.00' %total_pagado]
+		]
+		#Establecemos el tamaño de cada una de las columnas de la tabla
+		detalle_orden = Table([encabezados] + detalles, rowHeights=15, colWidths=[43 * 5])
+		#Aplicamos estilos a las celdas de la tabla
+		detalle_orden.setStyle(TableStyle(
+		[('VALIGN',(0,0),(-1,-1),'MIDDLE'),
+				('BACKGROUND', (0, 0), (8, 0), colors.lightblue),
+				('INNERGRID', (0,0), (0,0), 0.25, colors.black),
+				('ALIGN',(0,0),(-1,-1),'LEFT'),
+				('VALIGN',(0,0),(-1,-1),'MIDDLE'),
+				('ALIGN',(0,0),(0,0),'CENTER'),
+				('TEXTCOLOR',(0,1),(-1,-1),colors.black),			
+				]
+		))
+		#Establecemos el tamaño de la hoja que ocupará la tabla
+		detalle_orden.wrapOn(pdf, 1000, 800)
+		#Definimos la coordenada donde se dibujará la tabla
+		detalle_orden.drawOn(pdf, 380, 50)
+
 
 	def get(self, request, *args, **kwargs):
 		#Indicamos el tipo de contenido a devolver, en este caso un pdf
 		response = HttpResponse(content_type='application/pdf')
+		response['Content-Disposition'] = 'filename="Estado de Cuenta.pdf"'
 		#La clase io.BytesIO permite tratar un array de bytes como un fichero binario, se utiliza como almacenamiento temporal
 		buffer = BytesIO()
 		#Canvas nos permite hacer el reporte con coordenadas X y Y
@@ -249,6 +382,7 @@ class ReportePersonasPDF(View):
 		self.cabecera(request,pdf)
 		y = 600
 		self.tabla(request,pdf, y)
+		self.totales(request,pdf, y)
 		#Con show page hacemos un corte de página para pasar a la siguiente
 		pdf.showPage()
 		pdf.save()

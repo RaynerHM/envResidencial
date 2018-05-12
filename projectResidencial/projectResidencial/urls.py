@@ -26,13 +26,11 @@ urlpatterns = [
     path('cambiar-clave/', views.CambiarClave, name='cambiar-clave'),
     path('login/', views.Login, name='login'),
     path('logout/', views.Logout, name='logout'),
-    #path('accounts/login/', views.Login, name='login'),
-    #path('accounts/logout/', views.Logout, name='logout'),
     path('sesion/', views.Sesion, name='sesion'),
     path('', views.EstadosCuenta, name='estado'),
     path('estado-de-cuenta/', views.EstadosCuenta, name='estado'),
-    # path('reporte/pdf/', views.GenerarPDF.get, name='reporte'),
     path('reporte/estadoDeCuenta/pdf/', views.ReportePersonasPDF.as_view(), name='reporte'),
+    path('correo/', views.EnviarCorreo, name='correo'),
 
 
 ]
