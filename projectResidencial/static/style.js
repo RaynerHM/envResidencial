@@ -19,3 +19,19 @@ function showPage() {
     document.getElementById("loader").style.display = "none";
     document.getElementById("myDiv").style.display = "block";
 }
+$(".dropdown-trigger").dropdown();
+
+
+
+$(document).ready(function() {
+    var pass1 = $('[name=pass-new]');
+    var pass2 = $('[name=rep-pass]');
+
+    if (pass1 != pass2) {
+        $("#mensaje").removeClass("red");
+        $("#mensaje").addClass("green accent-4");
+    } else {
+        $("#mensaje").removeClass("green accent-4");
+        $("#mensaje").addClass("red");
+    }
+});

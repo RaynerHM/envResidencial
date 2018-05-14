@@ -26,13 +26,16 @@
                 </ul>
                 <ul id="nav-mobile" class="right">
                     <li class="">
+                        <a href="/cambiar-clave" class=""> <span class="hide-on-med-and-down"> </span> <i class="fa fa-key ">Cambiar Clave</i></a>
+                    </li>                    
+                    <li class="">
                         <a href="/logout" class=""> <span class="hide-on-med-and-down"> </span> <i class="fa fa-sign-out ">Cerrar Sesion</i></a>
                     </li>
                 </ul>
             </div>
         </nav>
-
     </div>
+
     <div class="advertencia">
         {% for a in ajuste %}        
         <h6>Los pagos de las mensualidades vencen los días <b>{{a.fecha_Para_Facturar|date:"d" }}</b> de cada mes, luego de esta fecha el Residencial le concede <b>5 días</b> adicionales para realizar los mismos sin cargos. A partir de los <b>días {{a.fecha_Limite_Pago|date:"d" }}</b> se generarán cargos de <b>RD${{ a.pago_Recargo }}</b> pesos por pagos atrasado.</h6>

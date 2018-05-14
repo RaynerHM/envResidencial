@@ -30,7 +30,7 @@ ALLOWED_HOSTS = ['*']
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
 EMAIL_HOST_USER ='raynel95@gmail.com'
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_PASSWORD = 'winifer1'
 EMAIL_USE_TLS = True
 
 # TIME= 5*60

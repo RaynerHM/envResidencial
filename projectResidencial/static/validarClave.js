@@ -7,6 +7,7 @@ window.onload = function() {
     const lower = document.getElementById('lower');
     const number = document.getElementById('number');
     const symbol = document.getElementById('symbol');
+    const bClave = document.getElementById('bClave');
 
     const lengthCounter = (pass) => {
         const len = pass.length;
@@ -18,9 +19,11 @@ window.onload = function() {
         if (pass.length >= 8) {
             PSWlength.classList.remove('invalid');
             PSWlength.classList.add('valid');
+            bClave.classList.remove('disabled');
         } else {
             PSWlength.classList.remove('valid');
             PSWlength.classList.add('invalid');
+            bClave.classList.add('disabled');
         }
     };
 
@@ -29,9 +32,11 @@ window.onload = function() {
         if (pass.match(upperCaseLetters)) {
             upper.classList.remove('invalid');
             upper.classList.add('valid');
+            bClave.classList.remove('disabled');
         } else {
             upper.classList.remove('valid');
             upper.classList.add('invalid');
+            bClave.classList.add('disabled');
         }
     };
 
@@ -40,9 +45,11 @@ window.onload = function() {
         if (pass.match(lowerCaseLetters)) {
             lower.classList.remove('invalid');
             lower.classList.add('valid');
+            bClave.classList.remove('disabled');
         } else {
             lower.classList.remove('valid');
             lower.classList.add('invalid');
+            bClave.classList.add('disabled');
         }
     };
 
@@ -51,9 +58,11 @@ window.onload = function() {
         if (pass.match(numbers)) {
             number.classList.remove('invalid');
             number.classList.add('valid');
+            bClave.classList.remove('disabled');
         } else {
             number.classList.remove('valid');
             number.classList.add('invalid');
+            bClave.classList.add('disabled');
         }
     };
 
@@ -62,9 +71,12 @@ window.onload = function() {
         if (pass.match(symbols)) {
             symbol.classList.remove('invalid');
             symbol.classList.add('valid');
+            bClave.classList.remove('disabled');
+
         } else {
             symbol.classList.remove('valid');
             symbol.classList.add('invalid');
+            bClave.classList.add('disabled');
         }
     };
 

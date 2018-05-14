@@ -6,6 +6,7 @@ from .models import Residente, Apartamento, Pago, Estado, Ajuste
 
 class AdminResidentes(admin.ModelAdmin):
 	list_display = ["nombre", 'edificio', 'no_apartamento', 'correo', 'telefono', 'cedula', 'clave']
+	ordering = ['nombre','no_apartamento','edificio']
 
 	class Meta:
 		model = Residente

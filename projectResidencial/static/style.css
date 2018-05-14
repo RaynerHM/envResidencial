@@ -214,3 +214,11 @@ h3 {
     left: 5px;
     content: "✗";
 }
+
+
+/* -------- Estado de Cuenta -------- */
+
+#bPassword .row button {
+    width: 200px;
+    border-radius: 5px;
+}

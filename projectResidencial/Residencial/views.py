@@ -195,20 +195,34 @@ def Registrar(request):
 @login_required(login_url='/login/')
 def CambiarClave(request):
 	mensaje = ''
+	# context={}
+	cont={
+				'usuariofull': request.user.get_full_name,
+				'nombre': request.user.first_name
+			}
 	if request.method == 'POST':
-		v_clave_Vieja = request.POST.get("pass-last")
 		v_clave_Nueva = request.POST.get("pass-new")
 
+		# residente = Residente.objects.get(nombre=request.user.first_name)
+		# if residente:
+		# 	residente.nombre=v_clave_Nueva
+		# 	residente.save()
+
+		
 		clave = User.objects.get(username=request.user)
-		if clave == v_clave_Vieja:
+		residente = Residente.objects.get(nombre=request.user.get_full_name())
+		if clave and residente:
 			clave.set_password(v_clave_Nueva)
 			clave.save()
+
+			residente.clave=v_clave_Nueva
+			residente.save()
 
 			mensaje = "Clave cambiada exitosamente"
 		else:
 			mensaje = "Fallo al cambiar la clave"
-		return render(request, "password.html", {'mensaje': mensaje})
-	return render(request, "password.html")
+		return render(request, "password.html", {'mensaje': mensaje},cont)
+	return render(request, "password.html",cont)
 
 
 @login_required(login_url='/login/')
@@ -265,7 +279,7 @@ class ReportePersonasPDF(View):
 		usuario = request.user.get_full_name()
 
 		#Utilizamos el archivo logo_django.png que está guardado en la carpeta media/imagenes
-		archivo_imagen = settings.MEDIA_ROOT+'Logo2.png'
+		archivo_imagen = settings.MEDIA_ROOT+'Logo.png'
 
 		#Definimos el tamaño de la imagen a cargar y las coordenadas correspondientes
 		pdf.drawImage(archivo_imagen, 30, 700, 120, 90, preserveAspectRatio=True)
