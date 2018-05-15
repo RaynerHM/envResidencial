@@ -4,6 +4,11 @@
     }
 }
 
+@media only screen and (min-width: 601px){
+    nav {
+    line-height: 50px;
+}}
+
 body {
     background-color: white;
 }
@@ -11,7 +16,6 @@ body {
 .container {
     width: 100%;
 }
-
 
 /*---------- Barra de Navegacion ----------*/
 
@@ -30,12 +34,9 @@ li {
     list-style: none;
 }
 
-
 /*---------- Fin Barra de Navegacion ----------*/
 
-
 /*-----------------------------------------------------------------------------------------------*/
-
 
 /* ----- Login ----- */
 
@@ -74,8 +75,7 @@ h3 {
     background-color: #00c853;
 }
 
-.row button,
-.row a {
+.row button, .row a {
     padding: 0 5% 0 5%;
     width: 150px;
     border-radius: 5px;
@@ -85,7 +85,6 @@ h3 {
 .row a {
     background-color: #40c4ff;
 }
-
 
 /* -------- Estado de Cuenta -------- */
 
@@ -170,7 +169,6 @@ nav .nav-wrapper i {
     font-size: 18px;
 }
 
-
 /* -------- Registro Residente - Clave -------- */
 
 #message {
@@ -189,7 +187,6 @@ h3 {
     text-align: center;
 }
 
-
 /* Add a green text color and a checkmark when the requirements are right */
 
 .valid {
@@ -202,7 +199,6 @@ h3 {
     content: "✓";
 }
 
-
 /* Add a red text color and an Xmark when the requirements are wrong */
 
 .invalid {
@@ -214,7 +210,6 @@ h3 {
     left: 5px;
     content: "✗";
 }
-
 
 /* -------- Estado de Cuenta -------- */
 

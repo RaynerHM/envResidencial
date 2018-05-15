@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Registrar Pagos</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+    <link rel="stylesheet" href="{% static '/materialize/css/materialize.min.css' %}" media="screen,projection">
+    <link rel="stylesheet" href="{% static '/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+</head>
+
+<body class="">
+
+    <div class="col m12 s12 x12 navbar-fixed">
+        <nav>
+            <div class="nav-wrapper">
+                <a href="/" class="brand-logo center"><span class="hide-on-small-only"> Registrar </span>Pagos</a>
+                <ul>
+                    <li class="left">
+                        <i class="fa fa-user-circle hide-on-large-only"> {{nombre}}</i>
+                        <i class="fa fa-user-circle hide-on-med-and-down"> {{ usuariofull }}</i>
+                    </li>
+                </ul>
+                <ul id="nav-mobile" class="right">
+                    <li class="">
+                        <a href="/cambiar-clave" class=""> <span class="hide-on-med-and-down"> </span> <i class="fa fa-key ">Cambiar Clave</i></a>
+                    </li>                    
+                    <li class="">
+                        <a href="/logout" class=""> <span class="hide-on-med-and-down"> </span> <i class="fa fa-sign-out ">Cerrar Sesion</i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+
+    <div class="row">
+        <!--   Nombre Propietario o Inquilino   -->
+        <div class="input-field col m2" style="width:50%;">
+            <i class="prefix fa fa-user-o fa-3x"></i>
+            <input id="nombre" name="nombre" type="text" required>
+            <label for="nombre" class="active">Bloque </label>
+        </div>
+        <!--   Nombre Propietario o Inquilino   -->
+        <div class="input-field col m2" style="width:50%;">
+            <i class="prefix fa fa-user-o fa-3x"></i>
+            <input id="nombre" name="nombre" type="text" required>
+            <label for="nombre" class="active">Apartamento </label>
+        </div>
+        <!--   Nombre Propietario o Inquilino   -->
+        <div class="input-field col m2" style="width:50%;">
+            <i class="prefix fa fa-user-o fa-3x"></i>
+            <input id="nombre" name="nombre" type="text" required>
+            <label for="nombre" class="active">Monto a Pagar </label>
+        </div>
+        <!--   Nombre Propietario o Inquilino   -->
+        <div class="input-field col m2" style="width:50%;">
+            <i class="prefix fa fa-user-o fa-3x"></i>
+            <input id="nombre" name="nombre" type="text" required>
+            <label for="nombre" class="active">Concepto </label>
+        </div>
+        <!--   Nombre Propietario o Inquilino   -->
+        <div class="input-field col m2" style="width:50%;">
+            <i class="prefix fa fa-user-o fa-3x"></i>
+            <input id="nombre" name="nombre" type="text" required>
+            <label for="nombre" class="active">Pendiente </label>
+        </div>
+        <!--   Nombre Propietario o Inquilino   -->
+        <div class="input-field col m2" style="width:50%;">
+            <i class="prefix fa fa-user-o fa-3x"></i>
+            <input id="nombre" name="nombre" type="text" required>
+            <label for="nombre" class="active">Nombre </label>
+        </div>
+       
+    </div>
+
+    <script src="{% static '/jquery/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static '/materialize/js/materialize.min.js' %}"></script>
+    <script src="{% static '/style.js' %}"></script>
+</body>
+
+</html>

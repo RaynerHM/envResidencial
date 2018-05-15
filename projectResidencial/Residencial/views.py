@@ -197,9 +197,9 @@ def CambiarClave(request):
 	mensaje = ''
 	# context={}
 	cont={
-				'usuariofull': request.user.get_full_name,
-				'nombre': request.user.first_name
-			}
+			'usuariofull': request.user.get_full_name,
+			'nombre': request.user.first_name
+		}
 	if request.method == 'POST':
 		v_clave_Nueva = request.POST.get("pass-new")
 
@@ -226,8 +226,12 @@ def CambiarClave(request):
 
 
 @login_required(login_url='/login/')
-def Sesion(request):
-	return render(request, "sesion.html")
+def RegistrarPagos(request):
+    	
+	return render(request, "registrar_Pagos.html", {
+			'usuariofull': request.user.get_full_name,
+			'nombre': request.user.first_name
+        })
 
 
 @login_required(login_url='/login/')
