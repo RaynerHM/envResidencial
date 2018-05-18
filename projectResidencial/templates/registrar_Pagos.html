@@ -29,47 +29,82 @@
                         <a href="/cambiar-clave" class=""> <span class="hide-on-med-and-down"> </span> <i class="fa fa-key ">Cambiar Clave</i></a>
                     </li>                    
                     <li class="">
-                        <a href="/logout" class=""> <span class="hide-on-med-and-down"> </span> <i class="fa fa-sign-out ">Cerrar Sesion</i></a>
+                        <a href="/logout" class=""> <span class="hide-on-med-and-down"> </span> <i class="fa fa-sign-out">Cerrar Sesion</i></a>
+                    </li>
+                    <li class="">
+                        <i onclick="Materialize.showStaggeredList('#slide-out')" id="btnMenu" data-activates="slide-out" class="deslizar icono-menu fa fa-bars fa-2x ">
                     </li>
                 </ul>
             </div>
         </nav>
     </div>
 
-
+<ul id="slide-out" class="side-nav ">
+        <li>
+            <i class="iconos-pequeno prefix fa fa-user-o fa-2x"></i>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li class=" ">
+            <a href="/" class="btn">
+                <i class="iconos-pequeno fa fa-home fa-1x"></i> Inicio</a>
+        </li>
+        <li>
+            <a href="/persona" class="btn">
+                <i class="iconos-pequeno fa fa-user fa-1x"></i> Agregar Personas </a>
+        </li>
+        <li class=" ">
+            <a href="/asignacion" class="active-btn btn">
+                <i class="iconos-pequeno fa fa-desktop fa-1x"></i> Equipos Asignados</a>
+        </li>
+        <li class=" ">
+            <a href="/password" class="btn">
+                <i class="iconos-pequeno fa fa-key fa-1x"></i> Cambiar Contraseña</a>
+        </li>
+        <li class=" ">
+            <a href="" class="btn">
+                <i class="iconos-pequeno fa fa-cog fa-1x"></i> Opciones</a>
+        </li>
+        <li class=" ">
+            <a href="" class="btn">
+                <i class="iconos-pequeno fa fa-power-off fa-1x"></i> Cerrar Sección</a>
+        </li>
+    </ul>
+    
     <div class="row">
         <!--   Nombre Propietario o Inquilino   -->
-        <div class="input-field col m2" style="width:50%;">
-            <i class="prefix fa fa-user-o fa-3x"></i>
+        <div class="input-field col m2" >
+            <i class="prefix fa fa-hashtag fa-3x"></i>
             <input id="nombre" name="nombre" type="text" required>
             <label for="nombre" class="active">Bloque </label>
         </div>
         <!--   Nombre Propietario o Inquilino   -->
-        <div class="input-field col m2" style="width:50%;">
-            <i class="prefix fa fa-user-o fa-3x"></i>
+        <div class="input-field col m2" >
+            <i class="prefix fa fa-building-o fa-3x"></i>
             <input id="nombre" name="nombre" type="text" required>
             <label for="nombre" class="active">Apartamento </label>
         </div>
         <!--   Nombre Propietario o Inquilino   -->
-        <div class="input-field col m2" style="width:50%;">
-            <i class="prefix fa fa-user-o fa-3x"></i>
+        <div class="input-field col m2" >
+            <i class="prefix fa fa-dollar fa-3x"></i>
             <input id="nombre" name="nombre" type="text" required>
             <label for="nombre" class="active">Monto a Pagar </label>
         </div>
         <!--   Nombre Propietario o Inquilino   -->
-        <div class="input-field col m2" style="width:50%;">
+        <div class="input-field col m2">
             <i class="prefix fa fa-user-o fa-3x"></i>
             <input id="nombre" name="nombre" type="text" required>
             <label for="nombre" class="active">Concepto </label>
         </div>
         <!--   Nombre Propietario o Inquilino   -->
-        <div class="input-field col m2" style="width:50%;">
-            <i class="prefix fa fa-user-o fa-3x"></i>
+        <div class="input-field col m2" >
+            <i class="prefix fa fa-dollar fa-3x"></i>
             <input id="nombre" name="nombre" type="text" required>
             <label for="nombre" class="active">Pendiente </label>
         </div>
         <!--   Nombre Propietario o Inquilino   -->
-        <div class="input-field col m2" style="width:50%;">
+        <div class="input-field col m2" >
             <i class="prefix fa fa-user-o fa-3x"></i>
             <input id="nombre" name="nombre" type="text" required>
             <label for="nombre" class="active">Nombre </label>

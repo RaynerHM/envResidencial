@@ -195,27 +195,22 @@ def Registrar(request):
 @login_required(login_url='/login/')
 def CambiarClave(request):
 	mensaje = ''
-	# context={}
+
 	cont={
 			'usuariofull': request.user.get_full_name,
 			'nombre': request.user.first_name
 		}
 	if request.method == 'POST':
-		v_clave_Nueva = request.POST.get("pass-new")
-
-		# residente = Residente.objects.get(nombre=request.user.first_name)
-		# if residente:
-		# 	residente.nombre=v_clave_Nueva
-		# 	residente.save()
-
+		v_clave_Nueva1 = request.POST.get("pass-new")
+		v_clave_Nueva2 = request.POST.get("rep-pass")
 		
 		clave = User.objects.get(username=request.user)
 		residente = Residente.objects.get(nombre=request.user.get_full_name())
-		if clave and residente:
-			clave.set_password(v_clave_Nueva)
+		if v_clave_Nueva1:
+			clave.set_password(v_clave_Nueva1)
 			clave.save()
 
-			residente.clave=v_clave_Nueva
+			residente.clave=v_clave_Nueva1
 			residente.save()
 
 			mensaje = "Clave cambiada exitosamente"

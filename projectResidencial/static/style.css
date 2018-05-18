@@ -4,10 +4,11 @@
     }
 }
 
-@media only screen and (min-width: 601px){
+@media only screen and (min-width: 601px) {
     nav {
-    line-height: 50px;
-}}
+        line-height: 50px;
+    }
+}
 
 body {
     background-color: white;
@@ -16,6 +17,7 @@ body {
 .container {
     width: 100%;
 }
+
 
 /*---------- Barra de Navegacion ----------*/
 
@@ -34,9 +36,12 @@ li {
     list-style: none;
 }
 
+
 /*---------- Fin Barra de Navegacion ----------*/
 
+
 /*-----------------------------------------------------------------------------------------------*/
+
 
 /* ----- Login ----- */
 
@@ -75,7 +80,8 @@ h3 {
     background-color: #00c853;
 }
 
-.row button, .row a {
+.row button,
+.row a {
     padding: 0 5% 0 5%;
     width: 150px;
     border-radius: 5px;
@@ -85,6 +91,7 @@ h3 {
 .row a {
     background-color: #40c4ff;
 }
+
 
 /* -------- Estado de Cuenta -------- */
 
@@ -169,6 +176,7 @@ nav .nav-wrapper i {
     font-size: 18px;
 }
 
+
 /* -------- Registro Residente - Clave -------- */
 
 #message {
@@ -187,6 +195,7 @@ h3 {
     text-align: center;
 }
 
+
 /* Add a green text color and a checkmark when the requirements are right */
 
 .valid {
@@ -198,6 +207,7 @@ h3 {
     left: -5px;
     content: "✓";
 }
+
 
 /* Add a red text color and an Xmark when the requirements are wrong */
 
@@ -211,9 +221,41 @@ h3 {
     content: "✗";
 }
 
+
 /* -------- Estado de Cuenta -------- */
 
 #bPassword .row button {
     width: 200px;
     border-radius: 5px;
+}
+
+#bPassword .mensaje-clave {
+    color: red;
+    border-radius: 15px;
+    margin: 0 0px 20px 50px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.central {
+    text-align: -webkit-center;
+}
+
+#bPassword .container .row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+@media only screen and (min-width: 360px) {
+    #message i {
+        font-size: 12px;
+    }
+}
+
+.derecha {
+    text-align: right;
+}
+
+.izquierda {
+    text-align: left;
 }

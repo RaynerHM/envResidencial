@@ -8,6 +8,7 @@ window.onload = function() {
     const number = document.getElementById('number');
     const symbol = document.getElementById('symbol');
     const bClave = document.getElementById('bClave');
+    clave2 = document.getElementById('pass-new1');
 
     const lengthCounter = (pass) => {
         const len = pass.length;
@@ -93,3 +94,34 @@ window.onload = function() {
     }, false);
 
 };
+
+
+
+
+
+$(document).ready(function() {
+    //variables
+    var pass1 = $('[name=pass-new]');
+    var pass2 = $('[name=rep-pass]');
+    var negacion = "Las contraseñas no son iguales";
+    var span = $('<div></div>').insertAfter(pass2);
+    span.hide();
+
+
+    function coincidePassword() {
+        var valor1 = pass1.val();
+        var valor2 = pass2.val();
+
+        span.show().removeClass();
+        if (valor1 != valor2) {
+            span.text(negacion).addClass('mensaje-clave negacion');
+        }
+        if (valor1.length != 0 && valor1 == valor2) {
+            span.addClass('hide');
+        }
+    }
+    pass2.keyup(function() {
+        coincidePassword();
+    });
+    pass1.focus();
+});
