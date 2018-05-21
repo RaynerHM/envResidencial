@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{% static '/style.css' %}">
 </head>
 
-<body class="">
+<body id="bPagos">
 
     <div class="col m12 s12 x12 navbar-fixed">
         <nav>
@@ -31,9 +31,9 @@
                     <li class="">
                         <a href="/logout" class=""> <span class="hide-on-med-and-down"> </span> <i class="fa fa-sign-out">Cerrar Sesion</i></a>
                     </li>
-                    <li class="">
+                    {% comment %} <li class="">
                         <i onclick="Materialize.showStaggeredList('#slide-out')" id="btnMenu" data-activates="slide-out" class="deslizar icono-menu fa fa-bars fa-2x ">
-                    </li>
+                    </li> {% endcomment %}
                 </ul>
             </div>
         </nav>
@@ -47,19 +47,19 @@
             <div class="divider"></div>
         </li>
         <li class=" ">
-            <a href="/" class="btn">
+            <a href="" class="btn">
                 <i class="iconos-pequeno fa fa-home fa-1x"></i> Inicio</a>
         </li>
         <li>
-            <a href="/persona" class="btn">
+            <a href="" class="btn">
                 <i class="iconos-pequeno fa fa-user fa-1x"></i> Agregar Personas </a>
         </li>
         <li class=" ">
-            <a href="/asignacion" class="active-btn btn">
+            <a href="" class="active-btn btn">
                 <i class="iconos-pequeno fa fa-desktop fa-1x"></i> Equipos Asignados</a>
         </li>
         <li class=" ">
-            <a href="/password" class="btn">
+            <a href="{% url 'clave' %}" class="btn">
                 <i class="iconos-pequeno fa fa-key fa-1x"></i> Cambiar Contraseña</a>
         </li>
         <li class=" ">
@@ -72,6 +72,94 @@
         </li>
     </ul>
     
+    <div class="row">
+     <!--   Nombre Propietario o Inquilino   -->
+        <div class="input-field col m2" >
+             <form action="" method="POST"> {% csrf_token %}
+                <input class="" type="search" name="persona" value="" placeholder="Buscar persona">
+                <button class="boton1 btn center" type="submit">
+                    <i id="search" class="fa fa-search"></i>Buscar</button>
+            </form>
+        </div>
+    </div>
+
+
+
+
+<div class=" col m9 s12 x12">
+
+                <ul class="collapsible popout">
+                    {% for r in res %}
+                    <li>
+                        <div class="collapsible-header nombre zxc row valign-wrapper">
+                            <img class="circle" src="{{ MEDIA_URL }}{{ p.foto }}" alt="" style="width:60px;">
+                            <!--<i class="fa fa-user-circle fa-2x "></i>-->
+                            <div class="col m6 ">
+                                {{ r.nombre }}
+                            </div>
+
+                            <div class="col m3 ">
+                                <h6 class="">
+                                    Apartamento
+                                </h6>
+                                {{ r.edificio }}-{{r.no_apartamento}}
+                            </div>
+                            <div class="col m3 ">
+                                <h6 class="">
+                                    Cargo
+                                </h6>
+                                {% comment %} {{ p.cargo }} {% endcomment %}
+                            </div>
+
+                            <span class=" badge"></span>
+                        </div>
+                        <div class="collapsible-body">
+                            <table id="id_table" class="bordered highlight centered table-descripcion">
+                                <thead>
+                                    <th>Descripción</th>
+                                    <th>Modelo</th>
+                                    <th>Serial</th>
+                                    <th class="hide">ID</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for e in p.equipos %}
+                                    <tr>
+                                        <td>{{ e.descripcion }}</td>
+                                        <td>{{ e.modelo }}</td>
+                                        <td>{{ e.serial }}</td>
+                                        <td id="id_equipo" class="hide">{{ e.id }}</td>
+                                        <td>
+
+                                            <ul id="menu" class="row ">
+                                                <li class="col m6 right">
+                                                    <button class="btn-floating center waves-effect waves-light" type="submit">
+                                                        <i class="fa fa-edit fa-2x "></i>
+													</button>
+                                                </li>
+                                                <li class="col m6 right">
+                                                    <button data-target="modal1" class="modal-trigger btn-floating center red waves-effect waves-light" type="submit">
+                                                        <i class="fa fa-trash fa-2x "></i>
+													</button>
+                                                </li>
+                                            </ul>
+
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+
+
+
+
+
     <div class="row">
         <!--   Nombre Propietario o Inquilino   -->
         <div class="input-field col m2" >
@@ -93,7 +181,7 @@
         </div>
         <!--   Nombre Propietario o Inquilino   -->
         <div class="input-field col m2">
-            <i class="prefix fa fa-user-o fa-3x"></i>
+            <i class="prefix fa fa-comments-o fa-3x"></i>
             <input id="nombre" name="nombre" type="text" required>
             <label for="nombre" class="active">Concepto </label>
         </div>
@@ -105,15 +193,37 @@
         </div>
         <!--   Nombre Propietario o Inquilino   -->
         <div class="input-field col m2" >
-            <i class="prefix fa fa-user-o fa-3x"></i>
+            <i class="prefix fa fa-comment-o fa-3x"></i>
             <input id="nombre" name="nombre" type="text" required>
             <label for="nombre" class="active">Nombre </label>
         </div>
-       
     </div>
 
-    <script src="{% static '/jquery/jquery-3.2.1.min.js' %}"></script>
+
+    <div class="row">
+        <div class="col m2" >
+            <label>Nombre Personas</label>
+            <select multiple class=" browser-default">
+                <option value="" disabled selected>Nombre Personas</option>
+                {% for r in res %}
+                <option value="{{ r }}">{{ r.nombre }}</option>
+                {% endfor%}
+            </select>
+        </div>
+        <div class="col m2" >
+            <label>Numero Apartamentos</label>
+            <select multiple class=" browser-default">
+                <option value="" disabled selected>Apartamento</option>
+                {% for r in res %}
+                <option value="{{ r.edificio }}-{{r.no_apartamento}}">{{ r.edificio }}-{{r.no_apartamento}}</option>
+                {% endfor%}
+            </select>
+        </div>
+    </div>
+
+
     <script src="{% static '/materialize/js/materialize.min.js' %}"></script>
+    <script src="{% static '/jquery/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static '/style.js' %}"></script>
 </body>
 

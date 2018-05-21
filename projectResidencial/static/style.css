@@ -259,3 +259,18 @@ h3 {
 .izquierda {
     text-align: left;
 }
+
+#bPagos select {
+    height: 400px;
+    overflow: hidden;
+}
+
+.collapsible div.collapsible-header:hover {
+    background-color: #26a69a;
+    color: #fff;
+}
+
+.collapsible div.collapsible-header:active {
+    background-color: #26a69a;
+    color: #fff;
+}

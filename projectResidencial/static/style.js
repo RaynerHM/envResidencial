@@ -1,11 +1,17 @@
-/*  ------------------------------------------ Menu SideNav ------------------------------------------*/
-$('.deslizar').sideNav({
-    menuWidth: 300,
-    closeOnClick: true,
-    draggable: true,
-    onOpen: function(el) { /* Do Stuff */ }, // A function to be called when sideNav is opened
-    onClose: function(el) { /* Do Stuff */ }, // A function to be called when sideNav is closed
+// Or with jQuery
+
+$(document).ready(function() {
+    $('select').formSelect();
 });
+
+/*  ------------------------------------------ Menu SideNav ------------------------------------------*/
+// $('.deslizar').sideNav({
+//     menuWidth: 300,
+//     closeOnClick: true,
+//     draggable: true,
+//     onOpen: function(el) { /* Do Stuff */ }, // A function to be called when sideNav is opened
+//     onClose: function(el) { /* Do Stuff */ }, // A function to be called when sideNav is closed
+// });
 
 
 /* ------------------------------------------------------------------------------------------------ */
@@ -19,5 +25,3 @@ function showPage() {
     document.getElementById("loader").style.display = "none";
     document.getElementById("myDiv").style.display = "block";
 }
-
-$(".dropdown-trigger").dropdown();

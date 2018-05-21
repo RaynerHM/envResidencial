@@ -23,7 +23,7 @@ from django.contrib.auth.views import login, logout
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('crear-cuenta/', views.Registrar, name='crear-cuenta'),
-    path('cambiar-clave/', views.CambiarClave, name='cambiar-clave'),
+    path('cambiar-clave/', views.CambiarClave, name='clave'),
     path('login/', views.Login, name='login'),
     path('logout/', views.Logout, name='logout'),
     path('', views.EstadosCuenta, name='estado'),

@@ -95,10 +95,6 @@ window.onload = function() {
 
 };
 
-
-
-
-
 $(document).ready(function() {
     //variables
     var pass1 = $('[name=pass-new]');
@@ -106,7 +102,6 @@ $(document).ready(function() {
     var negacion = "Las contraseñas no son iguales";
     var span = $('<div></div>').insertAfter(pass2);
     span.hide();
-
 
     function coincidePassword() {
         var valor1 = pass1.val();

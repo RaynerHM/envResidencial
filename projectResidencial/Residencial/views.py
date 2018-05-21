@@ -221,12 +221,22 @@ def CambiarClave(request):
 
 
 @login_required(login_url='/login/')
-def RegistrarPagos(request):
-    	
+def RegistrarPagos(request):    	
+	
+	v_nombre = request.POST.get('persona', '')
+
+	# v_nombre = ""
+	if v_nombre != "":
+		residente = Residente.objects.filter(nombre__contains=v_nombre)
+	else:		
+		residente = Residente.objects.all().order_by('edificio')
+	# for	r in residente:
+	# 	res = r.nombre
 	return render(request, "registrar_Pagos.html", {
-			'usuariofull': request.user.get_full_name,
-			'nombre': request.user.first_name
-        })
+		'usuariofull': request.user.get_full_name,
+		'nombre': request.user.first_name,
+		'res': residente
+		})
 
 
 @login_required(login_url='/login/')
@@ -258,7 +268,6 @@ def EstadosCuenta(request):
 @login_required(login_url='/login/')
 def GenerarFactura(request):
 	deuda=0
-	deuda_pendiente=0
 	total_A_pagar=0
 	usuario= request.user.get_full_name()
 
@@ -278,7 +287,7 @@ class ReportePersonasPDF(View):
 		usuario = request.user.get_full_name()
 
 		#Utilizamos el archivo logo_django.png que está guardado en la carpeta media/imagenes
-		archivo_imagen = settings.MEDIA_ROOT+'Logo.png'
+		archivo_imagen = settings.MEDIA_ROOT + 'Logo.png'
 
 		#Definimos el tamaño de la imagen a cargar y las coordenadas correspondientes
 		pdf.drawImage(archivo_imagen, 30, 700, 120, 90, preserveAspectRatio=True)
