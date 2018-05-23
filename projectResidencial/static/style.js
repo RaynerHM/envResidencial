@@ -1,17 +1,15 @@
-// Or with jQuery
-
-$(document).ready(function() {
-    $('select').formSelect();
-});
+$('#username').focus();
 
 /*  ------------------------------------------ Menu SideNav ------------------------------------------*/
-// $('.deslizar').sideNav({
-//     menuWidth: 300,
-//     closeOnClick: true,
-//     draggable: true,
-//     onOpen: function(el) { /* Do Stuff */ }, // A function to be called when sideNav is opened
-//     onClose: function(el) { /* Do Stuff */ }, // A function to be called when sideNav is closed
-// });
+$(document).ready(function() {
+    $('.deslizar').sideNav({
+        menuWidth: 300,
+        closeOnClick: true,
+        draggable: true,
+        onOpen: function(el) { /* Do Stuff */ }, // A function to be called when sideNav is opened
+        onClose: function(el) { /* Do Stuff */ }, // A function to be called when sideNav is closed
+    });
+});
 
 
 /* ------------------------------------------------------------------------------------------------ */

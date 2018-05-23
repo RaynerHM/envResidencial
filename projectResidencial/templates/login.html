@@ -22,40 +22,39 @@
     </div>
     <div class="container ">
         <div class="row ">
-            <div class="col m12 s12 x12">
-                <div class="fondo z-depth-5">
-                    <form method="POST" action="{% url 'login' %}">{% csrf_token %}
-                        <!--   Usuario   -->
-                        <div class="input-field">
-                            <i class="prefix fa fa-user fa-3x"></i>
-                            <input id="username" name="username" type="text" required>
-                            <label for="username" class="active">Usuario</label>
-                        </div>
+            <div class=" fondo z-depth-5 center">
+                <form method="POST" action="{% url 'login' %}">{% csrf_token %}
+                    <!--   Usuario   -->
+                    <div class="input-field">
+                        <i class="prefix fa fa-user fa-3x"></i>
+                        <input id="username" name="username" type="text" required>
+                        <label for="username" class="active">Usuario</label>
+                    </div>
 
-                        <!--  Clave  -->
-                        <div class="input-field">
-                            <i class="prefix fa fa-key fa-3x"></i>
-                            <input id="password" name="password" type="password" required>
-                            <label for="password" class="active">Clave</label>
-                        </div>
+                    <!--  Clave  -->
+                    <div class="input-field">
+                        <i class="prefix fa fa-key fa-3x"></i>
+                        <input id="password" name="password" type="password" required>
+                        <label for="password" class="active">Clave</label>
+                    </div>
 
-                        <div class="row">
-                            <!--   Crear Cuenta   -->
-                            <div class="col m6 center group navform wat-cf">
-                                <a class="btn hoverable waves-effect" href="/crear-cuenta"><i class="fa fa-user-plus"></i> Crear Cuenta</a>
-                            </div>
-                            <!--   Iniciar Sesion   -->
-                            <div class="col m6 center group navform wat-cf">
-                                <button class="btn hoverable waves-effect" type="submit">Iniciar Sesion</button>
-                            </div>
+                    <div class="row">
+                        <!--   Crear Cuenta   -->
+                        <div class="col m6 center group navform wat-cf">
+                            <a class="btn hoverable waves-effect" href="/crear-cuenta"><i class="fa fa-user-plus"></i> Crear Cuenta</a>
                         </div>
-                    </form>
-                </div>
+                        <!--   Iniciar Sesion   -->
+                        <div class="col m6 center group navform wat-cf">
+                            <button class="btn hoverable waves-effect" type="submit">Iniciar Sesion</button>
+                        </div>
+                    </div>
+                </form>
                 {% if mensaje %}
                 <div id="mensaje" class="red ">
                     {{ mensaje }}
                 </div>
                 {% endif %}
+                </div>
             </div>
         </div>
     </div>

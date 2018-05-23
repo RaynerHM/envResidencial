@@ -197,9 +197,9 @@ def CambiarClave(request):
 	mensaje = ''
 
 	cont={
-			'usuariofull': request.user.get_full_name,
-			'nombre': request.user.first_name
-		}
+		'usuariofull': request.user.get_full_name,
+		'email': request.user.email,
+        }
 	if request.method == 'POST':
 		v_clave_Nueva1 = request.POST.get("pass-new")
 		v_clave_Nueva2 = request.POST.get("rep-pass")
@@ -222,7 +222,10 @@ def CambiarClave(request):
 
 @login_required(login_url='/login/')
 def RegistrarPagos(request):    	
+	lista_personas = []
+
 	
+
 	v_nombre = request.POST.get('persona', '')
 
 	# v_nombre = ""
@@ -230,11 +233,27 @@ def RegistrarPagos(request):
 		residente = Residente.objects.filter(nombre__contains=v_nombre)
 	else:		
 		residente = Residente.objects.all().order_by('edificio')
-	# for	r in residente:
-	# 	res = r.nombre
+
+	for r in residente:
+		p_dic = {
+				'nombre': '',
+				'apartamento': '',
+				'pago': [],
+			}
+		p_dic['nombre'] = r.nombre
+		p_dic['apartamento'] = r.edificio+'-'+r.no_apartamento
+
+		pago = Pago.objects.all().filter(propietario__nombre=r.nombre)
+		for p in pago:
+			p_dic['pago'].append(p)
+
+		lista_personas.append(p_dic)
+
+
 	return render(request, "registrar_Pagos.html", {
+		'pago': lista_personas,
 		'usuariofull': request.user.get_full_name,
-		'nombre': request.user.first_name,
+		'email': request.user.email,
 		'res': residente
 		})
 
@@ -261,7 +280,7 @@ def EstadosCuenta(request):
 				'deuda_pendiente': deuda_pendiente,
 				'total_pagado': total_pagado,
 				'usuariofull': request.user.get_full_name,
-				'nombre': request.user.first_name
+				'email': request.user.email,
 			})
 
 # ------------ Pendiente por terminar ------------

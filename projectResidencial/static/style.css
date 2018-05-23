@@ -18,6 +18,12 @@ body {
     width: 100%;
 }
 
+.side-nav li>a>i {
+    color: #fff;
+    font-size: 1.8em;
+}
+
+
 /*---------- Barra de Navegacion ----------*/
 
 nav {
@@ -35,9 +41,12 @@ li {
     list-style: none;
 }
 
+
 /*---------- Fin Barra de Navegacion ----------*/
 
+
 /*-----------------------------------------------------------------------------------------------*/
+
 
 /* ----- Login ----- */
 
@@ -53,7 +62,9 @@ li {
 
 .fondo {
     background-color: #fff;
-    margin: 5% 33% 0 33%;
+    /*margin: 5% 33% 0 33%;*/
+    margin: 250px 35% 360px;
+    width: 600px;
     border-radius: 15px;
     padding: 30px;
 }
@@ -65,7 +76,7 @@ h3 {
 }
 
 #login {
-    background-color: #40c4ff;
+    background-image: -webkit-linear-gradient(1000deg, #66AAB3 50%, #26a69a 45%);
 }
 
 .row {
@@ -76,7 +87,8 @@ h3 {
     background-color: #00c853;
 }
 
-.row button, .row a {
+.row button,
+.row a {
     padding: 0 5% 0 5%;
     width: 150px;
     border-radius: 5px;
@@ -87,10 +99,13 @@ h3 {
     background-color: #40c4ff;
 }
 
+
 /* -------- Estado de Cuenta -------- */
 
 nav .nav-wrapper i {
-    line-height: 0px;
+    line-height: 50px;
+    height: 50px;
+    margin-left: 15px;
 }
 
 #nav-mobile a {
@@ -162,13 +177,10 @@ nav .nav-wrapper i {
     text-align: right;
 }
 
-.fa {
-    font-size: 18px;
-}
-
 .sesion {
     font-size: 18px;
 }
+
 
 /* -------- Registro Residente - Clave -------- */
 
@@ -188,6 +200,7 @@ h3 {
     text-align: center;
 }
 
+
 /* Add a green text color and a checkmark when the requirements are right */
 
 .valid {
@@ -200,6 +213,7 @@ h3 {
     content: "✓";
 }
 
+
 /* Add a red text color and an Xmark when the requirements are wrong */
 
 .invalid {
@@ -211,6 +225,7 @@ h3 {
     left: 5px;
     content: "✗";
 }
+
 
 /* -------- Estado de Cuenta -------- */
 
@@ -255,6 +270,7 @@ h3 {
     overflow: hidden;
 }
 
+
 /*----------------- Fromulario Registro de Pagos -----------------*/
 
 #bPagos .row {
@@ -289,6 +305,28 @@ table.bordered tbody tr:hover {
 
 .active-btn {
     background-color: #26a72a;
+}
+
+.side-nav li {
+    line-height: 35px;
+}
+
+.datos {
+    height: 100px;
+    padding-top: 10px;
+    background-image: -webkit-linear-gradient(1000deg, #66AAB3 50%, #26a69a 45%);
+    color: #fff;
+    font-weight: 700;
+}
+
+.email {
+    line-height: 25px;
+    margin-left: 30px;
+}
+
+.usuario {
+    margin-left: 30px;
+    font-size: 20px;
 }
 
 .side-nav li>a.btn {
