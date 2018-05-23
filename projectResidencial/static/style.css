@@ -18,7 +18,6 @@ body {
     width: 100%;
 }
 
-
 /*---------- Barra de Navegacion ----------*/
 
 nav {
@@ -36,12 +35,9 @@ li {
     list-style: none;
 }
 
-
 /*---------- Fin Barra de Navegacion ----------*/
 
-
 /*-----------------------------------------------------------------------------------------------*/
-
 
 /* ----- Login ----- */
 
@@ -80,8 +76,7 @@ h3 {
     background-color: #00c853;
 }
 
-.row button,
-.row a {
+.row button, .row a {
     padding: 0 5% 0 5%;
     width: 150px;
     border-radius: 5px;
@@ -91,7 +86,6 @@ h3 {
 .row a {
     background-color: #40c4ff;
 }
-
 
 /* -------- Estado de Cuenta -------- */
 
@@ -176,7 +170,6 @@ nav .nav-wrapper i {
     font-size: 18px;
 }
 
-
 /* -------- Registro Residente - Clave -------- */
 
 #message {
@@ -195,7 +188,6 @@ h3 {
     text-align: center;
 }
 
-
 /* Add a green text color and a checkmark when the requirements are right */
 
 .valid {
@@ -208,7 +200,6 @@ h3 {
     content: "✓";
 }
 
-
 /* Add a red text color and an Xmark when the requirements are wrong */
 
 .invalid {
@@ -220,7 +211,6 @@ h3 {
     left: 5px;
     content: "✗";
 }
-
 
 /* -------- Estado de Cuenta -------- */
 
@@ -265,6 +255,12 @@ h3 {
     overflow: hidden;
 }
 
+/*----------------- Fromulario Registro de Pagos -----------------*/
+
+#bPagos .row {
+    margin: 0px;
+}
+
 .collapsible div.collapsible-header:hover {
     background-color: #26a69a;
     color: #fff;
@@ -273,4 +269,120 @@ h3 {
 .collapsible div.collapsible-header:active {
     background-color: #26a69a;
     color: #fff;
+}
+
+table.bordered tbody tr:hover {
+    background-color: #e1f5fe;
+    color: black;
+}
+
+.btm-floating:hover {
+    overflow: initial;
+    position: relative;
+}
+
+.btn {
+    text-transform: unset;
+    letter-spacing: 1px;
+    text-align: left;
+}
+
+.active-btn {
+    background-color: #26a72a;
+}
+
+.side-nav li>a.btn {
+    margin: 5px 10px;
+}
+
+.container {
+    margin: 5px;
+    width: 98%;
+    max-width: 100%;
+}
+
+.container .row {
+    margin: 0%;
+}
+
+#controles {
+    text-align: center;
+}
+
+#controles .btn {
+    width: 90%;
+    margin: 5px;
+    text-align: center;
+}
+
+input[type=search]:not(.browser-default) {
+    border-bottom: 1px solid #f9dada;
+    width: 250px;
+}
+
+input[type=search]:not(.browser-default):focus:not([readonly]) {
+    border-bottom: 1px solid #fff;
+    -webkit-box-shadow: 0 1px 0 0 #fff;
+    box-shadow: 0 1px 0 0 #fff;
+}
+
+#search {
+    line-height: 0;
+    margin-right: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    input[type=search]:not(.browser-default) {
+        width: 96%;
+        margin: 0 0 0 5px;
+        padding-top: 30px;
+    }
+}
+
+.nombre {
+    font-size: 16px;
+    font-weight: 500;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 35px;
+    color: #26A69A;
+    vertical-align: auto;
+}
+
+.boton {
+    margin: 0px 20px;
+    padding: 5px 15px;
+    border-radius: 10px;
+    height: 45px;
+    background-color: #3ad6bf;
+}
+
+.padding {
+    padding: 30px 0;
+}
+
+.boton1 {
+    margin: 0 0 0 5px;
+    padding: 5px 15px;
+    border-radius: 10px;
+    height: 45px;
+    background-color: #3ad6bf;
+    width: 96%;
+    text-align: center;
+}
+
+#menu {
+    display: initial;
+    margin-top: 70px;
+    height: 60px;
+    width: 100%;
+}
+
+.asd {
+    border: 0px;
+}
+
+#menu li {
+    padding: 2px 2px;
+    width: auto;
 }

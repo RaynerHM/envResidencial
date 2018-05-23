@@ -84,14 +84,29 @@
     </div>
 
 
-
+<ul class="collapsible">
+  <li>
+    <div class="collapsible-header">
+      <i class="material-icons">filter_drama</i>
+      First
+      <span class="new badge">4</span></div>
+    <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+  </li>
+  <li>
+    <div class="collapsible-header">
+      <i class="material-icons">place</i>
+      Second
+      <span class="badge">1</span></div>
+    <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+  </li>
+</ul>
 
 <div class=" col m9 s12 x12">
 
                 <ul class="collapsible popout">
                     {% for r in res %}
                     <li>
-                        <div class="collapsible-header nombre zxc row valign-wrapper">
+                        <div class="collapsible-header nombre row valign-wrapper">
                             <img class="circle" src="{{ MEDIA_URL }}{{ p.foto }}" alt="" style="width:60px;">
                             <!--<i class="fa fa-user-circle fa-2x "></i>-->
                             <div class="col m6 ">
@@ -114,7 +129,7 @@
                             <span class=" badge"></span>
                         </div>
                         <div class="collapsible-body">
-                            <table id="id_table" class="bordered highlight centered table-descripcion">
+                         asd   <table id="id_table" class="bordered highlight centered table-descripcion">
                                 <thead>
                                     <th>Descripción</th>
                                     <th>Modelo</th>
@@ -159,7 +174,7 @@
 
 
 
-
+{% comment %} 
     <div class="row">
         <!--   Nombre Propietario o Inquilino   -->
         <div class="input-field col m2" >
@@ -197,10 +212,10 @@
             <input id="nombre" name="nombre" type="text" required>
             <label for="nombre" class="active">Nombre </label>
         </div>
-    </div>
+    </div> {% endcomment %}
 
 
-    <div class="row">
+    {% comment %} <div class="row">
         <div class="col m2" >
             <label>Nombre Personas</label>
             <select multiple class=" browser-default">
@@ -219,7 +234,7 @@
                 {% endfor%}
             </select>
         </div>
-    </div>
+    </div> {% endcomment %}
 
 
     <script src="{% static '/materialize/js/materialize.min.js' %}"></script>
