@@ -83,6 +83,73 @@
 	</ul>
 
 
+<div class=" col m9 s12 x12">
+
+				<ul class="collapsible popout">
+					{% for r in pago %}
+					<li>
+						<div class="collapsible-header nombre row valign-wrapper">
+							<img class="circle" src="{{ MEDIA_URL }}{{ p.foto }}" alt="" style="width:60px;">
+							<!--<i class="fa fa-user-circle fa-2x "></i>-->
+							<div class="col m6 ">
+								{{ r.nombre }}
+							</div>
+
+							<div class="col m3 ">
+								<h6 class="">
+									Apartamento
+								</h6>
+								{{r.apartamento}}
+							</div>
+							<div class="col m3 ">
+								<h6 class="">
+									Cargo
+								</h6>
+								{% comment %} {{ p.cargo }} {% endcomment %}
+							</div>
+
+							<span class=" badge"></span>
+						</div>
+						<div class="collapsible-body">
+							<table id="id_table" class="bordered highlight centered table-descripcion">
+								<thead>
+									<th>Descripción</th>
+									<th>Modelo</th>
+									<th>Serial</th>
+									<th class="hide">ID</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for p in r.pago %}
+									<tr>
+										<td>{{ p.pagos }}</td>										
+										<td id="id_equipo" class="hide"> </td>
+										<td>
+
+											<ul id="menu" class="row ">
+												<li class="col m6 right">
+													<button class="btn-floating center waves-effect waves-light" type="submit">
+														<i class="fa fa-edit fa-2x "> Pagar</i>
+													</button>
+												</li>
+											</ul>
+
+										</td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+
+			</div>
+
+
+
+
+{% comment %} 
 	<div class="row">
 		<!--   Nombre Propietario o Inquilino   -->
 		<div class="input-field col m2" >
@@ -120,10 +187,10 @@
 			<input id="nombre" name="nombre" type="text" required>
 			<label for="nombre" class="active">Nombre </label>
 		</div>
-	</div>
+	</div> {% endcomment %}
 
 
-	<div class="row">
+	{% comment %} <div class="row">
 		<div class="col m2" >
 			<label>Nombre Personas</label>
 			<select multiple class=" browser-default">
@@ -142,7 +209,7 @@
 				{% endfor%}
 			</select>
 		</div>
-	</div>
+	</div> {% endcomment %}
 
 
 	<script src="{% static '/jquery/jquery-3.2.1.min.js' %}"></script>
