@@ -60,7 +60,7 @@
 			<div class="divider"></div>
 		</li>
 		<li class=" ">
-			<a href="" class="btn"> <i class=" fa fa-home fa-1x"></i> Inicio</a>
+			<a href="/" class="btn"> <i class=" fa fa-home fa-1x"></i> Inicio</a>
 		</li>
 		<li>
 			<a href="{% url 'pagos' %}" class="active-btn btn"> <i class=" fa fa-dollar fa-1x"></i> Registrar Pagos </a>
@@ -82,7 +82,7 @@
 		</li>
 	</ul>
 
-
+	<form action="" method="POST">{% csrf_token %}
 	<div class="row">
 		<!--   Nombre Propietario o Inquilino   -->
 		<div class="input-field col m2" >
@@ -109,17 +109,17 @@
 			<label for="nombre" class="active">Concepto </label>
 		</div>
 		<!--   Nombre Propietario o Inquilino   -->
-		<div class="input-field col m2" >
+		<!--<div class="input-field col m2" >
 			<i class="prefix fa fa-dollar fa-3x"></i>
 			<input id="nombre" name="nombre" type="text" required>
 			<label for="nombre" class="active">Pendiente </label>
-		</div>
+		</div>-->
 		<!--   Nombre Propietario o Inquilino   -->
-		<div class="input-field col m2" >
+		<!--<div class="input-field col m2" >
 			<i class="prefix fa fa-comment-o fa-3x"></i>
 			<input id="nombre" name="nombre" type="text" required>
 			<label for="nombre" class="active">Nombre </label>
-		</div>
+		</div>-->
 	</div>
 
 
@@ -144,10 +144,33 @@
 		</div>
 	</div>
 
+	<div class="input-field ">
+		<input  value="Guardar" type="submit" required>
+	</div>
+
+</form>
+
+
+
+	<div class="input-field col s12 m6">
+    <select class="icons">
+      <option value="" disabled selected>Choose your option</option>
+      <option value="" data-icon="{% static '/media/fortinet.png' %}" class="left">Fortinet</option>
+      <option value="" data-icon="{% static '/media/zimbra.png' %}" class="left">Zimbra</option>
+      <option value="" data-icon="{% static '/media/postgreSQL.png' %}" class="left">postgreQSL</option>
+      <option value="" data-icon="{% static '/media/otrs_admin.png' %}" class="left">OTRS</option>
+    </select>
+    <label>Images in select</label>
+  </div>
+
+
+
 
 	<script src="{% static '/jquery/jquery-3.2.1.min.js' %}"></script>
 	<script src="{% static '/materialize/js/materialize.min.js' %}"></script>
-	<script src="{% static '/style.js' %}"></script>
+		<script src="{% static '/style.js' %}"></script>
+
+
 </body>
 
 </html>

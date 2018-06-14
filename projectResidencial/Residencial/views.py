@@ -223,7 +223,7 @@ def CambiarClave(request):
 @login_required(login_url='/login/')
 def RegistrarPagos(request):    	
 	lista_personas = []
-
+	print(request.POST)
 	
 
 	v_nombre = request.POST.get('persona', '')

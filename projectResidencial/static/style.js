@@ -1,5 +1,8 @@
 $('#username').focus();
 
+
+$('select').material_select();
+
 /*  ------------------------------------------ Menu SideNav ------------------------------------------*/
 $(document).ready(function() {
     $('.deslizar').sideNav({
@@ -23,3 +26,13 @@ function showPage() {
     document.getElementById("loader").style.display = "none";
     document.getElementById("myDiv").style.display = "block";
 }
+
+
+
+
+// document.addEventListener('DOMContentLoaded', function () {
+//     var elems = document.querySelectorAll('select');
+//     var instances = M.FormSelect.init(elems, options);
+// });
+
+// Or with jQuery
