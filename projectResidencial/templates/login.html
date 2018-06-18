@@ -27,14 +27,14 @@
                     <!--   Usuario   -->
                     <div class="input-field">
                         <i class="prefix fa fa-user fa-3x"></i>
-                        <input id="username" name="username" type="text" required>
+                        <input id="username" name="username" type="text" required autocomplete="off">
                         <label for="username" class="active">Usuario</label>
                     </div>
 
                     <!--  Clave  -->
                     <div class="input-field">
                         <i class="prefix fa fa-key fa-3x"></i>
-                        <input id="password" name="password" type="password" required>
+                        <input id="password" name="password" type="password" required autocomplete="off">
                         <label for="password" class="active">Clave</label>
                     </div>
 
@@ -54,9 +54,9 @@
                     {{ mensaje }}
                 </div>
                 {% endif %}
-                </div>
             </div>
         </div>
+    </div>
     </div>
 
     <script src="{% static '/jquery/jquery-3.2.1.min.js' %}"></script>

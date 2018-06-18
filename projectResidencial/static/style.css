@@ -14,9 +14,10 @@ body {
     background-color: white;
 }
 
-.container {
+
+/* .container {
     width: 100%;
-}
+} */
 
 .side-nav li>a>i {
     color: #fff;
@@ -333,13 +334,15 @@ table.bordered tbody tr:hover {
     margin: 5px 10px;
 }
 
-.container {
+#login .container,
+#bPassword .container {
     margin: 5px;
     width: 98%;
     max-width: 100%;
 }
 
-.container .row {
+#bPassword .container .row,
+#login .container {
     margin: 0%;
 }
 
