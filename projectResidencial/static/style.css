@@ -113,10 +113,6 @@ nav .nav-wrapper i {
     height: 50px;
 }
 
-.btn {
-    text-transform: none;
-}
-
 #tabla-deuda {
     margin: 50px 0 0 10px;
     width: 90%;
@@ -426,4 +422,9 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
 #menu li {
     padding: 2px 2px;
     width: auto;
+}
+
+.espacio {
+    padding-bottom: 150px;
+    padding-top: 100px;
 }

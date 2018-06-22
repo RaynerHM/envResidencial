@@ -82,75 +82,77 @@
         </li>
     </ul>
 
-    <form action="" method="POST">{% csrf_token %}
-        <div class="container center">
-            <div class="row">
-                <!--   Nombre Propietario o Inquilino   -->
-                <div class="input-field col m2">
-                    <i class="prefix fa fa-hashtag fa-3x"></i>
-                    <input id="bloque" name="bloque" type="text" required autocomplete="off">
-                    <label for="nombre" class="active">Bloque </label>
-                </div>
-                <!--   Nombre Propietario o Inquilino   -->
-                <div class="input-field col m2">
-                    <i class="prefix fa fa-building-o fa-3x"></i>
-                    <input id="apartamento" name="apartamento" type="text" required autocomplete="off">
-                    <label for="nombre" class="active">Apartamento </label>
-                </div>
-                <!--   Nombre Propietario o Inquilino   -->
-                <div class="input-field col m2">
+    <div class=" center">
+        <form action="" method="POST">{% csrf_token %}
+            <div class="container center">
+                <div class="row espacio">
+                    <!--   Nombre Propietario o Inquilino   -->
+                    <div class="input-field col m3 s12">
+                        <i class="prefix fa fa-hashtag fa-3x"></i>
+                        <input id="bloque" name="bloque" type="text" required autocomplete="off">
+                        <label for="nombre" class="active">Bloque </label>
+                    </div>
+                    <!--   Nombre Propietario o Inquilino   -->
+                    <div class="input-field col m3 s12">
+                        <i class="prefix fa fa-building-o fa-3x"></i>
+                        <input id="apartamento" name="apartamento" type="text" required autocomplete="off">
+                        <label for="nombre" class="active">Apartamento </label>
+                    </div>
+                    <!--   Nombre Propietario o Inquilino   -->
+                    <div class="input-field col m3 s12">
+                        <i class="prefix fa fa-dollar fa-3x"></i>
+                        <input id="montoPagar" name="montoPagar" type="text" required autocomplete="off">
+                        <label for="nombre" class="active">Monto a Pagar </label>
+                    </div>
+                    <!--   Nombre Propietario o Inquilino   -->
+                    <div class="input-field col m3 s12">
+                        <i class="prefix fa fa-comments-o fa-3x"></i>
+                        <input id="concepto" name="concepto" type="text" required>
+                        <label for="nombre" class="active">Concepto </label>
+                    </div>
+                    <!--   Nombre Propietario o Inquilino   -->
+                    <!--<div class="input-field col m2" >
                     <i class="prefix fa fa-dollar fa-3x"></i>
-                    <input id="montoPagar" name="montoPagar" type="text" required autocomplete="off">
-                    <label for="nombre" class="active">Monto a Pagar </label>
+                    <input id="nombre" name="nombre" type="text" required>
+                    <label for="nombre" class="active">Pendiente </label>
+                </div>-->
+                    <!--   Nombre Propietario o Inquilino   -->
+                    <!--<div class="input-field col m2" >
+                    <i class="prefix fa fa-comment-o fa-3x"></i>
+                    <input id="nombre" name="nombre" type="text" required>
+                    <label for="nombre" class="active">Nombre </label>
+                </div>-->
                 </div>
-                <!--   Nombre Propietario o Inquilino   -->
-                <div class="input-field col m2">
-                    <i class="prefix fa fa-comments-o fa-3x"></i>
-                    <input id="concepto" name="concepto" type="text" required>
-                    <label for="nombre" class="active">Concepto </label>
-                </div>
-                <!--   Nombre Propietario o Inquilino   -->
-                <!--<div class="input-field col m2" >
-			<i class="prefix fa fa-dollar fa-3x"></i>
-			<input id="nombre" name="nombre" type="text" required>
-			<label for="nombre" class="active">Pendiente </label>
-		</div>-->
-                <!--   Nombre Propietario o Inquilino   -->
-                <!--<div class="input-field col m2" >
-			<i class="prefix fa fa-comment-o fa-3x"></i>
-			<input id="nombre" name="nombre" type="text" required>
-			<label for="nombre" class="active">Nombre </label>
-		</div>-->
-            </div>
 
 
-            <div class="row">
-                <div class="input-field col m4">
-                    {% comment %} <label>Nombre Personas</label> {% endcomment %}
-                    <select multiple class=" " id="nombrePersona" name="nombrePersona">
-					<option value="" disabled selected>Nombre Personas</option>
-					{% for r in res %}
-					<option value="{{ r }}">{{ r.nombre }}</option>
-					{% endfor%}
-				</select>
+                <div class="row center">
+                    <div class="input-field col m4 s12 offset-m1">
+                        {% comment %} <label>Nombre Personas</label> {% endcomment %}
+                        <select class=" " id="nombrePersona" name="nombrePersona">
+                            <option value="" disabled selected>Nombre Personas</option>
+                            {% for r in res %}
+                            <option value="{{ r }}">{{ r.nombre }}</option>
+                            {% endfor%}
+                        </select>
+                    </div>
+                    <div class="input-field col m4 s12 offset-m1">
+                        {% comment %} <label>Numero Apartamentos</label> {% endcomment %}
+                        <select class=" " id="apartamento" name="no_apartamento">
+                            <option value="" disabled selected>Apartamento</option>
+                            {% for r in res %}
+                            <option value="{{ r.edificio }}-{{r.no_apartamento}}">{{ r.edificio }}-{{r.no_apartamento}}</option>
+                            {% endfor%}
+                        </select>
+                    </div>
                 </div>
-                <div class="input-field col m4">
-                    {% comment %} <label>Numero Apartamentos</label> {% endcomment %}
-                    <select multiple class=" " id="apartamento" name="no_apartamento">
-					<option value="" disabled selected>Apartamento</option>
-					{% for r in res %}
-					<option value="{{ r.edificio }}-{{r.no_apartamento}}">{{ r.edificio }}-{{r.no_apartamento}}</option>
-					{% endfor%}
-				</select>
+
+                <div class="input-field ">
+                    <input class="btn" value="Guardar" type="submit" required>
                 </div>
             </div>
 
-            <div class="input-field ">
-                <input value="Guardar" type="submit" required>
-            </div>
-        </div>
-
-    </form>
+        </form>
+    </div>
 
 
 
