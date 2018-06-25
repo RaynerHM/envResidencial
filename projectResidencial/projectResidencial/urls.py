@@ -31,6 +31,7 @@ urlpatterns = [
     path('registrar-pagos/', views.RegistrarPagos, name='pagos'),
     path('reporte/estadoDeCuenta/pdf/', views.ReportePersonasPDF.as_view(), name='reporte'),
     path('correo/', views.EnviarCorreo, name='correo'),
+    path('ajax/', views.Ajax, name='ajax'),
 
 
 ]

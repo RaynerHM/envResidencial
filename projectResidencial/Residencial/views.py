@@ -23,6 +23,8 @@ from dateutil.relativedelta import *
 
 from django.core.mail import send_mail, BadHeaderError, EmailMultiAlternatives
 
+from django.core import serializers
+import json
 
 def Login(request):
 	mensaje = ''
@@ -45,12 +47,12 @@ def EnviarCorreo(request):
 		usuario = request.user.first_name
 		correo = request.user.email
 		url = 'http://10.1.100.200:8000/login'
-		
+
 		html_content = ("""
 			<style>
-				body { background-color: #fff;}        
+				body { background-color: #fff;}
 				div { text-align: center; }
-				.padding { padding-top: 20px; }        
+				.padding { padding-top: 20px; }
 				.felicidad { color: #00c853; font-size: 46px }
 				h3 { font-size: 20px }
 				.color { color:blue; font-size: 24px; padding-bottom:0px; }
@@ -84,20 +86,20 @@ def EnviarCorreo(request):
 	except BadHeaderError:
 		return HttpResponse('No se pudo enviar el correo.')
 	return HttpResponseRedirect('/')
-	
-    # asunto = request.POST.get('subject', '')
-    # mensaje = request.POST.get('message', '')
-    # desde = 'raynel95@gmail.com'
-    # if asunto and mensaje and from_email:
-    #     try:
-    #         send_mail(asunto, mensaje, desde, 'Enviar a:')
-    #     except BadHeaderError:
-    #         return HttpResponse('No se pudo enviar el correo.')
-    #     return HttpResponseRedirect('/')
-    # else:
-    #     # In reality we'd use a form class
-    #     # to get proper validation errors.
-    #     return HttpResponse('Asegúrese de que todos los campos estén ingresados ​​y sean válidos.')
+
+	# asunto = request.POST.get('subject', '')
+	# mensaje = request.POST.get('message', '')
+	# desde = 'raynel95@gmail.com'
+	# if asunto and mensaje and from_email:
+	#     try:
+	#         send_mail(asunto, mensaje, desde, 'Enviar a:')
+	#     except BadHeaderError:
+	#         return HttpResponse('No se pudo enviar el correo.')
+	#     return HttpResponseRedirect('/')
+	# else:
+	#     # In reality we'd use a form class
+	#     # to get proper validation errors.
+	#     return HttpResponse('Asegúrese de que todos los campos estén ingresados ​​y sean válidos.')
 
 
 @login_required(login_url='/login/')
@@ -147,12 +149,12 @@ def Registrar(request):
 			# Enviar correo con el usuario creado
 			try:
 				url = 'http://10.1.100.200:8000/login'
-				
+
 				html_content = ("""
 					<style>
-						body { background-color: #fff;}        
+						body { background-color: #fff;}
 						div { text-align: center; }
-						.padding { padding-top: 20px; }        
+						.padding { padding-top: 20px; }
 						.felicidad { color: #00c853; font-size: 46px }
 						h3 { font-size: 20px }
 						.color { color:blue; font-size: 24px; padding-bottom:0px; }
@@ -182,7 +184,7 @@ def Registrar(request):
 				msg.attach_alternative(html_content, "text/html")
 				msg.send()
 			except BadHeaderError:
-				return HttpResponse('No se pudo enviar el correo.')			
+				return HttpResponse('No se pudo enviar el correo.')
 
 			return render(request, "felicidades.html",
 			{'nombre': v_nombre, 'correo': v_correo})
@@ -199,11 +201,11 @@ def CambiarClave(request):
 	cont={
 		'usuariofull': request.user.get_full_name,
 		'email': request.user.email,
-        }
+		}
 	if request.method == 'POST':
 		v_clave_Nueva1 = request.POST.get("pass-new")
 		v_clave_Nueva2 = request.POST.get("rep-pass")
-		
+
 		clave = User.objects.get(username=request.user)
 		residente = Residente.objects.get(nombre=request.user.get_full_name())
 		if v_clave_Nueva1:
@@ -221,17 +223,17 @@ def CambiarClave(request):
 
 
 @login_required(login_url='/login/')
-def RegistrarPagos(request):    	
+def RegistrarPagos(request):
 	lista_personas = []
 	print(request.POST)
-	
+
 
 	v_nombre = request.POST.get('persona', '')
 
 	# v_nombre = ""
 	if v_nombre != "":
 		residente = Residente.objects.filter(nombre__contains=v_nombre)
-	else:		
+	else:
 		residente = Residente.objects.all().order_by('edificio')
 
 	for r in residente:
@@ -256,6 +258,21 @@ def RegistrarPagos(request):
 		'email': request.user.email,
 		'res': residente
 		})
+
+
+
+
+def Ajax(request):
+	asd = request.POST.get('no_apartamento')
+	residente = Residente.objects.filter(no_apartamento=asd).order_by('edificio')
+	residente = [residente_serializer(resid) for reisd in residente]
+
+	return HttpResponse(json.dumps(residente), content_type='application/json')
+
+
+def residente_serializer(resid):
+	return {'res': resid.nombre}
+
 
 
 @login_required(login_url='/login/')
@@ -318,7 +335,7 @@ class ReportePersonasPDF(View):
 
 		#Creamos una lista de tuplas que van a contener a las personas
 		detalles = [('%s, Edificio %s, Apartamento %s' %(usuario, p.edificio, p.no_apartamento)) for p in Residente.objects.filter(nombre=usuario)]
-		
+
 		#Establecemos el tamaño de cada una de las columnas de la tabla
 		detalle_orden = Table([encabezados] + [detalles], rowHeights=50, colWidths=[575])
 
@@ -402,7 +419,7 @@ class ReportePersonasPDF(View):
 				('ALIGN',(0,0),(-1,-1),'LEFT'),
 				('VALIGN',(0,0),(-1,-1),'MIDDLE'),
 				('ALIGN',(0,0),(0,0),'CENTER'),
-				('TEXTCOLOR',(0,1),(-1,-1),colors.black),			
+				('TEXTCOLOR',(0,1),(-1,-1),colors.black),
 				]
 		))
 		#Establecemos el tamaño de la hoja que ocupará la tabla
