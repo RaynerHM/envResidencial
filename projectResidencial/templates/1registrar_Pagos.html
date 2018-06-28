@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="{% static '/materialize/css/materialize.min.css' %}" media="screen,projection">
     <link rel="stylesheet" href="{% static '/font-awesome/css/font-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static '/style.css' %}">
-    <script src="{% static '/jquery/jquery-3.2.1.min.js' %}"></script>
-
 </head>
 
 <body id="bPagos">
@@ -30,6 +28,8 @@
 				</span>
                 <!-- --- --- Fin Boton Menu Lado Izquierdo --- --- -->
 
+
+
                 <!-- --- --- Todo los que se muestra en el Menu del lado Derecho --- --- -->
 
                 <ul class="right hide-on-med-and-down">
@@ -41,6 +41,7 @@
                         </form>
                     </li>
                 </ul>
+
 
                 <!-- --- --- Fin todo los que se muestra en el Menu del lado Derecho --- --- -->
             </div>
@@ -82,11 +83,7 @@
     </ul>
 
     <div class=" center">
-
-
-
-
-
+        <form action="" method="POST" action="{% url 'ajax' %}">{% csrf_token %}
             <div class="container center">
                 <div class="row espacio">
                     <!--   Nombre Propietario o Inquilino   -->
@@ -140,7 +137,7 @@
                     </div>
                     <div class="input-field col m4 s12 offset-m2">
                         {% comment %} <label>Numero Apartamentos</label> {% endcomment %}
-                        <select class=" " id="no_apartamento" name="no_apartamento">
+                        <select class=" " id="apartamento" name="no_apartamento">
                             <option value="" disabled selected>Apartamento</option>
                             {% for r in res %}
                             <option value="{{r.no_apartamento}}">{{ r.edificio }}-{{r.no_apartamento}}</option>
@@ -154,34 +151,8 @@
                 </div>
             </div>
 
-
-
-            
+        </form>
     </div>
-    <script>
-
-        $('select#no_apartamento').on('change', function() {
-            var valor = $(this).val();
-            console.log(valor);
-
-            $.ajax({
-                type: "GET",
-                url: "http://10.20.105.125:8000/ajax",   
-                data: 
-                    {
-                        'residente': valor,
-                    },
-
-                success: function(data) {
-                    console.log(data);
-                },
-                error: function(data) {
-                    console.log(data);
-                }
-            });
-        });
-
-    </script>
 
 
 
@@ -200,6 +171,7 @@
 
 
 
+    <script src="{% static '/jquery/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static '/materialize/js/materialize.min.js' %}"></script>
     <script src="{% static '/style.js' %}"></script>
     <script src="{% static '/prueba.js' %}"></script>

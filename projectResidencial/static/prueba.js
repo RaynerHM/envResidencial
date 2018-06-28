@@ -27,18 +27,41 @@
 //     }
 // });
 
-$('select#no_apartamento').on('change', function() {
-    var valor = $(this).val();
+// $('select#no_apartamento').on('change', function() {
+//     var valor = $(this).val();
 
-    $.ajax({
-        url: $(this).attr('action'),
-        type: $(this).attr('method'),
-        data: $(this).Ajax(),
+//     $.ajax({
+//         url: $(this).attr('action'),
+//         type: $(this).attr('method'),
+//         data: $(this).Ajax(),
 
-        success: function(json) {
-            console.log(json)
-        }
+//         success: function(json) {
+//             console.log(json)
+//         }
 
-    })
+//     });
 
-});
+// });
+
+
+
+
+
+// $('.likebutton').click(function(){
+//     var catid;
+//     catid = $(this).attr("data-catid");
+//     $.ajax({
+        
+//         type: "GET",
+//         url: "/likepost",
+//         data:{
+//                 post_id: catid
+//             },
+
+//     success: function( data )
+//     {
+//         $('#like' + catid).remove();
+//         $( '#message' ).text(data);
+//     }
+//     })
+// });

@@ -263,12 +263,18 @@ def RegistrarPagos(request):
 
 
 def Ajax(request):
-	asd = request.POST.get('no_apartamento')
+	asd = request.GET.get('residente')
+	print(asd)
 	residente = Residente.objects.filter(no_apartamento=asd).order_by('edificio')
-	residente = [residente_serializer(resid) for reisd in residente]
+	residente = [residente_serializer(residente) for residente in residente]
 
-	return HttpResponse(json.dumps(residente), content_type='application/json')
+	#return HttpResponse(json.dumps(residente), content_type='application/json')
 
+
+	return HttpResponse(
+		json.dumps({'residente': residente}),
+		content_type="application/json"
+		)
 
 def residente_serializer(resid):
 	return {'res': resid.nombre}
