@@ -276,8 +276,9 @@ def Ajax(request):
 		content_type="application/json"
 		)
 
-def residente_serializer(resid):
-	return {'res': resid.nombre}
+
+def residente_serializer(residente):
+	return {'res': residente.nombre}
 
 
 
