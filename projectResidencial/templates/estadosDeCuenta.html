@@ -14,61 +14,61 @@
 
 <body class="">
 
-<div class=" navbar-fixed">
-		<nav class="">
-			<div class="nav-wrapper ">
-			<a href="/" class="brand-logo center"><span class="hide-on-small-only"> Estado de </span>Cuenta</a>
+    <div class=" navbar-fixed">
+        <nav class="">
+            <div class="nav-wrapper ">
+                <a href="/" class="brand-logo center"><span class="hide-on-small-only"> Estado de </span>Cuenta</a>
 
-				<!-- --- --- Boton Menu Lado Izquierdo --- --- -->
-				<span class="left brand-logo text-darken-2">
+                <!-- --- --- Boton Menu Lado Izquierdo --- --- -->
+                <span class="left brand-logo text-darken-2">
 					<i onclick="Materialize.showStaggeredList('#slide-out')" id="btnMenu" data-activates="slide-out" class="deslizar icono-menu fa fa-bars fa-1x "></i>
 					</i>
 				</span>
-				<!-- --- --- Fin Boton Menu Lado Izquierdo --- --- -->
+                <!-- --- --- Fin Boton Menu Lado Izquierdo --- --- -->
 
-			</div>
-		</nav>
-	</div>
+            </div>
+        </nav>
+    </div>
 
 
-	<ul id="slide-out" class="side-nav ">
-	   <li class="">
-	   <div class="datos">
-			<span class="usuario"> {{ usuariofull }}</span>
-			<span class="email "> {{ email }}</span>
-	   </div>
-		</li>
-		<li>
-			<div class="divider"></div>
-		</li>
-		<li class=" ">
-			<a href="/" class="active-btn btn"> <i class=" fa fa-home fa-2x"></i> Inicio</a>
-		</li>
+    <ul id="slide-out" class="side-nav ">
+        <li class="">
+            <div class="datos">
+                <span class="usuario"> {{ usuariofull }}</span><br>
+                <span class="email "> {{ email }}</span>
+            </div>
+        </li>
         <li>
-			<a href="{% url 'pagos' %}" class="btn"> <i class=" fa fa-dollar fa-1x"></i> Registrar Pagos </a>
-		</li>
-		<li class=" ">
-			<a href="{% url 'clave' %}" class="btn"> <i class=" fa fa-key fa-1x"></i> Cambiar Contraseña</a>
-		</li>
-		<li class=" ">
-			<a href="{% url 'logout' %}" class="btn"> <i class=" fa fa-power-off fa-1x"></i> Cerrar Sección</a>
-		</li>
-		<li>
-			<a href="" class="disabled btn"> <i class=" fa fa-user fa-1x"></i> Agregar Personas </a>
-		</li>
-		<li class=" ">
-			<a href="" class="disabled btn"> <i class=" fa fa-desktop fa-1x"></i> Equipos Asignados</a>
-		</li>
-		<li class=" ">
-			<a href="" class="disabled btn"> <i class=" fa fa-cog fa-1x"></i> Opciones</a>
-		</li>
-	</ul>
+            <div class="divider"></div>
+        </li>
+        <li class=" ">
+            <a href="/" class="active-btn btn"> <i class=" fa fa-home fa-2x"></i> Inicio</a>
+        </li>
+        <li>
+            <a href="{% url 'pagos' %}" class="btn"> <i class=" fa fa-dollar fa-1x"></i> Registrar Pagos </a>
+        </li>
+        <li class=" ">
+            <a href="{% url 'clave' %}" class="btn"> <i class=" fa fa-key fa-1x"></i> Cambiar Contraseña</a>
+        </li>
+        <li class=" ">
+            <a href="{% url 'logout' %}" class="btn"> <i class=" fa fa-power-off fa-1x"></i> Cerrar Sección</a>
+        </li>
+        <li>
+            <a href="" class="disabled btn"> <i class=" fa fa-user fa-1x"></i> Agregar Personas </a>
+        </li>
+        <li class=" ">
+            <a href="" class="disabled btn"> <i class=" fa fa-desktop fa-1x"></i> Equipos Asignados</a>
+        </li>
+        <li class=" ">
+            <a href="" class="disabled btn"> <i class=" fa fa-cog fa-1x"></i> Opciones</a>
+        </li>
+    </ul>
 
     <div class="advertencia">
-        {% for a in ajuste %}        
-        <h6>Los pagos de las mensualidades vencen los días <b>{{a.fecha_Para_Facturar|date:"d" }}</b> de cada mes, luego de esta fecha el Residencial le concede <b>05 días</b> adicionales para realizar los mismos sin cargos. A partir de los <b>días {{a.fecha_Limite_Pago|date:"d" }}</b> se generarán cargos de <b>RD${{ a.pago_Recargo }}</b> pesos por pagos atrasado.</h6>
-{% endfor %}
-        </div>
+        {% for a in ajuste %}
+        <h6>Los pagos de las mensualidades vencen los días <b>{{a.fecha_Para_Facturar|date:"d" }}</b> de cada mes, luego de esta fecha el Residencial le concede <b>05 días</b> adicionales para realizar los mismos sin cargos. A partir de los <b>días {{a.fecha_Limite_Pago|date:"d" }}</b>            se generarán cargos de <b>RD${{ a.pago_Recargo }}</b> pesos por pagos atrasado.</h6>
+        {% endfor %}
+    </div>
 
     <div class="row">
         <div class="col l9 m12 s12 center-align">

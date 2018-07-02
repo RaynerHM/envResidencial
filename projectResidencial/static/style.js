@@ -1,5 +1,7 @@
 $('#username').focus();
 
+$('#nombre').focus();
+
 
 $('select').material_select();
 

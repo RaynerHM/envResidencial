@@ -3,7 +3,7 @@
 <html lang="es">
 
 <head>
-    <title>Residencial</title>
+    <title>Registrar Residente</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
@@ -16,7 +16,11 @@
 </head>
 
 <body id="residente">
-
+    <div>
+        <h3 class="center">
+            RESIDENCIAL BRISA FRESCA
+        </h3>
+    </div>
 
     <div class=" row" style="display:flex;justify-content:center;align-items:center;">
         <!-- <div class=" row"> -->
@@ -26,32 +30,32 @@
                 <div class="row">
                     <!--   Nombre Propietario o Inquilino   -->
                     <div class="input-field col m6 s12">
-                        <i class="prefix fa fa-user-o fa-3x"></i>
+                        <i class="prefix fa fa-user fa-3x"></i>
                         <input id="nombre" name="nombre" type="text" required autocomplete="off">
                         <label for="nombre" class="active">Nombre </label>
                     </div>
 
                     <!--   Apellido Propietario o Inquilino   -->
                     <div class="input-field col m6 s12">
-                        <i class="prefix fa fa-user-o fa-3x"></i>
+                        <i class="prefix fa fa-user fa-3x"></i>
                         <input id="apellido" name="apellido" type="text" required autocomplete="off">
                         <label for="apellido" class="active">Apellido</label>
                     </div>
                 </div>
 
                 <div class="row">
-                    <!--   Apartamento Propietario o Inquilino   -->
-                    <div class="input-field col m6 s12">
-                        <i class="prefix fa fa-building-o fa-3x"></i>
-                        <input id="edificio" name="edificio" type="text" required autocomplete="off">
-                        <label for="edificio" class="active">No. Apartamento </label>
-                    </div>
 
                     <!--   Edificio Propietario o Inquilino   -->
                     <div class="input-field col m6 s12">
                         <i class="prefix fa fa-building-o fa-3x"></i>
                         <input id="apartamento" name="apartamento" type="text" required autocomplete="off">
-                        <label for="apartamento" class="active">No. Edificio</label>
+                        <label for="apartamento" class="active">Bloque</label>
+                    </div>
+                    <!--   Apartamento Propietario o Inquilino   -->
+                    <div class="input-field col m6 s12">
+                        <i class="prefix fa fa-building-o fa-3x"></i>
+                        <input id="edificio" name="edificio" type="text" required autocomplete="off">
+                        <label for="edificio" class="active">Apartamento </label>
                     </div>
                 </div>
                 <!--  Cedula Propietario o Inquilino  -->
@@ -108,6 +112,7 @@
     <script src="{% static '/materialize/js/materialize.min.js' %}"></script>
     <script src="{% static '/style.js' %}"></script>
     <script src="{% static '/validarClave.js' %}"></script>
+    <script src="{% static '/prueba.js' %}"></script>
 
 </body>
 

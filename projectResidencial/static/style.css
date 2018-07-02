@@ -1,6 +1,6 @@
 @media only screen and (min-width: 1200px) {
     html {
-        font-size: 14px;
+        font-size: 15px;
     }
 }
 
@@ -51,6 +51,59 @@ li {
 
 /* ----- Login ----- */
 
+@media only screen and (min-width: 360px) {
+    #login .fondo {
+        background-color: rgba(255, 255, 255, 0.32);
+        width: 300px;
+        border-radius: 15px;
+        padding: 20px 10px;
+        margin-bottom: 80px;
+    }
+    #login .row button,
+    #login .row a {
+        padding: 0 5% 0 5%;
+        margin-top: 15px;
+        width: 250px;
+        border-radius: 5px;
+        text-align: center;
+    }
+    #login h3 {
+        font-size: 20px;
+        margin: 15px 0;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    #login .fondo {
+        background-color: rgba(255, 255, 255, 0.32);
+        width: 480px;
+        border-radius: 15px;
+        padding: 30px;
+    }
+    #login .row button,
+    #login .row a {
+        padding: 0 5% 0 5%;
+        width: 170px;
+        border-radius: 5px;
+        text-align: center;
+    }
+    #login h3 {
+        font-size: 2.92rem;
+    }
+}
+
+#login .container {
+    margin: 50px 0%;
+    width: 100%;
+    max-width: 100%;
+}
+
+@media only screen and (min-width: 1200px) {
+    #login .container {
+        margin: 150px 0%;
+    }
+}
+
 #mensaje {
     background-color: red;
     color: #fff;
@@ -61,14 +114,7 @@ li {
     font-size: 20px;
 }
 
-#login .fondo {
-    background-color: rgba(255, 255, 255, 0.32);
-    width: 480px;
-    border-radius: 15px;
-    padding: 30px;
-}
-
-h3 {
+#login {
     margin-top: 35px;
     color: #fff;
     font-family: Cambria;
@@ -80,6 +126,8 @@ h3 {
     background-attachment: fixed;
     overflow: auto;
     color: #fff;
+    margin: 0%;
+    height: 100%;
 }
 
 #login h4 {
@@ -211,11 +259,33 @@ nav .nav-wrapper i {
     border-bottom: 1px solid #fff;
 }
 
-#residente .fondo {
-    background-color: rgba(255, 255, 255, 0.32);
-    width: 800px;
-    border-radius: 15px;
-    padding: 30px;
+#residente {
+    font-family: Cambria;
+}
+
+@media only screen and (min-width: 360px) {
+    #residente .fondo {
+        background-color: rgba(255, 255, 255, 0.32);
+        width: 330px;
+        border-radius: 15px;
+        padding: 20px 10px;
+    }
+    #residente h3 {
+        font-size: 20px;
+        margin: 15px 0;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    #residente .fondo {
+        background-color: rgba(255, 255, 255, 0.32);
+        width: 800px;
+        border-radius: 15px;
+        padding: 30px;
+    }
+    #residente h3 {
+        font-size: 2.92rem;
+    }
 }
 
 #message {
@@ -262,6 +332,10 @@ h3 {
 
 
 /* -------- Estado de Cuenta -------- */
+
+#btnMenu {
+    cursor: pointer;
+}
 
 #bPassword .row button {
     width: 200px;
@@ -367,20 +441,14 @@ table.bordered tbody tr:hover {
     margin: 5px 10px;
 }
 
-#login .container,
 #bPassword .container {
     margin: 5px;
     width: 100%;
     max-width: 100%;
 }
 
-#bPassword .container .row,
-#login .container {
+#bPassword .container .row {
     margin: 0%;
-}
-
-#login .container {
-    margin: 50px 0%;
 }
 
 #controles {

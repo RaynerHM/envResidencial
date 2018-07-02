@@ -3,218 +3,216 @@
 <html lang="es">
 
 <head>
-	<title>Registrar Pagos</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Registrar Pagos</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
 
-	<link rel="stylesheet" href="{% static '/materialize/css/materialize.min.css' %}" media="screen,projection">
-	<link rel="stylesheet" href="{% static '/font-awesome/css/font-awesome.min.css' %}">
-	<link rel="stylesheet" href="{% static '/style.css' %}">
+    <link rel="stylesheet" href="{% static '/materialize/css/materialize.min.css' %}" media="screen,projection">
+    <link rel="stylesheet" href="{% static '/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static '/style.css' %}">
 </head>
 
 <body id="bPagos">
 
-   
-<div class=" navbar-fixed">
-		<nav class="">
-			<div class="nav-wrapper ">
-			<a href="/" class="brand-logo center"><span class="hide-on-small-only"> Registrar </span>Pagos</a>
-				
-				
-				<!-- --- --- Boton Menu Lado Izquierdo --- --- -->
-				<span class="left brand-logo text-darken-2">
+
+    <div class=" navbar-fixed">
+        <nav class="">
+            <div class="nav-wrapper ">
+                <a href="/" class="brand-logo center"><span class="hide-on-small-only"> Registrar </span>Pagos</a>
+
+
+                <!-- --- --- Boton Menu Lado Izquierdo --- --- -->
+                <span class="left brand-logo text-darken-2">
 					<i onclick="Materialize.showStaggeredList('#slide-out')" id="btnMenu" data-activates="slide-out" class="deslizar icono-menu fa fa-bars fa-1x "></i>
 					</i>
 				</span>
-				<!-- --- --- Fin Boton Menu Lado Izquierdo --- --- -->
+                <!-- --- --- Fin Boton Menu Lado Izquierdo --- --- -->
 
 
 
-				<!-- --- --- Todo los que se muestra en el Menu del lado Derecho --- --- -->
-				 
-				<ul class="right hide-on-med-and-down">
-					<li>
-						<form action="" method="POST"> {% csrf_token %}
-							<input class="search1" type="search" name="persona" value="" placeholder="Buscar persona">
-							<button class="boton btn" type="submit">
+                <!-- --- --- Todo los que se muestra en el Menu del lado Derecho --- --- -->
+
+                <ul class="right hide-on-med-and-down">
+                    <li>
+                        <form action="" method="POST"> {% csrf_token %}
+                            <input class="search1" type="search" name="persona" value="" placeholder="Buscar persona">
+                            <button class="boton btn" type="submit">
 								<i id="search" class="fa fa-search"></i>Buscar</button>
-						</form>
-					</li>
-				</ul>
+                        </form>
+                    </li>
+                </ul>
 
 
-				<!-- --- --- Fin todo los que se muestra en el Menu del lado Derecho --- --- -->
-			</div>
-		</nav>
-	</div>
+                <!-- --- --- Fin todo los que se muestra en el Menu del lado Derecho --- --- -->
+            </div>
+        </nav>
+    </div>
 
 
-	<ul id="slide-out" class="side-nav ">
-	   <li class="">
-	   <div class="datos">
-			<span class="usuario"> {{ usuariofull }}</span>
-			<span class="email "> {{ email }}</span>
-	   </div>
-		</li>
-		<li>
-			<div class="divider"></div>
-		</li>
-		<li class=" ">
-			<a href="" class="btn"> <i class=" fa fa-home fa-1x"></i> Inicio</a>
-		</li>
-		<li>
-			<a href="{% url 'pagos' %}" class="active-btn btn"> <i class=" fa fa-dollar fa-1x"></i> Registrar Pagos </a>
-		</li>
-		<li class=" ">
-			<a href="{% url 'clave' %}" class="btn"> <i class=" fa fa-key fa-1x"></i> Cambiar Contraseña</a>
-		</li>
-		<li class=" ">
-			<a href="{% url 'logout' %}" class="btn"> <i class=" fa fa-power-off fa-1x"></i> Cerrar Sección</a>
-		</li>
-		<li class=" ">
-			<a href="" class="disabled btn"> <i class=" fa fa-desktop fa-1x"></i> Equipos Asignados</a>
-		</li>
-		<li class=" ">
-			<a href="" class="disabled btn"> <i class=" fa fa-cog fa-1x"></i> Opciones</a>
-		</li>
-		<li>
-			<a href="" class="disabled btn"> <i class=" fa fa-user fa-1x"></i> Agregar Personas </a>
-		</li>
-	</ul>
+    <ul id="slide-out" class="side-nav ">
+        <li class="">
+            <div class="datos">
+                <span class="usuario"> {{ usuariofull }}</span><br>
+                <span class="email "> {{ email }}</span>
+            </div>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li class=" ">
+            <a href="" class="btn"> <i class=" fa fa-home fa-1x"></i> Inicio</a>
+        </li>
+        <li>
+            <a href="{% url 'pagos' %}" class="active-btn btn"> <i class=" fa fa-dollar fa-1x"></i> Registrar Pagos </a>
+        </li>
+        <li class=" ">
+            <a href="{% url 'clave' %}" class="btn"> <i class=" fa fa-key fa-1x"></i> Cambiar Contraseña</a>
+        </li>
+        <li class=" ">
+            <a href="{% url 'logout' %}" class="btn"> <i class=" fa fa-power-off fa-1x"></i> Cerrar Sección</a>
+        </li>
+        <li class=" ">
+            <a href="" class="disabled btn"> <i class=" fa fa-desktop fa-1x"></i> Equipos Asignados</a>
+        </li>
+        <li class=" ">
+            <a href="" class="disabled btn"> <i class=" fa fa-cog fa-1x"></i> Opciones</a>
+        </li>
+        <li>
+            <a href="" class="disabled btn"> <i class=" fa fa-user fa-1x"></i> Agregar Personas </a>
+        </li>
+    </ul>
 
 
-<div class=" col m9 s12 x12">
+    <div class=" col m9 s12 x12">
 
-				<ul class="collapsible popout">
-					{% for r in pago %}
-					<li>
-						<div class="collapsible-header nombre row valign-wrapper">
-							<img class="circle" src="{{ MEDIA_URL }}{{ p.foto }}" alt="" style="width:60px;">
-							<!--<i class="fa fa-user-circle fa-2x "></i>-->
-							<div class="col m6 ">
-								{{ r.nombre }}
-							</div>
+        <ul class="collapsible popout">
+            {% for r in pago %}
+            <li>
+                <div class="collapsible-header nombre row valign-wrapper">
+                    <img class="circle" src="{{ MEDIA_URL }}{{ p.foto }}" alt="" style="width:60px;">
+                    <!--<i class="fa fa-user-circle fa-2x "></i>-->
+                    <div class="col m6 ">
+                        {{ r.nombre }}
+                    </div>
 
-							<div class="col m3 ">
-								<h6 class="">
-									Apartamento
-								</h6>
-								{{r.apartamento}}
-							</div>
-							<div class="col m3 ">
-								<h6 class="">
-									Cargo
-								</h6>
-								{% comment %} {{ p.cargo }} {% endcomment %}
-							</div>
+                    <div class="col m3 ">
+                        <h6 class="">
+                            Apartamento
+                        </h6>
+                        {{r.apartamento}}
+                    </div>
+                    <div class="col m3 ">
+                        <h6 class="">
+                            Cargo
+                        </h6>
+                        {% comment %} {{ p.cargo }} {% endcomment %}
+                    </div>
 
-							<span class=" badge"></span>
-						</div>
-						<div class="collapsible-body">
-							<table id="id_table" class="bordered highlight centered table-descripcion">
-								<thead>
-									<th>Descripción</th>
-									<th>Modelo</th>
-									<th>Serial</th>
-									<th class="hide">ID</th>
-									</tr>
-								</thead>
-								<tbody>
-									{% for p in r.pago %}
-									<tr>
-										<td>{{ p.pagos }}</td>										
-										<td id="id_equipo" class="hide"> </td>
-										<td>
+                    <span class=" badge"></span>
+                </div>
+                <div class="collapsible-body">
+                    <table id="id_table" class="bordered highlight centered table-descripcion">
+                        <thead>
+                            <th>Descripción</th>
+                            <th>Modelo</th>
+                            <th>Serial</th>
+                            <th class="hide">ID</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for p in r.pago %}
+                            <tr>
+                                <td>{{ p.pagos }}</td>
+                                <td id="id_equipo" class="hide"> </td>
+                                <td>
 
-											<ul id="menu" class="row ">
-												<li class="col m6 right">
-													<button class="btn-floating center waves-effect waves-light" type="submit">
+                                    <ul id="menu" class="row ">
+                                        <li class="col m6 right">
+                                            <button class="btn-floating center waves-effect waves-light" type="submit">
 														<i class="fa fa-edit fa-2x "> Pagar</i>
 													</button>
-												</li>
-											</ul>
+                                        </li>
+                                    </ul>
 
-										</td>
-									</tr>
-									{% endfor %}
-								</tbody>
-							</table>
-						</div>
-					</li>
-					{% endfor %}
-				</ul>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
 
-			</div>
-
-
+    </div>
 
 
-{% comment %} 
-	<div class="row">
-		<!--   Nombre Propietario o Inquilino   -->
-		<div class="input-field col m2" >
-			<i class="prefix fa fa-hashtag fa-3x"></i>
-			<input id="nombre" name="nombre" type="text" required>
-			<label for="nombre" class="active">Bloque </label>
-		</div>
-		<!--   Nombre Propietario o Inquilino   -->
-		<div class="input-field col m2" >
-			<i class="prefix fa fa-building-o fa-3x"></i>
-			<input id="nombre" name="nombre" type="text" required>
-			<label for="nombre" class="active">Apartamento </label>
-		</div>
-		<!--   Nombre Propietario o Inquilino   -->
-		<div class="input-field col m2" >
-			<i class="prefix fa fa-dollar fa-3x"></i>
-			<input id="nombre" name="nombre" type="text" required>
-			<label for="nombre" class="active">Monto a Pagar </label>
-		</div>
-		<!--   Nombre Propietario o Inquilino   -->
-		<div class="input-field col m2">
-			<i class="prefix fa fa-comments-o fa-3x"></i>
-			<input id="nombre" name="nombre" type="text" required>
-			<label for="nombre" class="active">Concepto </label>
-		</div>
-		<!--   Nombre Propietario o Inquilino   -->
-		<div class="input-field col m2" >
-			<i class="prefix fa fa-dollar fa-3x"></i>
-			<input id="nombre" name="nombre" type="text" required>
-			<label for="nombre" class="active">Pendiente </label>
-		</div>
-		<!--   Nombre Propietario o Inquilino   -->
-		<div class="input-field col m2" >
-			<i class="prefix fa fa-comment-o fa-3x"></i>
-			<input id="nombre" name="nombre" type="text" required>
-			<label for="nombre" class="active">Nombre </label>
-		</div>
-	</div> {% endcomment %}
 
 
-	{% comment %} <div class="row">
-		<div class="col m2" >
-			<label>Nombre Personas</label>
-			<select multiple class=" browser-default">
+    {% comment %}
+    <div class="row">
+        <!--   Nombre Propietario o Inquilino   -->
+        <div class="input-field col m2">
+            <i class="prefix fa fa-hashtag fa-3x"></i>
+            <input id="nombre" name="nombre" type="text" required>
+            <label for="nombre" class="active">Bloque </label>
+        </div>
+        <!--   Nombre Propietario o Inquilino   -->
+        <div class="input-field col m2">
+            <i class="prefix fa fa-building-o fa-3x"></i>
+            <input id="nombre" name="nombre" type="text" required>
+            <label for="nombre" class="active">Apartamento </label>
+        </div>
+        <!--   Nombre Propietario o Inquilino   -->
+        <div class="input-field col m2">
+            <i class="prefix fa fa-dollar fa-3x"></i>
+            <input id="nombre" name="nombre" type="text" required>
+            <label for="nombre" class="active">Monto a Pagar </label>
+        </div>
+        <!--   Nombre Propietario o Inquilino   -->
+        <div class="input-field col m2">
+            <i class="prefix fa fa-comments-o fa-3x"></i>
+            <input id="nombre" name="nombre" type="text" required>
+            <label for="nombre" class="active">Concepto </label>
+        </div>
+        <!--   Nombre Propietario o Inquilino   -->
+        <div class="input-field col m2">
+            <i class="prefix fa fa-dollar fa-3x"></i>
+            <input id="nombre" name="nombre" type="text" required>
+            <label for="nombre" class="active">Pendiente </label>
+        </div>
+        <!--   Nombre Propietario o Inquilino   -->
+        <div class="input-field col m2">
+            <i class="prefix fa fa-comment-o fa-3x"></i>
+            <input id="nombre" name="nombre" type="text" required>
+            <label for="nombre" class="active">Nombre </label>
+        </div>
+    </div> {% endcomment %} {% comment %}
+    <div class="row">
+        <div class="col m2">
+            <label>Nombre Personas</label>
+            <select multiple class=" browser-default">
 				<option value="" disabled selected>Nombre Personas</option>
 				{% for r in res %}
 				<option value="{{ r }}">{{ r.nombre }}</option>
 				{% endfor%}
 			</select>
-		</div>
-		<div class="col m2" >
-			<label>Numero Apartamentos</label>
-			<select multiple class=" browser-default">
+        </div>
+        <div class="col m2">
+            <label>Numero Apartamentos</label>
+            <select multiple class=" browser-default">
 				<option value="" disabled selected>Apartamento</option>
 				{% for r in res %}
 				<option value="{{ r.edificio }}-{{r.no_apartamento}}">{{ r.edificio }}-{{r.no_apartamento}}</option>
 				{% endfor%}
 			</select>
-		</div>
-	</div> {% endcomment %}
+        </div>
+    </div> {% endcomment %}
 
 
-	<script src="{% static '/jquery/jquery-3.2.1.min.js' %}"></script>
-	<script src="{% static '/materialize/js/materialize.min.js' %}"></script>
-	<script src="{% static '/style.js' %}"></script>
+    <script src="{% static '/jquery/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static '/materialize/js/materialize.min.js' %}"></script>
+    <script src="{% static '/style.js' %}"></script>
 </body>
 
 </html>

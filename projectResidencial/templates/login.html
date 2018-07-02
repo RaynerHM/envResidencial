@@ -4,7 +4,7 @@
 <html lang="es">
 
 <head>
-    <title>Login</title>
+    <title>Iniciar Sesión</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
@@ -24,7 +24,7 @@
         <div class="row " style="display:flex;justify-content:center;align-items:center;">
             <div class=" fondo z-depth-5 center">
                 <form method="POST" action="{% url 'login' %}">{% csrf_token %}
-                    <h4>Iniciar Sesión</h4>
+                    <h4 class="hide-on-small-only">Iniciar Sesión</h4>
                     <!--   Usuario   -->
                     <div class="input-field">
                         <i class="prefix fa fa-user fa-3x"></i>
@@ -40,13 +40,13 @@
                     </div>
 
                     <div class="row">
-                        <!--   Crear Cuenta   -->
-                        <div class="col m6 center group navform wat-cf">
-                            <a class="btn hoverable waves-effect" href="/crear-cuenta"><i class="fa fa-user-plus"></i> Crear Cuenta</a>
-                        </div>
                         <!--   Iniciar Sesion   -->
-                        <div class="col m6 center group navform wat-cf">
+                        <div class="col m6 s12 center group navform wat-cf">
                             <button class="btn hoverable waves-effect" type="submit">Iniciar Sesion</button>
+                        </div>
+                        <!--   Crear Cuenta   -->
+                        <div class="col m6 s12 center group navform wat-cf">
+                            <a class="btn hoverable waves-effect" href="/crear-cuenta"><i class="fa fa-user-plus"></i> Crear Cuenta</a>
                         </div>
                     </div>
                 </form>
