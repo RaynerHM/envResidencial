@@ -61,11 +61,9 @@ li {
     font-size: 20px;
 }
 
-.fondo {
-    background-color: #fff;
-    /*margin: 5% 33% 0 33%;*/
-    margin: 250px 35% 360px;
-    width: 600px;
+#login .fondo {
+    background-color: rgba(255, 255, 255, 0.32);
+    width: 480px;
     border-radius: 15px;
     padding: 30px;
 }
@@ -77,7 +75,33 @@ h3 {
 }
 
 #login {
-    background-image: -webkit-linear-gradient(1000deg, #66AAB3 50%, #26a69a 45%);
+    background: url(/static/image/login.jpg)no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: auto;
+    color: #fff;
+}
+
+#login h4 {
+    margin-top: 0px;
+    margin-bottom: 50px;
+}
+
+#residente {
+    background: url(/static/image/login.jpg)no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: auto;
+    color: #fff;
+}
+
+#login .row {
+    margin: 0px;
+}
+
+#login label,
+#residente label {
+    color: #fff;
 }
 
 .row {
@@ -180,6 +204,19 @@ nav .nav-wrapper i {
 
 
 /* -------- Registro Residente - Clave -------- */
+
+#residente input[type=text]:not(.browser-default),
+#residente input[type=password]:not(.browser-default),
+#residente input[type=email]:not(.browser-default) {
+    border-bottom: 1px solid #fff;
+}
+
+#residente .fondo {
+    background-color: rgba(255, 255, 255, 0.32);
+    width: 800px;
+    border-radius: 15px;
+    padding: 30px;
+}
 
 #message {
     color: #000;
@@ -333,13 +370,17 @@ table.bordered tbody tr:hover {
 #login .container,
 #bPassword .container {
     margin: 5px;
-    width: 98%;
+    width: 100%;
     max-width: 100%;
 }
 
 #bPassword .container .row,
 #login .container {
     margin: 0%;
+}
+
+#login .container {
+    margin: 50px 0%;
 }
 
 #controles {
