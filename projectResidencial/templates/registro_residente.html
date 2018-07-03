@@ -61,7 +61,7 @@
                 <!--  Cedula Propietario o Inquilino  -->
                 <div class="input-field col m6 s12">
                     <i class="prefix fa fa-id-card fa-3x"></i>
-                    <input id="cedula" name="cedula" type="text" required autocomplete="off">
+                    <input id="cedula" name="cedula" type="text" maxlength="13" required autocomplete="off">
                     <label for="cedula" class="active">Cedula</label>
                 </div>
 
@@ -75,7 +75,7 @@
                 <!--  Telefono Propietario o Inquilino  -->
                 <div class="input-field col m6 s12">
                     <i class="prefix fa fa-phone fa-3x"></i>
-                    <input id="telefono" name="telefono" type="text" required autocomplete="off">
+                    <input id="telefono" name="telefono" type="text" maxlength="12" required autocomplete="off">
                     <label for="telefono" class="active">Telefono</label>
                 </div>
 
@@ -93,15 +93,14 @@
 
             </form>
 
-
-            <div id="message" class="col m6 s12">
+            <div id="message" class="row">
                 <ul>
-                    <i id="lengthCounter"><b>Numero de Caracteres:</b></i>
-                    <i id="PSWlength" class="invalid"><b>Minimo 8 Caracteres</b></i>
-                    <i id="upper" class="invalid"><b>Letra Mayuscula</b></i>
-                    <i id="lower" class="invalid"><b>Letra Minuscula</b></i>
-                    <i id="number" class="invalid"><b>Numeros</b></i>
-                    <i id="symbol" class="invalid"><b>Símbolos</b></i>
+                    <i id="lengthCounter" class="col m2 s12"><b>Numero de Caracteres:</b></i>
+                    <i id="PSWlength" class="col m2 s12 invalid"><b>Minimo 8 Caracteres</b></i>
+                    <i id="upper" class="col m2 s12 invalid"><b>Mayuscula</b></i>
+                    <i id="lower" class="col m2 s12 invalid"><b>Minuscula</b></i>
+                    <i id="number" class="col m2 s12 invalid"><b>Numeros</b></i>
+                    <i id="symbol" class="col m2 s12 invalid"><b>Símbolos</b></i>
                 </ul>
             </div>
         </div>
