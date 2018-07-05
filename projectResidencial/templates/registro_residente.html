@@ -48,14 +48,14 @@
                     <!--   Edificio Propietario o Inquilino   -->
                     <div class="input-field col m6 s12">
                         <i class="prefix fa fa-building-o fa-3x"></i>
-                        <input id="apartamento" name="apartamento" type="text" required autocomplete="off">
-                        <label for="apartamento" class="active">Bloque</label>
+                        <input id="edificio" name="edificio" type="text" required autocomplete="off">
+                        <label for="edificio" class="active">Bloque</label>
                     </div>
                     <!--   Apartamento Propietario o Inquilino   -->
                     <div class="input-field col m6 s12">
                         <i class="prefix fa fa-building-o fa-3x"></i>
-                        <input id="edificio" name="edificio" type="text" required autocomplete="off">
-                        <label for="edificio" class="active">Apartamento </label>
+                        <input id="apartamento" name="apartamento" type="text" required autocomplete="off">
+                        <label for="apartamento" class="active">Apartamento </label>
                     </div>
                 </div>
                 <!--  Cedula Propietario o Inquilino  -->
@@ -86,21 +86,23 @@
                     <label for="clave" class="active">Clave</label>
                 </div>
 
-                <!--   Boton   -->
                 <div class=" center group navform wat-cf">
+                    <!--   Boton Registrar   -->
                     <button id="bClave" class="disabled btn hoverable waves-effect" type="submit">Registrar</button>
+                    <!--   Boton Cancelar   -->
+                    <a href="/" class="btn hoverable waves-effect red ">Cancelar</a>
                 </div>
 
             </form>
 
             <div id="message" class="row">
                 <ul>
-                    <i id="lengthCounter" class="col m2 s12"><b>Numero de Caracteres:</b></i>
-                    <i id="PSWlength" class="col m2 s12 invalid"><b>Minimo 8 Caracteres</b></i>
-                    <i id="upper" class="col m2 s12 invalid"><b>Mayuscula</b></i>
-                    <i id="lower" class="col m2 s12 invalid"><b>Minuscula</b></i>
-                    <i id="number" class="col m2 s12 invalid"><b>Numeros</b></i>
-                    <i id="symbol" class="col m2 s12 invalid"><b>Símbolos</b></i>
+                    <i id="lengthCounter" class="col m2 s6"><b>Numero de Caracteres:</b></i>
+                    <i id="PSWlength" class="col m2 s6 invalid"><b>Minimo 8 Caracteres</b></i>
+                    <i id="upper" class="col m2 s6 invalid"><b>Mayuscula</b></i>
+                    <i id="lower" class="col m2 s6 invalid"><b>Minuscula</b></i>
+                    <i id="number" class="col m2 s6 invalid"><b>Numeros</b></i>
+                    <i id="symbol" class="col m2 s6 invalid"><b>Símbolos</b></i>
                 </ul>
             </div>
         </div>

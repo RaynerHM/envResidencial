@@ -61,7 +61,7 @@ def EnviarCorreo(request):
 			</style>
 
 			<div class="center-align padding">
-				<div class="center-align padding">
+				<div class="center-align ">
 					<div class="felicidad">¡Felicidades, %s!</div>
 					<h3>Su cuenta ha sido creada exitosamente.</h3>
 				</div>
@@ -76,16 +76,15 @@ def EnviarCorreo(request):
 			</div>
 			""" %(usuario, correo, url))
 
-		subject, from_email, to = 'Cuenta Residencial Brisa Fresca', 'raynel95@gmail.com', 'rhernandez@bellbank.com'
+		subject, from_email, to = 'Cuenta Residencial Brisa Fresca', 'raynel95@gmail.com', correo
 		text_content = 'Credenciales de su cuenta Residencial Brisa Fresca.'
 		msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
 		msg.attach_alternative(html_content, "text/html")
 		msg.send()
-
-
 	except BadHeaderError:
 		return HttpResponse('No se pudo enviar el correo.')
-	return HttpResponseRedirect('/')
+	# return HttpResponseRedirect('/')
+	return render(request, 'felicidades.html')
 
 	# asunto = request.POST.get('subject', '')
 	# mensaje = request.POST.get('message', '')
@@ -118,6 +117,12 @@ def Registrar(request):
 		v_telefono = request.POST.get("telefono")
 		v_cedula = request.POST.get("cedula")
 		v_clave = request.POST.get("clave")
+
+		v_telefono = v_telefono.split('-')
+		v_telefono = (v_telefono[0] + v_telefono[1] + v_telefono[2])
+		v_cedula = v_cedula.split('-')
+		v_cedula = (v_cedula[0] + v_cedula[1] + v_cedula[2])
+
 
 		if (v_nombre != '' and v_apellido != '' and v_correo != ''
 			and v_telefono != '' and   v_cedula != ''  and  v_clave!= ''):
@@ -168,8 +173,7 @@ def Registrar(request):
 							<h3>Su cuenta ha sido creada exitosamente.</h3>
 						</div>
 						<div class="padding usuario">
-						<h3> Su usuario es:</h3>
-						<br>
+						<h3> Su usuario es:</h3>						
 						<div class="color"> %s</div>
 						</div>
 						<div class="padding">
@@ -285,7 +289,6 @@ def residente_serializer(residente):
 @login_required(login_url='/login/')
 def EstadosCuenta(request):
 	usuario= request.user.get_full_name()
-
 	ajuste = Ajuste.objects.all()
 
 	pago = Pago.objects.all().filter(propietario__nombre=usuario)
