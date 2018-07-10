@@ -167,6 +167,14 @@
                     success: function(data) {
                         $('#concepto').val(data.residente[0].res);
                         console.log(data.residente[0].res);
+                        /*
+                        console.log(data.residente[1].res);
+                        console.log(data.residente[2].res);
+                        */
+                        for (var i = 0; i < data.length; i++) {
+                            console.log(data.residente[i].res);
+                        }
+
                     },
                     error: function(data) {
                         console.log(data.residente[0].res);
@@ -177,32 +185,36 @@
 
     </div>
     <!-- </form> -->
-    <table>
-        <thead>
-            <tr>
-                <th></th>
-                <th>Row Text</th>
-            </tr>
-        </thead>
-        <tr>
-            <td>
-                <input type="checkbox" />
-            </td>
-            <td>Test</td>
-        </tr>
-        <tr>
-            <td>
-                <input type="checkbox" />
-            </td>
-            <td>Test 2</td>
-        </tr>
-        <tr>
-            <td>
-                <input type="checkbox" />
-            </td>
-            <td>Test 3</td>
-        </tr>
-    </table>
+
+    <div class="container">
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Item Name</th>
+                    <th>Item Price</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Alvin</td>
+                    <td>Eclair</td>
+                    <td>$0.87</td>
+                </tr>
+                <tr>
+                    <td>Alan</td>
+                    <td>Jellybean</td>
+                    <td>$3.76</td>
+                </tr>
+                <tr>
+                    <td>Jonathan</td>
+                    <td>Lollipop</td>
+                    <td>$7.00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
 
     {% comment %}

@@ -33,11 +33,11 @@ EMAIL_HOST_USER ='info.residencialbrisafrescar@gmail.com'
 EMAIL_HOST_PASSWORD = 'Brisafresca1'
 EMAIL_USE_TLS = True
 
-# TIME= 5*60
-# SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
-# SESSION_EXPIRE_AT_BROWSER_CLOSE= True
-# SESSION_COOKIE_AGE = TIME
-# SESSION_IDLE_TIMEOUT = TIME
+TIME= 5*60
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+SESSION_EXPIRE_AT_BROWSER_CLOSE= True
+#SESSION_COOKIE_AGE = TIME
+SESSION_IDLE_TIMEOUT = TIME
 
 # Application definition
 
