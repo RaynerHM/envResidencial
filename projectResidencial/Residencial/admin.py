@@ -5,7 +5,8 @@ from .models import Residente, Apartamento, Pago, Estado, Ajuste
 
 
 class AdminResidentes(admin.ModelAdmin):
-	list_display = ["nombre", 'edificio', 'no_apartamento', 'correo', 'telefono', 'cedula', 'clave']
+	list_display = ["nombre", "id", 'edificio', 'no_apartamento',
+					 'correo', 'telefono', 'cedula', 'clave']
 	ordering = ['nombre','no_apartamento','edificio']
 
 	class Meta:
@@ -24,7 +25,8 @@ admin.site.register(Apartamento, AdminApartamento)
 
 
 class AdminPagos(admin.ModelAdmin):
-	list_display = ['fecha', 'propietario', 'no_edificio', 'pagos', 'concepto', 'deuda_pendiente', 'recargo', 'concepto_deuda']
+	list_display = ['fecha', "id", 'propietario', 'no_edificio', 'pagos',
+				'concepto', 'deuda_pendiente', 'recargo', 'concepto_deuda']
 	class Meta:
 		model = Pago
 
@@ -33,7 +35,8 @@ admin.site.register(Pago, AdminPagos)
 
 
 class AdminAjustes(admin.ModelAdmin):
-	list_display = ['fecha_Para_Facturar', 'monto_Manteniento', 'fecha_Limite_Pago', 'pago_Recargo']
+	list_display = ['fecha_Para_Facturar', 'monto_Manteniento',
+					'fecha_Limite_Pago', 'pago_Recargo']
 	class Meta:
 		model = Ajuste
 

@@ -38,6 +38,7 @@ class Pago(models.Model):
 	
 	def __str__(self):
 		return self.fecha.strftime('%M')
+		# return self.recargo
 
 
 class Ajuste(models.Model):

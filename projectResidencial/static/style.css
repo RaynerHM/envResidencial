@@ -403,7 +403,7 @@
     .izquierda {
         text-align: left;
     }
-    /*--------- Fromulario Registro de Pagos --------- --------------------------------------------------------------- */
+    /*--------- Formulario Registro de Pagos --------- --------------------------------------------------------------- */
     
     #bPagos select {
         height: 400px;
@@ -565,4 +565,28 @@
     .espacio {
         padding-bottom: 50px;
         padding-top: 50px;
+    }
+    
+    #nombre {
+        margin-top: 15px;
+        background-color: #e7f5fd;
+        width: 350px;
+        height: 41px;
+        color: #00afb5;
+        border-radius: 5px 20px 0 0;
+        padding: 0 0 0px 15px;
+        margin-bottom: 0%;
+        padding-bottom: 0%;
+        font-size: 25px;
+    }
+    
+    table {
+        background-color: #e7f5fd;
+        border-radius: 0 10px 10px;
+    }
+    
+    .no-datos {
+        text-align: center;
+        color: blue;
+        font-size: 20px;
     }

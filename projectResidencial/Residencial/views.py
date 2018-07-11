@@ -173,7 +173,7 @@ def Registrar(request):
 							<h3>Su cuenta ha sido creada exitosamente.</h3>
 						</div>
 						<div class="padding usuario">
-						<h3> Su usuario es:</h3>						
+						<h3> Su usuario es:</h3>
 						<div class="color"> %s</div>
 						</div>
 						<div class="padding">
@@ -264,26 +264,72 @@ def RegistrarPagos(request):
 		})
 
 
-
+"""
+Residente:
+	nombre
+	correo
+	clave
+	telefono
+	cedula
+	no_apartamento
+	edificio
+-----------------------
+Pago:
+	propietario
+	fecha
+	no_edificio
+	pagos
+	concepto
+	deuda_pendiente
+	recargo
+	concepto_deuda
+"""
 
 def Ajax(request):
-	asd = request.GET.get('residente')
-	print(asd)
-	residente = Residente.objects.filter(no_apartamento=asd).order_by('edificio')
+	bloq = request.GET.get('bloq')
+	apto = request.GET.get('apto')
+	print(bloq+' - '+apto)
+
+	residente = Residente.objects.filter(no_apartamento=apto, edificio=bloq)
+	id_residente = residente[0].id
 	residente = [residente_serializer(residente) for residente in residente]
+
+	deuda = Pago.objects.filter(propietario=id_residente)
+	deuda = [deuda_serializer(deuda) for deuda in deuda]
+
+	print("-------------------")
+	print('residente --- %s' %residente)
+	print('deuda ------- %s' %deuda)
+	print("-------------------")
+
 
 	#return HttpResponse(json.dumps(residente), content_type='application/json')
 
 
 	return HttpResponse(
-		json.dumps({'residente': residente}),
-		content_type="application/json"
+		json.dumps({
+			'residente': residente,
+			'deuda': deuda
+			}),
+			content_type="application/json"
 		)
 
 
 def residente_serializer(residente):
-	return {'res': residente.nombre}
+	return {
+		'nombre': residente.nombre,
+		'correo': residente.correo,
+		'telefono': residente.telefono,
+		'cedula': residente.cedula,
+		'no_apartamento': residente.no_apartamento
+	}
 
+def deuda_serializer(deuda):
+	return {
+		'deuda_endiente': str(deuda.deuda_pendiente),
+		'recargo': str(deuda.recargo),
+		'concepto_deuda': str(deuda.concepto_deuda)
+}
 
 
 @login_required(login_url='/login/')
@@ -461,3 +507,10 @@ class ReportePersonasPDF(View):
 
 
 # Libreria para PDF -- wkxhtm2pdf
+"""
+# 'propietario': str(deuda.propietario),
+# 'fecha': str(deuda.fecha),
+# 'no_edificio': str(deuda.no_edificio),
+# 'pagos': str(deuda.pagos),
+# 'concepto': str(deuda.concepto),
+"""
