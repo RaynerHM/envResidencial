@@ -166,18 +166,19 @@
 
                     success: function(data) {
                         $('#concepto').val(data.residente[0].res);
-                        console.log(data.residente[0].res);
+                        //console.log(data.residente[0].res);
+
                         /*
                         console.log(data.residente[1].res);
                         console.log(data.residente[2].res);
                         */
-                        for (var i = 0; i < data.length; i++) {
+                        for (var i = 0; i < data.residente.length; i++) {
                             console.log(data.residente[i].res);
                         }
 
                     },
                     error: function(data) {
-                        console.log(data.residente[0].res);
+                        // console.log(data.residente[0].res);
                     }
                 });
             });
@@ -187,7 +188,7 @@
     <!-- </form> -->
 
     <div class="container">
-        <table class="striped">
+        <table class="striped highlight">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -197,6 +198,11 @@
             </thead>
 
             <tbody>
+                <tr>
+                    <td>Alvin</td>
+                    <td>Eclair</td>
+                    <td>$0.87</td>
+                </tr>
                 <tr>
                     <td>Alvin</td>
                     <td>Eclair</td>
