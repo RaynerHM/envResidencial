@@ -590,3 +590,17 @@
         color: blue;
         font-size: 20px;
     }
+    
+    table.striped>tbody>tr:nth-child(odd) {
+        background-color: #fff;
+    }
+    
+    #bPagos td,
+    #bPagos tr {
+        padding: 0px 0px;
+        height: 10px;
+    }
+    
+    #bPagos .container {
+        margin: 0px 15px;
+    }
