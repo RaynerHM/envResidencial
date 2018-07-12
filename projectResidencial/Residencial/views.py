@@ -294,13 +294,13 @@ def Ajax(request):
 	id_residente = residente[0].id
 	residente = [residente_serializer(residente) for residente in residente]
 
-	deuda = Pago.objects.filter(propietario=id_residente)
+	deuda = Pago.objects.filter(propietario=id_residente, deuda_endiente=0)
 	deuda = [deuda_serializer(deuda) for deuda in deuda]
 
-	print("-------------------")
+	print("------------------------------")
 	print('residente --- %s' %residente)
 	print('deuda ------- %s' %deuda)
-	print("-------------------")
+	print("------------------------------")
 
 
 	#return HttpResponse(json.dumps(residente), content_type='application/json')
@@ -326,7 +326,7 @@ def residente_serializer(residente):
 
 def deuda_serializer(deuda):
 	return {
-		'deuda_endiente': str(deuda.deuda_pendiente),
+		'deuda_pendiente': str(deuda.deuda_pendiente),
 		'recargo': str(deuda.recargo),
 		'concepto_deuda': str(deuda.concepto_deuda)
 }

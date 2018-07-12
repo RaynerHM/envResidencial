@@ -172,21 +172,23 @@
                     success: function(data) {
                         //$('#concepto').val(data.residente[0].nombre);
                         //console.log(data.deuda[0].deuda_pendiente);
-                        $('tr').remove('tr');
                         $('#tabla').addClass('hide');
                         if (data.deuda.length > 0) {
+                            $('#ta').remove('#ta');
                             $('#tabla').removeClass('hide');
                             $('.no-datos').addClass('hide');
 
+                            var asd = "<table id='ta' class='centered striped highlight'><thead><tr><th>Deuda Pendiente</th><th>Recargo</th><th>Concepto Deuda</th></tr></thead><tbody id='tbody'>";
+                            $('#nombre').after(asd);
                             for (var i = 0; i < data.deuda.length; i++) {
                                 console.log(data.deuda.length);
 
-                                $('#nombre').html('<p>' + data.residente[0].nombre + '</p>').after();
-                                $('tbody').append(
+                                $('#nombre').html("<p id='p'>" + data.residente[0].nombre + "</p>").after();
+                                $('#tbody').append(
                                     "<tr id='tr'><td>" + data.deuda[i].deuda_pendiente +
                                     "</td><td>" + data.deuda[i].recargo + "</td>" +
                                     "</td><td>" + data.deuda[i].concepto_deuda + "</td></tr>"
-                                ).after();
+                                );
                             }
                         } else {
                             $('.no-datos').removeClass('hide').text(data.residente[0].nombre + ' no tiene deudas pendiente.');
@@ -208,18 +210,18 @@
     <div id="tabla" class="container">
         <div id="nombre">
         </div>
-        <table class="centered striped highlight">
-            <thead>
-                <tr>
-                    <th>Deuda Pendiente</th>
-                    <th>Recargo</th>
-                    <th>Concepto Deuda</th>
-                </tr>
-            </thead>
+        <!--
+            <table class="centered striped highlight">
+                <thead>
+                    <tr>
+                        <th>Deuda Pendiente</th>
+                        <th>Recargo</th>
+                        <th>Concepto Deuda</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+        -->
 
-            <tbody id="tbody">
-            </tbody>
-        </table>
     </div>
 
 
