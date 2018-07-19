@@ -197,7 +197,7 @@
                             $('.no-datos').addClass('hide');
                             $('#tabla').html("<div id='nombre'><p id='p'>" + data.residente[0].nombre + "</p></div>").after();
 
-                            var asd = "<table id='ta' class='centered striped highlight'><thead><tr><th>Seleccione</th><th>Deuda Pendiente</th><th>Recargo</th><th>Concepto Deuda</th></tr></thead><tbody id='tbody'>";
+                            var asd = "<table id='ta' class='centered striped highlight'><thead><tr><th>Seleccione</th><th>Deuda Pendiente</th><th>Recargo</th><th>Fecha Limite</th><th>Concepto Deuda</th><th>Total</th></tr></thead><tbody id='tbody'>";
                             $('#nombre').after(asd);
                             for (var i = 0; i < data.deuda.length; i++) {
                                 console.log(data.deuda.length);
@@ -205,7 +205,9 @@
                                 $('#tbody').append(
                                     "<tr id='tr'><td><p><input type='checkbox' class='micheckbox' id='" + data.deuda[i].id + "'/><label for=" + data.deuda[i].id + ">Seleccionar</label></p></td><td>RD$" + data.deuda[i].deuda_pendiente +
                                     "</td><td>RD$" + data.deuda[i].recargo + "</td>" +
-                                    "</td><td>" + data.deuda[i].concepto_deuda + "</td></tr>"
+                                    "</td><td>" + data.ajuste[0].fecha_Limite_Pago + "</td>" +
+                                    "</td><td>" + data.deuda[i].concepto_deuda + "</td>" +
+                                    "</td><td>RD$" + (parseInt(data.deuda[i].deuda_pendiente) + parseInt(data.deuda[i].recargo)) + "</td></tr>"
                                 );
                             }
                         } else {

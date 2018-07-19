@@ -19,7 +19,7 @@ class Apartamento(models.Model):
 	no_edificio = models.CharField(max_length=15, blank=False, null=False)
 	no_apartamento = models.CharField(max_length=15, blank=False, null=False)
 	propietario = models.ForeignKey('Residente', on_delete=models.CASCADE, blank=False, null=True)
-	
+
 	def __str__(self):
 		apartament = self.no_edificio +' - '+ self.no_apartamento
 		return apartament
@@ -35,7 +35,9 @@ class Pago(models.Model):
 	deuda_pendiente = models.DecimalField(max_digits=10, decimal_places=2, blank=False, null=False)
 	recargo = models.DecimalField(max_digits=10, decimal_places=2, blank=False, null=False)
 	concepto_deuda = models.CharField(max_length=70, blank=False, null=False, default="N/A")
-	
+	estado = models.ForeignKey(
+		'Estado', on_delete=models.CASCADE, blank=False, null=False, default='1')
+
 	def __str__(self):
 		return self.fecha.strftime('%M')
 		# return self.recargo
@@ -54,6 +56,6 @@ class Ajuste(models.Model):
 
 class Estado(models.Model):
 	estado= models.CharField(max_length=20, blank=True, null=False)
-	
+
 	def __str__(self):
 		return self.estado

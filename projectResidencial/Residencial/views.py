@@ -290,6 +290,9 @@ def Ajax(request):
 	apto = request.GET.get('apto')
 	print(bloq+' - '+apto)
 
+	ajuste = Ajuste.objects.all()
+	ajuste = [ajuste_serializer(ajuste) for ajuste in ajuste]
+
 	residente = Residente.objects.filter(no_apartamento=apto, edificio=bloq)
 	id_residente = residente[0].id
 	residente = [residente_serializer(residente) for residente in residente]
@@ -309,7 +312,8 @@ def Ajax(request):
 	return HttpResponse(
 		json.dumps({
 			'residente': residente,
-			'deuda': deuda
+			'deuda': deuda,
+			'ajuste': ajuste
 			}),
 			content_type="application/json"
 		)
@@ -330,6 +334,11 @@ def deuda_serializer(deuda):
 		'deuda_pendiente': str(deuda.deuda_pendiente),
 		'recargo': str(deuda.recargo),
 		'concepto_deuda': str(deuda.concepto_deuda)
+}
+def ajuste_serializer(ajuste):
+	return {
+		'fecha_Limite_Pago': str(ajuste.fecha_Limite_Pago),
+		'pago_Recargo': str(ajuste.pago_Recargo)
 }
 
 
