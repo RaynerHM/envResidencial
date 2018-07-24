@@ -107,7 +107,7 @@ def Logout(request):
 	return HttpResponseRedirect("/login")
 
 
-def Registrar(request):
+def RegistrarUsuario(request):
 	if request.method == 'POST':
 		v_nombre = request.POST.get('nombre')
 		v_apellido = request.POST.get('apellido')
@@ -265,24 +265,24 @@ def RegistrarPagos(request):
 
 
 """
-Residente:
-	nombre
-	correo
-	clave
-	telefono
-	cedula
-	no_apartamento
-	edificio
------------------------
-Pago:
-	propietario
-	fecha
-	no_edificio
-	pagos
-	concepto
-	deuda_pendiente
-	recargo
-	concepto_deuda
+	Residente:
+		nombre
+		correo
+		clave
+		telefono
+		cedula
+		no_apartamento
+		edificio
+	-----------------------
+	Pago:
+		propietario
+		fecha
+		no_edificio
+		pagos
+		concepto
+		deuda_pendiente
+		recargo
+		concepto_deuda
 """
 
 def Ajax(request):
@@ -334,12 +334,13 @@ def deuda_serializer(deuda):
 		'deuda_pendiente': str(deuda.deuda_pendiente),
 		'recargo': str(deuda.recargo),
 		'concepto_deuda': str(deuda.concepto_deuda)
-}
+		}
+
 def ajuste_serializer(ajuste):
 	return {
 		'fecha_Limite_Pago': str(ajuste.fecha_Limite_Pago),
 		'pago_Recargo': str(ajuste.pago_Recargo)
-}
+		}
 
 
 @login_required(login_url='/login/')
