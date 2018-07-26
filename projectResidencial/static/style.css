@@ -1,605 +1,669 @@
-    @media only screen and (min-width: 1200px) {
-        html {
-            font-size: 15px;
-        }
-    }
-    
-    @media only screen and (min-width: 601px) {
-        nav {
-            line-height: 50px;
-        }
-    }
-    
-    body {
-        background-color: white;
-    }
-    /* .container {
-    width: 100%;
-} */
-    
-    .side-nav li>a>i {
-        color: #fff;
-        font-size: 1.8em;
-    }
-    /*---------- Barra de Navegacion ---------- --------------------------------------------------------------- */
-    
-    nav {
-        background-color: #00afb5;
-        padding: 0px 9px;
-        margin: 0px 10px 10px 0px;
-        height: 50px;
-    }
-    
-    nav div .nav-wrappe {
-        line-height: 50px;
-    }
-    
-    li {
-        list-style: none;
-    }
-    /* ----- Login -----
---------------------------------------------------------------- */
-    
-    @media only screen and (min-width: 360px) {
-        #login .fondo {
-            background-color: rgba(255, 255, 255, 0.32);
-            width: 300px;
-            border-radius: 15px;
-            padding: 20px 10px;
-            margin-bottom: 80px;
-        }
-        #login .row button,
-        #login .row a {
-            padding: 0 5% 0 5%;
-            margin-top: 15px;
-            width: 250px;
-            border-radius: 5px;
-            text-align: center;
-        }
-        #login h3 {
-            font-size: 20px;
-            margin: 15px 0;
-        }
-    }
-    
-    @media only screen and (min-width: 600px) {
-        #login .fondo {
-            background-color: rgba(255, 255, 255, 0.32);
-            width: 480px;
-            border-radius: 15px;
-            padding: 30px;
-        }
-        #login .row button,
-        #login .row a {
-            padding: 0 5% 0 5%;
-            width: 170px;
-            border-radius: 5px;
-            text-align: center;
-        }
-        #login h3 {
-            font-size: 2.92rem;
-        }
-    }
-    
-    #login .container {
-        margin: 50px 0%;
-        width: 100%;
-        max-width: 100%;
-    }
-    
-    @media only screen and (min-width: 1364px) {
-        #login .container {
-            margin: 150px 0%;
-            width: 100%;
-            max-width: 100%;
-        }
-        #login h4 {
-            margin-top: 0px;
-            margin-bottom: 50px;
-        }
-    }
-    
-    @media only screen and (min-width: 1200px) {
-        #login .container {
-            margin: 50px 0%;
-        }
-        #login h4 {
-            margin-top: 0px;
-            margin-bottom: 0px;
-        }
-        #login .fondo {
-            background-color: rgba(255, 255, 255, 0.32);
-            width: 400px;
-            border-radius: 15px;
-            padding: 30px;
-        }
-        #login .row button,
-        #login .row a {
-            padding: 0 5% 0 5%;
-            width: 140px;
-            border-radius: 5px;
-            text-align: center;
-        }
-    }
-    
-    #mensaje {
-        background-color: red;
-        color: #fff;
-        border-radius: 10px;
-        text-align: center;
-        margin: 5% 25% 0 25%;
-        padding: 10px;
-        font-size: 20px;
-    }
-    
-    #login {
-        margin-top: 35px;
-        color: #fff;
-        font-family: Cambria;
-    }
-    
-    #login {
-        background: url(/static/image/login.jpg)no-repeat;
-        background-size: cover;
-        background-attachment: fixed;
-        overflow: auto;
-        color: #fff;
-        margin: 0%;
-        height: 100%;
-    }
-    
-    #residente {
-        background: url(/static/image/login.jpg)no-repeat;
-        background-size: cover;
-        background-attachment: fixed;
-        overflow: auto;
-        color: #fff;
-    }
-    
-    #login .row {
-        margin: 0px;
-    }
-    
-    #login label,
-    #residente label {
-        color: #fff;
-    }
-    
-    .row {
-        margin-top: 20px;
-    }
-    
-    .row button {
-        background-color: #00c853;
-    }
-    
-    .row button,
-    .row a {
-        padding: 0 5% 0 5%;
-        width: 150px;
-        border-radius: 5px;
-        text-align: center;
-    }
-    
-    .row a {
-        background-color: #40c4ff;
-    }
-    /* -------- Estado de Cuenta -------- --------------------------------------------------------------- */
-    
-    nav .nav-wrapper i {
-        line-height: 50px;
-        height: 50px;
-        margin-left: 15px;
-    }
-    
-    #nav-mobile a {
-        height: 50px;
-    }
-    
-    #tabla-deuda {
-        margin: 50px 0 0 10px;
-        width: 90%;
-        background-color: rgba(0, 228, 152, 0.19);
-        border-radius: 15px;
-    }
-    
-    @media only screen and (min-width: 993px) {
-        .row .col.l9 {
-            width: 80%;
-            padding-right: 0px;
-        }
-    }
-    
-    .advertencia {
-        text-align: center;
-        background-color: #cde1f1;
-        color: blue;
-        height: auto;
-        border-radius: 8px;
-        padding: 0 10px 0 10px;
-        margin: 0 25px 0 25px;
-    }
-    
-    .advertencia h6 {
-        padding: 5px 0;
-    }
-    
-    #boton {
-        padding: 15px 100px 15px 15px;
-    }
-    
-    #deuda {
-        background-color: #cde1f1;
-        color: #428bca;
-        width: 90%;
-        height: auto;
-        border-radius: 8px;
-        padding: 0 10px 0 10px;
-        margin: 0 20px 0 0;
-        font-size: 13px;
-    }
-    
-    @media only screen and (min-width: 992px) {
-        #asd {
-            position: fixed;
-            right: 0px;
-            left: 0px;
-        }
-    }
-    
-    #deuda .uno {
-        margin: 5px;
-    }
-    
-    #deuda .dos {
-        margin: 5px;
-        font-weight: 900;
-        text-align: right;
-    }
-    
-    .sesion {
-        font-size: 18px;
-    }
-    /* -------- Registro Residente - Clave -------- --------------------------------------------------------------- */
-    
-    #residente input[type=text]:not(.browser-default),
-    #residente input[type=password]:not(.browser-default),
-    #residente input[type=email]:not(.browser-default) {
-        border-bottom: 1px solid #fff;
-    }
-    
-    #residente {
-        font-family: Cambria;
-    }
-    
-    #residente button,
-    #residente a {
-        margin: 10px 20px;
-        width: 250px;
-    }
-    
-    @media only screen and (min-width: 360px) {
-        #residente .fondo {
-            background-color: rgba(255, 255, 255, 0.32);
-            width: 330px;
-            border-radius: 15px;
-            padding: 20px 10px;
-        }
-        #residente h3 {
-            font-size: 20px;
-            margin: 15px 0;
-        }
-        #residente .row .col.m2 {
-            width: 50%;
-        }
-    }
-    
-    @media only screen and (min-width: 830px) {
-        #residente .fondo {
-            background-color: rgba(255, 255, 255, 0.32);
-            width: 800px;
-            border-radius: 15px;
-            padding: 0 30px;
-        }
-        #residente button,
-        #residente a {
-            margin: 10px 50px;
-            width: 200px;
-        }
-        #residente .row .col.m2 {
-            width: 16.6666666667%;
-        }
-    }
-    
-    @media only screen and (min-width: 1364px) {
-        #residente .fondo {
-            background-color: rgba(255, 255, 255, 0.32);
-            width: 800px;
-            border-radius: 15px;
-            padding: 0 30px;
-        }
-        #residente h3 {
-            font-size: 2.92rem;
-        }
-        #residente .row .col.m2 {
-            width: 16.6666666667%;
-        }
-    }
-    
-    #message {
-        /* color: #000;
-    padding: 20px; */
-        position: relative;
-        margin-top: 10px;
-    }
-    
-    #message i {
+:root {
+    --verde: #00afb5;
+}
+
+@media only screen and (min-width: 1200px) {
+    html {
         font-size: 15px;
     }
-    
-    h3 {
+}
+
+@media only screen and (min-width: 601px) {
+    nav {
+        line-height: 50px;
+    }
+}
+
+body {
+    background-color: white;
+}
+
+
+/* .container {
+width: 100%;
+} */
+
+.side-nav li>a>i {
+    color: #fff;
+    font-size: 1.8em;
+}
+
+
+/*---------- Barra de Navegacion ---------- --------------------------------------------------------------- */
+
+nav {
+    background-color: var(--verde);
+    padding: 0px 9px;
+    margin: 0px 10px 10px 0px;
+    height: 50px;
+}
+
+nav div .nav-wrappe {
+    line-height: 50px;
+}
+
+li {
+    list-style: none;
+}
+
+
+/* ----- Login -----
+--------------------------------------------------------------- */
+
+@media only screen and (min-width: 360px) {
+    #login .fondo {
+        background-color: rgba(255, 255, 255, 0.32);
+        width: 300px;
+        border-radius: 15px;
+        padding: 20px 10px;
+        margin-bottom: 80px;
+    }
+    #login .row button,
+    #login .row a {
+        padding: 0 5% 0 5%;
+        margin-top: 15px;
+        width: 250px;
+        border-radius: 5px;
         text-align: center;
     }
-    /* Add a green text color and a checkmark when the requirements are right */
-    
-    .valid {
-        color: green;
+    #login h3 {
+        font-size: 20px;
+        margin: 15px 0;
     }
-    
-    .valid:before {
-        position: relative;
-        left: -5px;
-        content: "✓";
-    }
-    /* Add a red text color and an Xmark when the requirements are wrong */
-    
-    .invalid {
-        color: red;
-    }
-    
-    .invalid:after {
-        position: relative;
-        left: 5px;
-        content: "✗";
-    }
-    /* -------- Estado de Cuenta --------  --------------------------------------------------------------- */
-    
-    #btnMenu {
-        cursor: pointer;
-    }
-    
-    #bPassword .row button {
-        width: 200px;
-        border-radius: 5px;
-    }
-    
-    #bPassword .mensaje-clave {
-        color: red;
+}
+
+@media only screen and (min-width: 600px) {
+    #login .fondo {
+        background-color: rgba(255, 255, 255, 0.32);
+        width: 480px;
         border-radius: 15px;
-        margin: 0 0px 20px 50px;
-        font-size: 20px;
-        font-weight: bold;
+        padding: 30px;
     }
-    
-    .central {
-        text-align: -webkit-center;
+    #login .row button,
+    #login .row a {
+        padding: 0 5% 0 5%;
+        width: 170px;
+        border-radius: 5px;
+        text-align: center;
     }
-    
-    #bPassword .container .row {
-        margin-left: 0px;
-        margin-right: 0px;
+    #login h3 {
+        font-size: 2.92rem;
     }
-    
-    @media only screen and (min-width: 360px) {
-        #message i {
-            font-size: 12px;
-        }
-    }
-    
-    .derecha {
-        text-align: right;
-    }
-    
-    .izquierda {
-        text-align: left;
-    }
-    /*--------- Formulario Registro de Pagos --------- --------------------------------------------------------------- */
-    
-    #bPagos select {
-        height: 400px;
-        overflow: hidden;
-    }
-    
-    #bPagos .row {
-        margin: 0px;
-    }
-    
-    .collapsible div.collapsible-header:hover {
-        background-color: #26a69a;
-        color: #fff;
-    }
-    
-    .collapsible div.collapsible-header:active {
-        background-color: #26a69a;
-        color: #fff;
-    }
-    
-    table.bordered tbody tr:hover {
-        background-color: #e1f5fe;
-        color: black;
-    }
-    
-    .btm-floating:hover {
-        overflow: initial;
-        position: relative;
-    }
-    
-    .btn {
-        text-transform: unset;
-        letter-spacing: 1px;
-        text-align: left;
-    }
-    
-    .active-btn {
-        background-color: #26a72a;
-    }
-    
-    .side-nav li {
-        line-height: 35px;
-    }
-    
-    .datos {
-        height: 100px;
-        padding-top: 10px;
-        background-image: -webkit-linear-gradient(1000deg, #66AAB3 50%, #26a69a 45%);
-        color: #fff;
-        font-weight: 700;
-    }
-    
-    .email {
-        line-height: 25px;
-        margin-left: 30px;
-    }
-    
-    .usuario {
-        margin-left: 30px;
-        font-size: 20px;
-    }
-    
-    .side-nav li>a.btn {
-        margin: 5px 10px;
-    }
-    
-    #bPassword .container {
-        margin: 5px;
+}
+
+#login .container {
+    margin: 50px 0%;
+    width: 100%;
+    max-width: 100%;
+}
+
+@media only screen and (min-width: 1364px) {
+    #login .container {
+        margin: 150px 0%;
         width: 100%;
         max-width: 100%;
     }
-    
-    #bPassword .container .row {
-        margin: 0%;
+    #login h4 {
+        margin-top: 0px;
+        margin-bottom: 50px;
     }
-    
-    #controles {
+}
+
+@media only screen and (min-width: 1200px) {
+    #login .container {
+        margin: 50px 0%;
+    }
+    #login h4 {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    #login .fondo {
+        background-color: rgba(255, 255, 255, 0.32);
+        width: 400px;
+        border-radius: 15px;
+        padding: 30px;
+    }
+    #login .row button,
+    #login .row a {
+        padding: 0 5% 0 5%;
+        width: 140px;
+        border-radius: 5px;
         text-align: center;
     }
-    
-    #controles .btn {
-        width: 90%;
-        margin: 5px;
-        text-align: center;
+}
+
+#mensaje {
+    background-color: red;
+    color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    margin: 5% 25% 0 25%;
+    padding: 10px;
+    font-size: 20px;
+}
+
+#login {
+    margin-top: 35px;
+    color: #fff;
+    font-family: Cambria;
+}
+
+#login {
+    background: url(/static/image/login.jpg)no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: auto;
+    color: #fff;
+    margin: 0%;
+    height: 100%;
+}
+
+#residente {
+    background: url(/static/image/login.jpg)no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: auto;
+    color: #fff;
+}
+
+#login .row {
+    margin: 0px;
+}
+
+#login label,
+#residente label {
+    color: #fff;
+}
+
+.row {
+    margin-top: 20px;
+}
+
+.row button {
+    background-color: #00c853;
+}
+
+.row button,
+.row a {
+    padding: 0 5% 0 5%;
+    width: 150px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.row a {
+    background-color: #40c4ff;
+}
+
+
+/* -------- Estado de Cuenta -------- --------------------------------------------------------------- */
+
+nav .nav-wrapper i {
+    line-height: 50px;
+    height: 50px;
+    margin-left: 15px;
+}
+
+#nav-mobile a {
+    height: 50px;
+}
+
+#tabla-deuda {
+    margin: 50px 0 0 10px;
+    width: 90%;
+    background-color: rgba(0, 228, 152, 0.19);
+    border-radius: 15px;
+}
+
+@media only screen and (min-width: 993px) {
+    .row .col.l9 {
+        width: 80%;
+        padding-right: 0px;
     }
-    
-    input[type=search]:not(.browser-default) {
-        border-bottom: 1px solid #f9dada;
-        width: 250px;
+}
+
+.advertencia {
+    text-align: center;
+    background-color: #cde1f1;
+    color: blue;
+    height: auto;
+    border-radius: 8px;
+    padding: 0 10px 0 10px;
+    margin: 0 25px 0 25px;
+}
+
+.advertencia h6 {
+    padding: 5px 0;
+}
+
+#boton {
+    padding: 15px 100px 15px 15px;
+}
+
+#deuda {
+    background-color: #cde1f1;
+    color: #428bca;
+    width: 90%;
+    height: auto;
+    border-radius: 8px;
+    padding: 0 10px 0 10px;
+    margin: 0 20px 0 0;
+    font-size: 13px;
+}
+
+@media only screen and (min-width: 992px) {
+    #asd {
+        position: fixed;
+        right: 0px;
+        left: 0px;
     }
-    
-    input[type=search]:not(.browser-default):focus:not([readonly]) {
-        border-bottom: 1px solid #fff;
-        -webkit-box-shadow: 0 1px 0 0 #fff;
-        box-shadow: 0 1px 0 0 #fff;
+}
+
+#deuda .uno {
+    margin: 5px;
+}
+
+#deuda .dos {
+    margin: 5px;
+    font-weight: 900;
+    text-align: right;
+}
+
+.sesion {
+    font-size: 18px;
+}
+
+#modal1 {
+    border-radius: 10px;
+}
+
+.modal .modal-footer {
+    height: auto;
+    text-align: center;
+}
+
+.modal .modal-footer input {
+    width: 100px;
+}
+
+.modal .modal-footer .btn {
+    margin: 5px 50px 15px;
+}
+
+.modal .modal-content {
+    padding: 0px 0px 10px;
+}
+
+.modal.modal-fixed-footer {
+    height: 50%;
+}
+
+.h {
+    background-color: var(--verde);
+    color: #fff;
+    padding: 10px;
+}
+
+.h h4 {
+    margin-bottom: 0px;
+    text-transform: uppercase;
+}
+
+.h h6 {
+    margin: 0px;
+}
+
+
+/* -------- Registro Residente - Clave -------- --------------------------------------------------------------- */
+
+#residente input[type=text]:not(.browser-default),
+#residente input[type=password]:not(.browser-default),
+#residente input[type=email]:not(.browser-default) {
+    border-bottom: 1px solid #fff;
+}
+
+#residente {
+    font-family: Cambria;
+}
+
+#residente button,
+#residente a {
+    margin: 10px 20px;
+    width: 250px;
+}
+
+@media only screen and (min-width: 360px) {
+    #residente .fondo {
+        background-color: rgba(255, 255, 255, 0.32);
+        width: 330px;
+        border-radius: 15px;
+        padding: 20px 10px;
     }
-    
-    #search {
-        line-height: 0;
-        margin-right: 10px;
-    }
-    
-    @media screen and (max-width: 768px) {
-        input[type=search]:not(.browser-default) {
-            width: 96%;
-            margin: 0 0 0 5px;
-            padding-top: 30px;
-        }
-    }
-    
-    .nombre {
-        font-size: 16px;
-        font-weight: 500;
-        padding-bottom: 10px;
-        padding-top: 10px;
-        padding-left: 35px;
-        color: #26A69A;
-        vertical-align: auto;
-    }
-    
-    .boton {
-        margin: 0px 20px;
-        padding: 5px 15px;
-        border-radius: 10px;
-        height: 45px;
-        background-color: #3ad6bf;
-    }
-    
-    .padding {
-        padding: 30px 0;
-    }
-    
-    .boton1 {
-        margin: 0 0 0 5px;
-        padding: 5px 15px;
-        border-radius: 10px;
-        height: 45px;
-        background-color: #3ad6bf;
-        width: 96%;
-        text-align: center;
-    }
-    
-    #menu {
-        display: initial;
-        margin-top: 70px;
-        height: 60px;
-        width: 100%;
-    }
-    
-    .asd {
-        border: 0px;
-    }
-    
-    #menu li {
-        padding: 2px 2px;
-        width: auto;
-    }
-    
-    .espacio {
-        padding-bottom: 50px;
-        padding-top: 50px;
-    }
-    
-    #nombre {
-        margin-top: 15px;
-        background-color: #e7f5fd;
-        width: 350px;
-        height: 41px;
-        color: #00afb5;
-        border-radius: 5px 20px 0 0;
-        padding: 0 0 0px 15px;
-        margin-bottom: 0%;
-        padding-bottom: 0%;
-        font-size: 25px;
-    }
-    
-    #bPagos table {
-        background-color: #e7f5fd;
-        border-radius: 0 10px 10px;
-    }
-    
-    .no-datos {
-        text-align: center;
-        color: blue;
+    #residente h3 {
         font-size: 20px;
+        margin: 15px 0;
     }
-    
-    table.striped>tbody>tr:nth-child(odd) {
-        background-color: #fff;
+    #residente .row .col.m2 {
+        width: 50%;
     }
-    
-    #bPagos td,
-    #bPagos tr {
-        padding: 0px 0px;
-        height: 10px;
+}
+
+@media only screen and (min-width: 830px) {
+    #residente .fondo {
+        background-color: rgba(255, 255, 255, 0.32);
+        width: 800px;
+        border-radius: 15px;
+        padding: 0 30px;
     }
-    /* #bPagos .container {
-        margin: 0px 15px;
-    } */
+    #residente button,
+    #residente a {
+        margin: 10px 50px;
+        width: 200px;
+    }
+    #residente .row .col.m2 {
+        width: 16.6666666667%;
+    }
+}
+
+@media only screen and (min-width: 1364px) {
+    #residente .fondo {
+        background-color: rgba(255, 255, 255, 0.32);
+        width: 800px;
+        border-radius: 15px;
+        padding: 0 30px;
+    }
+    #residente h3 {
+        font-size: 2.92rem;
+    }
+    #residente .row .col.m2 {
+        width: 16.6666666667%;
+    }
+}
+
+#message {
+    /* color: #000;
+padding: 20px; */
+    position: relative;
+    margin-top: 10px;
+}
+
+#message i {
+    font-size: 15px;
+}
+
+h3 {
+    text-align: center;
+}
+
+
+/* Add a green text color and a checkmark when the requirements are right */
+
+.valid {
+    color: green;
+}
+
+.valid:before {
+    position: relative;
+    left: -5px;
+    content: "✓";
+}
+
+
+/* Add a red text color and an Xmark when the requirements are wrong */
+
+.invalid {
+    color: red;
+}
+
+.invalid:after {
+    position: relative;
+    left: 5px;
+    content: "✗";
+}
+
+
+/* -------- Estado de Cuenta --------  --------------------------------------------------------------- */
+
+#btnMenu {
+    cursor: pointer;
+}
+
+#bPassword .row button {
+    width: 200px;
+    border-radius: 5px;
+}
+
+#bPassword .mensaje-clave {
+    color: red;
+    border-radius: 15px;
+    margin: 0 0px 20px 50px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.central {
+    text-align: -webkit-center;
+}
+
+#bPassword .container .row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+@media only screen and (min-width: 360px) {
+    #message i {
+        font-size: 12px;
+    }
+}
+
+.derecha {
+    text-align: right;
+}
+
+.izquierda {
+    text-align: left;
+}
+
+
+/*--------- Formulario Registro de Pagos --------- --------------------------------------------------------------- */
+
+#bPagos select {
+    height: 400px;
+    overflow: hidden;
+}
+
+#bPagos .row {
+    margin: 0px;
+}
+
+.collapsible div.collapsible-header:hover {
+    background-color: #26a69a;
+    color: #fff;
+}
+
+.collapsible div.collapsible-header:active {
+    background-color: #26a69a;
+    color: #fff;
+}
+
+table.bordered tbody tr:hover {
+    background-color: #e1f5fe;
+    color: black;
+}
+
+.btm-floating:hover {
+    overflow: initial;
+    position: relative;
+}
+
+.btn {
+    text-transform: unset;
+    letter-spacing: 1px;
+    text-align: left;
+}
+
+.active-btn {
+    background-color: #26a72a;
+}
+
+.side-nav li {
+    line-height: 35px;
+}
+
+.datos {
+    height: 100px;
+    padding-top: 10px;
+    background-image: -webkit-linear-gradient(1000deg, #66AAB3 50%, #26a69a 45%);
+    color: #fff;
+    font-weight: 700;
+}
+
+.email {
+    line-height: 25px;
+    margin-left: 30px;
+}
+
+.usuario {
+    margin-left: 30px;
+    font-size: 20px;
+}
+
+.side-nav li>a.btn {
+    margin: 5px 10px;
+}
+
+#bPassword .container {
+    margin: 5px;
+    width: 100%;
+    max-width: 100%;
+}
+
+#bPassword .container .row {
+    margin: 0%;
+}
+
+#controles {
+    text-align: center;
+}
+
+#controles .btn {
+    width: 90%;
+    margin: 5px;
+    text-align: center;
+}
+
+input[type=search]:not(.browser-default) {
+    border-bottom: 1px solid #f9dada;
+    width: 250px;
+}
+
+input[type=search]:not(.browser-default):focus:not([readonly]) {
+    border-bottom: 1px solid #fff;
+    -webkit-box-shadow: 0 1px 0 0 #fff;
+    box-shadow: 0 1px 0 0 #fff;
+}
+
+#search {
+    line-height: 0;
+    margin-right: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    input[type=search]:not(.browser-default) {
+        width: 96%;
+        margin: 0 0 0 5px;
+        padding-top: 30px;
+    }
+}
+
+.nombre {
+    font-size: 16px;
+    font-weight: 500;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 35px;
+    color: #26A69A;
+    vertical-align: auto;
+}
+
+.boton {
+    margin: 0px 20px;
+    padding: 5px 15px;
+    border-radius: 10px;
+    height: 45px;
+    background-color: #3ad6bf;
+}
+
+.padding {
+    padding: 30px 0;
+}
+
+.boton1 {
+    margin: 0 0 0 5px;
+    padding: 5px 15px;
+    border-radius: 10px;
+    height: 45px;
+    background-color: #3ad6bf;
+    width: 96%;
+    text-align: center;
+}
+
+#menu {
+    display: initial;
+    margin-top: 70px;
+    height: 60px;
+    width: 100%;
+}
+
+.asd {
+    border: 0px;
+}
+
+#menu li {
+    padding: 2px 2px;
+    width: auto;
+}
+
+.espacio {
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+
+#nombre {
+    margin-top: 15px;
+    background-color: #e7f5fd;
+    width: 350px;
+    height: 41px;
+    color: var(--verde);
+    border-radius: 5px 20px 0 0;
+    padding: 0 0 0px 15px;
+    margin-bottom: 0%;
+    padding-bottom: 0%;
+    font-size: 25px;
+}
+
+#bPagos table {
+    background-color: #e7f5fd;
+    border-radius: 0 10px 10px;
+}
+
+.no-datos {
+    text-align: center;
+    color: blue;
+    font-size: 20px;
+}
+
+table.striped>tbody>tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+#bPagos td,
+#bPagos tr {
+    padding: 0px 0px;
+    height: 10px;
+}
+
+
+/* #bPagos .container {
+margin: 0px 15px;
+} */

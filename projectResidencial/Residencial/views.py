@@ -517,6 +517,23 @@ class ReportePersonasPDF(View):
 		return response
 
 
+
+
+
+
+def Sugerencias(request):
+	print('\n\n-----------------------------------------------')
+	print('Titulo		------->	', request.POST.get('titulo'))
+	print('Sugerencia	------->	', request.POST.get('sugerencia'))
+	print('Correo		------->	', request.POST.get('correo'))
+	print('-----------------------------------------------\n\n')
+	return render(request, 'sugerencias.html')
+
+
+
+
+
+
 # Libreria para PDF -- wkxhtm2pdf
 """
 # 'propietario': str(deuda.propietario),

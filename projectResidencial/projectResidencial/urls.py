@@ -29,6 +29,9 @@ urlpatterns = [
     path('', views.EstadosCuenta, name='estado'),
     path('estado-de-cuenta/', views.EstadosCuenta, name='estado'),
     path('registrar-pagos/', views.RegistrarPagos, name='pagos'),
+    path('sugerencias/', views.Sugerencias, name='sugerencias'),
+
+
     path('reporte/estadoDeCuenta/pdf/', views.ReportePersonasPDF.as_view(), name='reporte'),
     path('correo/', views.EnviarCorreo, name='correo'),
     path('ajax/', views.Ajax, name='ajax'),

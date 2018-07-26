@@ -62,6 +62,10 @@
         <li class=" ">
             <a href="" class="disabled btn"> <i class=" fa fa-cog fa-1x"></i> Opciones</a>
         </li>
+        <li class=" ">
+            <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Sugerencias</a>
+            <!-- <a href="" class="disabled btn"> <i class=" fa fa-cog fa-1x"></i> Opciones</a> -->
+        </li>
     </ul>
 
     <div class="advertencia">
@@ -139,6 +143,40 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal Structure -->
+    <form action="sugerencias/" method="post">{% csrf_token %}
+        <div id="modal1" class="modal  row">
+            <div class="modal-content">
+                <div class="h">
+                    <h4 class="center">Sugerencias</h4>
+                    <div class="">
+                        <h6>
+                            <i class=" prefix fa fa-user-circle-o fa-2x"></i> {{ usuariofull }}
+                        </h6>
+                    </div>
+                </div>
+                <input type="hidden" name="correo" value="{{ email }}">
+
+                <div class="input-field col s12">
+                    <input type="text" name="titulo" id="titulo">
+                    <label for="titulo">Titulo de la Sugerencia</label>
+                </div>
+
+                <div class="input-field col s12">
+                    <textarea id="textarea1" class="materialize-textarea" name="sugerencia"></textarea>
+                    <label for="textarea1">Sugerencia</label>
+                </div>
+            </div>
+            <div class="modal-footer center">
+                <input type="button" class="modal-close waves-effect waves-green btn red" value="Cancelar">
+                <input type="submit" class="modal-close waves-effect waves-green btn" value="Enviar">
+            </div>
+        </div>
+    </form>
+
+
+
 
     <script src="{% static '/jquery/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static '/materialize/js/materialize.min.js' %}"></script>
