@@ -4,7 +4,7 @@ from .models import Residente, Apartamento, Pago, Ajuste
 
 from django.contrib import auth
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
@@ -19,6 +19,7 @@ from django.views.generic import View
 
 # import datetime
 import time
+import datetime
 from dateutil.relativedelta import *
 
 from django.core.mail import send_mail, BadHeaderError, EmailMultiAlternatives
@@ -28,6 +29,8 @@ import json
 
 def Login(request):
 	mensaje = ''
+	print("\n\n-------------------------------------------------\n" ,
+	request.path,"\n-------------------------------------------------\n\n")
 	if request.method == 'POST':
 		v_usuario = request.POST.get('username')
 		v_clave = request.POST.get('password')
@@ -101,7 +104,7 @@ def EnviarCorreo(request):
 	#     return HttpResponse('Asegúrese de que todos los campos estén ingresados ​​y sean válidos.')
 
 
-@login_required(login_url='/login/')
+@login_required()
 def Logout(request):
 	auth.logout(request)
 	return HttpResponseRedirect("/login")
@@ -198,7 +201,8 @@ def RegistrarUsuario(request):
 
 
 # ------------ Pendiente por terminar ------------
-@login_required(login_url='/login/')
+@login_required()
+@permission_required('Residencial.RegistrarPagos', raise_exception=True)
 def CambiarClave(request):
 	mensaje = ''
 
@@ -226,10 +230,11 @@ def CambiarClave(request):
 	return render(request, "password.html",cont)
 
 
-@login_required(login_url='/login/')
+@login_required()
 def RegistrarPagos(request):
+	print('GET --------------- ', request.GET)
 	lista_personas = []
-	print(request.POST)
+	print('POST -------------- ', request.POST)
 
 
 	v_nombre = request.POST.get('persona', '')
@@ -284,6 +289,12 @@ def RegistrarPagos(request):
 		recargo
 		concepto_deuda
 """
+
+
+def AjaxGuardar(request):
+	print('-----------',request.GET)
+	return None
+
 
 def Ajax(request):
 	bloq = request.GET.get('bloq')
@@ -343,7 +354,7 @@ def ajuste_serializer(ajuste):
 		}
 
 
-@login_required(login_url='/login/')
+@login_required()
 def EstadosCuenta(request):
 	usuario= request.user.get_full_name()
 	ajuste = Ajuste.objects.all()
@@ -368,7 +379,7 @@ def EstadosCuenta(request):
 			})
 
 # ------------ Pendiente por terminar ------------
-@login_required(login_url='/login/')
+@login_required()
 def GenerarFactura(request):
 	deuda=0
 	total_A_pagar=0
@@ -385,8 +396,9 @@ def GenerarFactura(request):
 
 
 class ReportePersonasPDF(View):
-
+	
 	def cabecera(self,request,pdf):
+		x = datetime.datetime.now()
 		usuario = request.user.get_full_name()
 
 		#Utilizamos el archivo logo_django.png que está guardado en la carpeta media/imagenes
@@ -395,7 +407,9 @@ class ReportePersonasPDF(View):
 		#Definimos el tamaño de la imagen a cargar y las coordenadas correspondientes
 		pdf.drawImage(archivo_imagen, 30, 700, 120, 90, preserveAspectRatio=True)
 		pdf.setFont("Helvetica", 9)
-		pdf.drawString(550, 770, u"%s" %time.strftime("%x"))
+		# pdf.drawString(550, 770, u"%s" %time.strftime("%x"))
+		pdf.drawString(500, 760, u"Fecha:  %s/%s/%s" % (x.day, x.month, x.year))
+		pdf.drawString(500, 750, u"Hora:           %s:%s" % (x.hour, x.minute))
 
 		#Creamos una tupla de encabezados para neustra tabla
 		encabezados = ['Estado de Cuenta'.upper()]
@@ -527,7 +541,14 @@ def Sugerencias(request):
 	print('Sugerencia	------->	', request.POST.get('sugerencia'))
 	print('Correo		------->	', request.POST.get('correo'))
 	print('-----------------------------------------------\n\n')
-	return render(request, 'sugerencias.html')
+
+	ajuste = Ajuste.objects.all()
+
+	return render(request, 'prueba.html', {
+		'usuariofull': request.user.get_full_name,
+		'email': request.user.email,
+		'ajuste': ajuste,
+	})
 
 
 

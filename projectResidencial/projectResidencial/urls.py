@@ -27,14 +27,14 @@ urlpatterns = [
     path('login/', views.Login, name='login'),
     path('logout/', views.Logout, name='logout'),
     path('', views.EstadosCuenta, name='estado'),
-    path('estado-de-cuenta/', views.EstadosCuenta, name='estado'),
+    # path('estado-de-cuenta/', views.EstadosCuenta, name='estado'),
     path('registrar-pagos/', views.RegistrarPagos, name='pagos'),
     path('sugerencias/', views.Sugerencias, name='sugerencias'),
-
 
     path('reporte/estadoDeCuenta/pdf/', views.ReportePersonasPDF.as_view(), name='reporte'),
     path('correo/', views.EnviarCorreo, name='correo'),
     path('ajax/', views.Ajax, name='ajax'),
-
-
+    path('ajaxguardar/', views.AjaxGuardar, name='ajaxguardar'),
 ]
+# handler404 = 'Residencial.views.Login'
+# handler500 = 'Residencial.views.Sugerencias'

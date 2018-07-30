@@ -1,10 +1,21 @@
 $('#username').focus();
 
-$('select').material_select();
+
+$(document).ready(function() {
+    $('.tooltipped').tooltip({ delay: 50 });
+    $('select').formSelect();
+});
 
 /*  ------------------------------------------ Menu SideNav ------------------------------------------*/
+
+// $(document).ready(function() {
+//     $('.sidenav').sidenav();
+// });
+
+
 $(document).ready(function() {
-    $('.deslizar').sideNav({
+
+    $('.sidenav').sidenav({
         menuWidth: 300,
         closeOnClick: true,
         draggable: true,

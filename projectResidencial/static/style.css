@@ -16,20 +16,40 @@
 
 body {
     background-color: white;
+    font-family: poppins, sans-serif;
 }
 
+@media only screen and (max-width: 1364px) {
+    .sidenav li>a.btn {
+        font-size: 13px;
+    }
+}
 
-/* .container {
-width: 100%;
-} */
+b,
+strong {
+    font-weight: 600;
+}
 
-.side-nav li>a>i {
+th {
+    font-weight: 600
+}
+
+.sidenav li>a>i {
     color: #fff;
     font-size: 1.8em;
+    margin-right: 20px;
+}
+
+.sidenav .divider {
+    margin: 10px;
 }
 
 
 /*---------- Barra de Navegacion ---------- --------------------------------------------------------------- */
+
+nav a.sidenav-trigger {
+    display: inline;
+}
 
 nav {
     background-color: var(--verde);
@@ -145,7 +165,7 @@ li {
 #login {
     margin-top: 35px;
     color: #fff;
-    font-family: Cambria;
+    // font-family: Cambria;
 }
 
 #login {
@@ -265,7 +285,7 @@ nav .nav-wrapper i {
 
 #deuda .dos {
     margin: 5px;
-    font-weight: 900;
+    font-weight: 600;
     text-align: right;
 }
 
@@ -506,7 +526,7 @@ table.bordered tbody tr:hover {
     background-color: #26a72a;
 }
 
-.side-nav li {
+.sidenav li {
     line-height: 35px;
 }
 
@@ -528,8 +548,9 @@ table.bordered tbody tr:hover {
     font-size: 20px;
 }
 
-.side-nav li>a.btn {
-    margin: 5px 10px;
+.sidenav li>a.btn {
+    margin: 5px;
+    padding: 0 20px
 }
 
 #bPassword .container {
@@ -576,7 +597,7 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
     }
 }
 
-.nombre {
+#tabla.nombre {
     font-size: 16px;
     font-weight: 500;
     padding-bottom: 10px;
@@ -629,7 +650,7 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
     padding-top: 50px;
 }
 
-#nombre {
+#tabla #nombre {
     margin-top: 15px;
     background-color: #e7f5fd;
     width: 350px;
@@ -642,7 +663,7 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
     font-size: 25px;
 }
 
-#bPagos table {
+#tabla table {
     background-color: #e7f5fd;
     border-radius: 0 10px 10px;
 }
@@ -657,8 +678,8 @@ table.striped>tbody>tr:nth-child(odd) {
     background-color: #fff;
 }
 
-#bPagos td,
-#bPagos tr {
+#tabla td,
+#tabla tr {
     padding: 0px 0px;
     height: 10px;
 }
@@ -667,3 +688,6 @@ table.striped>tbody>tr:nth-child(odd) {
 /* #bPagos .container {
 margin: 0px 15px;
 } */
+
+
+/* tipo de fuente: poppins,sans-serif */

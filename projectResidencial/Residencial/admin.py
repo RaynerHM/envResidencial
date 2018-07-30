@@ -9,6 +9,9 @@ class AdminResidentes(admin.ModelAdmin):
 					 'correo', 'telefono', 'cedula', 'clave']
 	ordering = ['nombre','no_apartamento','edificio']
 
+	list_filter = ('no_apartamento', 'edificio')
+	search_fields = ('nombre',)
+
 	class Meta:
 		model = Residente
 
