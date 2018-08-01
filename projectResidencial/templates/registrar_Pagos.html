@@ -1,42 +1,28 @@
-{% extends "prueba.html" %} {% block titulo %} Registrar Pagos {% endblock titulo %} {% block header %}
+{% extends "plantilla.html" %} {% load static %}
 
-<a href="/" class="brand-logo center">
-    <span class="hide-on-small-only"> Registrar </span>Pagos</a> {% endblock header %} {% comment %}
+<!-- Block para cargar los static CSS -->
+{% block staticCSS %}
+<link rel="stylesheet" href="{% static '/materialize-v1.0.0-rc.2/css/materialize.min.css' %}" media="screen,projection">
+<link rel="stylesheet" href="{% static '/font-awesome-5.2.0/css/all.min.css' %}">
+<link rel="stylesheet" href="{% static '/style.css' %}"> {% endblock staticCSS %}
+<!-- Fin Block para cargar los static CSS -->
 
+<!-- Block para el titulo -->
+{% block titulo %} Registrar Pagos {% endblock titulo %}
+<!-- Fin Block para el titulo -->
 
-<div class=" navbar-fixed">
-    <nav class="">
-        <div class="nav-wrapper ">
-            <a href="/" class="brand-logo center"><span class="hide-on-small-only"> Registrar </span>Pagos</a>
+<!-- Block para marcar boton como activo-->
+{% block activarPag %} active-btn {% endblock activarPag %}
+<!-- Fin Block para marcar boton como activo-->
 
+<!-- Block para mostrar el titulo en el Navar -->
+{% block header %}
+<a href="/" class="brand-logo center"><span class="hide-on-small-only"> Registrar </span>Pagos</a> {% endblock header %}
+<!-- Fin Block para mostrar el titulo en el Navar -->
 
-            <!-- --- --- Boton Menu Lado Izquierdo --- --- -->
-            <span class="left brand-logo text-darken-2">
-					<i onclick="Materialize.showStaggeredList('#slide-out')" id="btnMenu" data-activates="slide-out" class="deslizar icono-menu fa fa-bars fa-1x "></i>
-					</i>
-				</span>
-            <!-- --- --- Fin Boton Menu Lado Izquierdo --- --- -->
-
-            <!-- --- --- Todo los que se muestra en el Menu del lado Derecho --- --- -->
-
-            <ul class="right hide-on-med-and-down">
-                <li>
-                    <form action="" method="POST"> {% csrf_token %}
-                        <input class="search1" type="search" name="persona" value="" placeholder="Buscar persona">
-                        <button class="boton btn" type="submit">
-								<i id="search" class="fa fa-search"></i>Buscar</button>
-                    </form>
-                </li>
-            </ul>
-
-            <!-- --- --- Fin todo los que se muestra en el Menu del lado Derecho --- --- -->
-        </div>
-    </nav>
-</div>
-{% endcomment %} {% block contenido %}
-
+<!-- Block para mostrar el contenido de la pagina -->
+{% block contenido %}
 <div class=" center">
-    <!-- <form method="GET" action="{% url 'ajax' %}"> -->
     <div class="container center">
         <div class="row espacio">
             <!--   Nombre Propietario o Inquilino   -->
@@ -65,25 +51,23 @@
             </div>
         </div>
 
-
         <div class="row center">
             <div class="input-field col m4 s12 offset-m1">
                 {% comment %} <label>Nombre Personas</label> {% endcomment %}
                 <select class=" " id="nombrePersona" name="nombrePersona">
-                                <option value="" disabled selected>Nombre Personas</option>
-                                {% for r in res %}
-                                <option value="{{ r }}">{{ r.nombre }}</option>
-                                {% endfor%}
-                            </select>
+                    <option value="" disabled selected>Nombre Personas</option>
+                    {% for r in res %}
+                    <option value="{{ r }}">{{ r.nombre }}</option>
+                    {% endfor%}
+                </select>
             </div>
             <div class="input-field col m4 s12 offset-m2">
-                {% comment %} <label>Numero Apartamentos</label> {% endcomment %}
                 <select class=" " id="no_apartamento" name="no_apartamento">
-                                <option value="" disabled selected>Apartamento</option>
-                                {% for r in res %}
-                                <option value="{{ r.edificio }}-{{r.no_apartamento}}">{{ r.edificio }}-{{r.no_apartamento}}</option>
-                                {% endfor%}
-                            </select>
+                    <option value="" disabled selected>Apartamento</option>
+                    {% for r in res %}
+                    <option value="{{ r.edificio }}-{{r.no_apartamento}}">{{ r.edificio }}-{{r.no_apartamento}}</option>
+                    {% endfor%}
+                </select>
             </div>
         </div>
 
@@ -91,13 +75,19 @@
             <input class="btn" value="Guardar" type="submit" required>
         </div>
     </div>
-
 </div>
-<!-- </form> -->
-
-
 <p class="no-datos hide">No se pueden obtener los datos solicitados.</p>
 <div id="tabla" class="container">
 </div>
-
 {% endblock contenido %}
+<!-- Fin Block para mostrar el contenido de la pagina -->
+
+
+<!-- Block para cargar los static JS -->
+{% block staticJS %}
+<script src="{% static '/jquery/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static '/materialize/js/materialize.min.js' %}"></script>
+<script src="{% static '/style.js' %}"></script>
+<script src="{% static '/cargarDeudas.js' %}"></script>
+{% endblock staticJS %}
+<!-- Fin Block para cargar los static JS -->

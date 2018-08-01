@@ -165,7 +165,6 @@ li {
 #login {
     margin-top: 35px;
     color: #fff;
-    // font-family: Cambria;
 }
 
 #login {
@@ -232,7 +231,7 @@ nav .nav-wrapper i {
     margin: 50px 0 0 10px;
     width: 90%;
     background-color: rgba(0, 228, 152, 0.19);
-    border-radius: 15px;
+    border-radius: 10px;
 }
 
 @media only screen and (min-width: 993px) {
@@ -247,7 +246,7 @@ nav .nav-wrapper i {
     background-color: #cde1f1;
     color: blue;
     height: auto;
-    border-radius: 8px;
+    border-radius: 10px;
     padding: 0 10px 0 10px;
     margin: 0 25px 0 25px;
 }
@@ -265,7 +264,7 @@ nav .nav-wrapper i {
     color: #428bca;
     width: 90%;
     height: auto;
-    border-radius: 8px;
+    border-radius: 10px;
     padding: 0 10px 0 10px;
     margin: 0 20px 0 0;
     font-size: 13px;
@@ -294,6 +293,7 @@ nav .nav-wrapper i {
 }
 
 #modal1 {
+    background-image: url(/static/media/image/modal.jpg);
     border-radius: 10px;
 }
 
@@ -303,11 +303,18 @@ nav .nav-wrapper i {
 }
 
 .modal .modal-footer input {
-    width: 100px;
+    width: 150px;
+    color: #fff;
+    font-size: large;
 }
 
 .modal .modal-footer .btn {
-    margin: 5px 50px 15px;
+    text-align: center;
+    /* margin: 5px 50px 15px; */
+}
+
+.asdf {
+    text-align: center;
 }
 
 .modal .modal-content {
@@ -356,7 +363,7 @@ nav .nav-wrapper i {
     #residente .fondo {
         background-color: rgba(255, 255, 255, 0.32);
         width: 330px;
-        border-radius: 15px;
+        border-radius: 0px;
         padding: 20px 10px;
     }
     #residente h3 {
@@ -372,7 +379,7 @@ nav .nav-wrapper i {
     #residente .fondo {
         background-color: rgba(255, 255, 255, 0.32);
         width: 800px;
-        border-radius: 15px;
+        border-radius: 10px;
         padding: 0 30px;
     }
     #residente button,
@@ -389,7 +396,7 @@ nav .nav-wrapper i {
     #residente .fondo {
         background-color: rgba(255, 255, 255, 0.32);
         width: 800px;
-        border-radius: 15px;
+        border-radius: 10px;
         padding: 0 30px;
     }
     #residente h3 {
@@ -450,12 +457,12 @@ h3 {
 
 #bPassword .row button {
     width: 200px;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 #bPassword .mensaje-clave {
     color: red;
-    border-radius: 15px;
+    border-radius: 10px;
     margin: 0 0px 20px 50px;
     font-size: 20px;
     font-weight: bold;
@@ -656,7 +663,7 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
     width: 350px;
     height: 41px;
     color: var(--verde);
-    border-radius: 5px 20px 0 0;
+    border-radius: 5px 10px 0 0;
     padding: 0 0 0px 15px;
     margin-bottom: 0%;
     padding-bottom: 0%;

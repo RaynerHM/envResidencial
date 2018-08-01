@@ -1,8 +1,27 @@
-{% extends "prueba.html" %} {% load static %}
+{% extends "plantilla.html" %} {% load static %}
 
-<!-- <title>Estado de Cuenta</title> -->
-{% block titulo %} Estado de Cuenta {% endblock titulo %} {% block header %}
-<a href="/" class="brand-logo center"><span class="hide-on-small-only"> Estado de </span>Cuenta</a> {% endblock header %} {% block contenido %}
+<!-- Block para cargar los static CSS -->
+{% block staticCSS %}
+<link rel="stylesheet" href="{% static '/materialize-v1.0.0-rc.2/css/materialize.min.css' %}" media="screen,projection">
+<link rel="stylesheet" href="{% static '/font-awesome-5.2.0/css/all.min.css' %}">
+<link rel="stylesheet" href="{% static '/style.css' %}"> {% endblock staticCSS %}
+<!-- Fin Block para cargar los static CSS -->
+
+<!-- Block para el titulo -->
+{% block titulo %} Estado de Cuenta {% endblock titulo %}
+<!-- Fin Block para el titulo -->
+
+<!-- Block para marcar boton como activo-->
+{% block activarEst %} active-btn {% endblock activarEst %}
+<!-- Fin Block para marcar boton como activo-->
+
+<!-- Block para mostrar el titulo en el Navar -->
+{% block header %}
+<a href="/" class="brand-logo center"><span class="hide-on-small-only"> Estado de </span>Cuenta</a> {% endblock header %}
+<!-- Fin Block para mostrar el titulo en el Navar -->
+
+<!-- Block para mostrar el contenido de la pagina -->
+{% block contenido %}
 <div class="row">
     <div class="col l9 m12 s12 center-align">
         <table id="tabla-deuda" class="centered highlight z-depth-3">
@@ -30,7 +49,6 @@
             </tbody>
         </table>
     </div>
-
 
     <div id="asd" class="col l3 m12 s12 center-align ">
         <div class="row">
@@ -74,3 +92,12 @@
 </div>
 
 {% endblock contenido %}
+<!-- Fin Block para mostrar el contenido de la pagina -->
+
+<!-- Block para cargar los static JS -->
+{% block staticJS %}
+<script src="{% static '/jquery/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static '/materialize/js/materialize.min.js' %}"></script>
+<script src="{% static '/style.js' %}"></script>
+{% endblock staticJS %}
+<!-- Fin Block para cargar los static JS -->

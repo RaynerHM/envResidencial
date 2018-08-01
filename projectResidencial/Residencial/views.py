@@ -544,7 +544,7 @@ def Sugerencias(request):
 
 	ajuste = Ajuste.objects.all()
 
-	return render(request, 'prueba.html', {
+	return render(request, 'plantilla.html', {
 		'usuariofull': request.user.get_full_name,
 		'email': request.user.email,
 		'ajuste': ajuste,

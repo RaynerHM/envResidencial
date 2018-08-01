@@ -6,11 +6,7 @@
     <title>{% block titulo %} {% endblock titulo %}</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-
-    <link rel="stylesheet" href="{% static '/materialize-v1.0.0-rc.2/css/materialize.min.css' %}" media="screen,projection">
-    <link rel="stylesheet" href="{% static '/font-awesome-5.2.0/css/all.min.css' %}">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link rel="stylesheet" href="{% static '/style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"> {% block staticCSS %} {% endblock staticCSS %}
 </head>
 
 <body class="">
@@ -40,11 +36,11 @@
             <div class="divider"></div>
         </li>
         <li class=" ">
-            <a href="/" class="active-btn btn">
+            <a href="/" class="{% block activarEst %}{% endblock activarEst %} btn">
                 <i class=" fa fa-clipboard-list fa-2x"></i>Estado de Cuenta</a>
         </li>
         <li>
-            <a href="{% url 'pagos' %}" class="btn">
+            <a href="{% url 'pagos' %}" class="btn{% block activarPag %}{% endblock activarPag %}">
                 <i class=" fas fa-dollar-sign fa-1x"></i>Registrar Pagos </a>
         </li>
         <li>
@@ -73,7 +69,7 @@
             <div class="divider"></div>
         </li>
         <li class=" ">
-            <a href="{% url 'clave' %}" class="btn">
+            <a href="{% url 'clave' %}" class="btn {% block activarPass %}{% endblock activarPass %}">
                 <i class=" fa fa-key fa-1x"></i>Cambiar Contraseña</a>
         </li>
         <li class=" ">
@@ -95,8 +91,8 @@
 
 
     <!-- Modal Structure -->
-    <form action="sugerencias/" method="post">{% csrf_token %}
-        <div id="modal1" class="modal  row">
+    <div id="modal1" class="modal  row">
+        <form action="sugerencias/" method="post">{% csrf_token %}
             <div class="modal-content">
                 <div class="h">
                     <h4 class="center">Sugerencias</h4>
@@ -118,12 +114,16 @@
                     <label for="textarea1">Sugerencia</label>
                 </div>
             </div>
-            <div class="modal-footer center">
-                <input type="button" class="modal-close waves-effect waves-green btn red" value="Cancelar">
-                <input type="submit" class="waves-effect waves-green btn" value="Enviar">
+            <div class="modal-footer center row">
+                <div class=" asdf center col m6 s12">
+                    <input type="button" class="modal-close waves-effect waves-green btn red" value="Cancelar">
+                </div>
+                <div class="asdf center col m6 s12">
+                    <input type="submit" class="waves-effect waves-green btn" value="Enviar">
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 
     {% block contenido %} {% endblock contenido %}
 
