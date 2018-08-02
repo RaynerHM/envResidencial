@@ -103,23 +103,31 @@
                     </div>
                 </div>
                 <input type="hidden" name="correo" value="{{ email }}">
+                <div class="row">
+                    <div class="col m6">
+                        <div class="input-field col s12">
+                            <input type="text" name="titulo" id="titulo" required>
+                            <label for="titulo">Titulo de la Sugerencia</label>
+                        </div>
 
-                <div class="input-field col s12">
-                    <input type="text" name="titulo" id="titulo" required>
-                    <label for="titulo">Titulo de la Sugerencia</label>
-                </div>
-
-                <div class="input-field col s12">
-                    <textarea id="textarea1" class="materialize-textarea" name="sugerencia" required></textarea>
-                    <label for="textarea1">Sugerencia</label>
-                </div>
-            </div>
-            <div class="modal-footer center row">
-                <div class=" asdf center col m6 s12">
-                    <input type="button" class="modal-close waves-effect waves-green btn red" value="Cancelar">
-                </div>
-                <div class="asdf center col m6 s12">
-                    <input type="submit" class="waves-effect waves-green btn" value="Enviar">
+                        <div class="input-field col s12">
+                            <textarea id="textarea1" class="materialize-textarea" name="sugerencia" required></textarea>
+                            <label for="textarea1">Sugerencia</label>
+                        </div>
+                        <div class="modal-footer center row">
+                            <div class=" asdf center col m6 s12">
+                                <input type="button" class="modal-close waves-effect waves-green btn red" value="Cancelar">
+                            </div>
+                            <div class="asdf center col m6 s12">
+                                <input type="submit" class="waves-effect waves-green btn" value="Enviar">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col m5 white-text">
+                        <p>
+                            <h2>Tomate una tasa de cafe, Relajate y Envianos tus Sugerencias </h2>
+                        </p>
+                    </div>
                 </div>
             </div>
         </form>

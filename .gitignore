@@ -1,4 +1,3 @@
-__pycache__
 *.pyc
 myvenv
 .DS_Store
@@ -13,3 +12,4 @@ lib64
 share
 pyvenv.cfg
 pip-selfcheck.json
+__pycache__

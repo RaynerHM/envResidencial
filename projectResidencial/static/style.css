@@ -20,8 +20,18 @@ body {
 }
 
 @media only screen and (max-width: 1364px) {
+    .sidenav {
+        position: fixed;
+        width: 300px;
+    }
     .sidenav li>a.btn {
         font-size: 13px;
+    }
+}
+
+@media only screen and (min-width: 1370px) {
+    .sidenav {
+        width: 330px;
     }
 }
 
@@ -293,19 +303,26 @@ nav .nav-wrapper i {
 }
 
 #modal1 {
-    background-image: url(/static/media/image/modal.jpg);
+    background: url(/static/media/image/modal.jpg)no-repeat;
+    background-size: cover;
     border-radius: 10px;
 }
 
+.modal {
+    max-height: 100%;
+}
+
 .modal .modal-footer {
-    height: auto;
+    height: 450px;
     text-align: center;
+    background-color: transparent;
 }
 
 .modal .modal-footer input {
     width: 150px;
     color: #fff;
     font-size: large;
+    background-color: transparent;
 }
 
 .modal .modal-footer .btn {
@@ -542,12 +559,13 @@ table.bordered tbody tr:hover {
     padding-top: 10px;
     background-image: -webkit-linear-gradient(1000deg, #66AAB3 50%, #26a69a 45%);
     color: #fff;
-    font-weight: 700;
+    font-weight: 800;
 }
 
 .email {
     line-height: 25px;
     margin-left: 30px;
+    font-weight: 600;
 }
 
 .usuario {

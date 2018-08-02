@@ -16,7 +16,7 @@ $(document).ready(function() {
 $(document).ready(function() {
 
     $('.sidenav').sidenav({
-        menuWidth: 300,
+        menuWidth: 330,
         closeOnClick: true,
         draggable: true,
         onOpen: function(el) { /* Do Stuff */ }, // A function to be called when sideNav is opened
