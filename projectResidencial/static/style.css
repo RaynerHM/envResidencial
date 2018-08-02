@@ -149,14 +149,14 @@ li {
     }
     #login .fondo {
         background-color: rgba(255, 255, 255, 0.32);
-        width: 400px;
+        width: 550px;
         border-radius: 15px;
         padding: 30px;
     }
     #login .row button,
     #login .row a {
         padding: 0 5% 0 5%;
-        width: 140px;
+        width: 170px;
         border-radius: 5px;
         text-align: center;
     }
@@ -313,7 +313,6 @@ nav .nav-wrapper i {
 }
 
 .modal .modal-footer {
-    height: 450px;
     text-align: center;
     background-color: transparent;
 }
@@ -330,26 +329,91 @@ nav .nav-wrapper i {
     /* margin: 5px 50px 15px; */
 }
 
-.asdf {
+.h .fa-2x {
+    font-size: 1.5em;
+}
+
+#modal1 {
+    color: #fff;
+}
+
+#modal1 h5 {
+    margin: 0px;
+    line-height: 0%;
+}
+
+#modal1 .tema {
+    font-size: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modal1 .input-field {
+    margin-bottom: 0px;
+}
+
+#modal1 input[type="text"] {
+    color: #fff;
+    max-height: 45px;
+    min-height: 45px;
+    height: 45px;
+    width: 95%;
+    border: gray 1px solid !important;
+    background-color: #ffffff17;
+    border-radius: 10px;
+    padding: 0 10px;
+}
+
+#modal1 textarea {
+    color: #fff;
+    max-height: 160px;
+    min-height: 160px;
+    height: 160px;
+    border: gray 1px solid !important;
+    background-color: #ffffff17;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#modal1 .tema {
     text-align: center;
+    max-height: 240px;
+    min-height: 240px;
+    height: 240px;
 }
 
 .modal .modal-content {
     padding: 0px 0px 10px;
+    height: 450px;
+}
+
+#modal1 .modal-content.row {
+    margin-top: 0px;
+}
+
+.modal .modal-footer.row {
+    margin-bottom: 0px;
+}
+
+.asdf {
+    text-align: center;
 }
 
 .modal.modal-fixed-footer {
-    height: 50%;
+    height: 450px;
 }
 
 .h {
-    background-color: var(--verde);
+    /* background-color: var(--verde); */
+    text-align: center;
     color: #fff;
+    margin-top: 10px;
     padding: 10px;
 }
 
 .h h4 {
-    margin-bottom: 0px;
+    margin-bottom: 20px;
     text-transform: uppercase;
 }
 

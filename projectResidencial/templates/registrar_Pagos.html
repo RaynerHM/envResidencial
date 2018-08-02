@@ -1,10 +1,10 @@
 {% extends "plantilla.html" %} {% load static %}
 
 <!-- Block para cargar los static CSS -->
-{% block staticCSS %}
+<!-- {% block staticCSS %}
 <link rel="stylesheet" href="{% static '/materialize-v1.0.0-rc.2/css/materialize.min.css' %}" media="screen,projection">
 <link rel="stylesheet" href="{% static '/font-awesome-5.2.0/css/all.min.css' %}">
-<link rel="stylesheet" href="{% static '/style.css' %}"> {% endblock staticCSS %}
+<link rel="stylesheet" href="{% static '/style.css' %}"> {% endblock staticCSS %} -->
 <!-- Fin Block para cargar los static CSS -->
 
 <!-- Block para el titulo -->
@@ -86,7 +86,7 @@
 <!-- Block para cargar los static JS -->
 {% block staticJS %}
 <script src="{% static '/jquery/jquery-3.2.1.min.js' %}"></script>
-<script src="{% static '/materialize/js/materialize.min.js' %}"></script>
+<script src="{% static './materialize-v1.0.0-rc.2/js/materialize.min.js' %}"></script>
 <script src="{% static '/style.js' %}"></script>
 <script src="{% static '/cargarDeudas.js' %}"></script>
 {% endblock staticJS %}

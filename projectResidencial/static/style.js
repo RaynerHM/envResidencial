@@ -1,7 +1,5 @@
-$('#username').focus();
-
-
 $(document).ready(function() {
+    $('#username').focus();
     $('.tooltipped').tooltip({ delay: 50 });
     $('select').formSelect();
 });

@@ -8,11 +8,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
 
-    <link rel="stylesheet" href="{% static '/materialize/css/materialize.min.css' %}" media="screen,projection">
-    <link rel="stylesheet" href="{% static '/font-awesome/css/font-awesome.min.css' %}">
-
+    <!-- Block para cargar los static CSS -->
+    {% block staticCSS %}
+    <link rel="stylesheet" href="{% static '/materialize-v1.0.0-rc.2/css/materialize.min.css' %}" media="screen,projection">
+    <link rel="stylesheet" href="{% static '/font-awesome-5.2.0/css/all.min.css' %}">
     <link rel="stylesheet" href="{% static '/style.css' %}">
     <!--<link rel="icon" href="{% static '/imagenes/favicon.ico' %}" type="image / x-icon">-->
+    {% endblock staticCSS %}
+    <!-- Fin Block para cargar los static CSS -->
+
 </head>
 
 <body id="residente">
@@ -47,13 +51,13 @@
 
                     <!--   Edificio Propietario o Inquilino   -->
                     <div class="input-field col m6 s12">
-                        <i class="prefix fa fa-building-o fa-3x"></i>
+                        <i class="prefix fas fa-building fa-3x"></i>
                         <input id="edificio" name="edificio" type="text" required autocomplete="off">
                         <label for="edificio" class="active">Bloque</label>
                     </div>
                     <!--   Apartamento Propietario o Inquilino   -->
                     <div class="input-field col m6 s12">
-                        <i class="prefix fa fa-building-o fa-3x"></i>
+                        <i class="prefix fas fa-building fa-3x"></i>
                         <input id="apartamento" name="apartamento" type="text" required autocomplete="off">
                         <label for="apartamento" class="active">Apartamento </label>
                     </div>
@@ -113,7 +117,6 @@
     <script src="{% static '/materialize/js/materialize.min.js' %}"></script>
     <script src="{% static '/style.js' %}"></script>
     <script src="{% static '/validarClave.js' %}"></script>
-    <script src="{% static '/prueba.js' %}"></script>
 
 </body>
 
