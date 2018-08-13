@@ -26,54 +26,47 @@
     <div class="container center">
         <div class="row espacio">
             <!--   Nombre Propietario o Inquilino   -->
-            <div class="input-field col m3 s12">
+            <div class="input-field col m2 s12">
                 <i class="prefix fa fa-hashtag fa-3x"></i>
                 <input id="bloque" name="bloque" type="text" required autocomplete="off">
                 <label for="bloque" class="active">Bloque </label>
             </div>
             <!--   Nombre Propietario o Inquilino   -->
-            <div class="input-field col m3 s12">
+            <div class="input-field col m2 s12">
                 <i class="prefix fa fa-building-o fa-3x"></i>
                 <input id="apartamento" name="apartamento" type="text" required autocomplete="off">
                 <label for="apartamento" class="active">Apartamento </label>
             </div>
             <!--   Nombre Propietario o Inquilino   -->
-            <div class="input-field col m3 s12">
+            <div class="input-field col m2 s12">
                 <i class="prefix fa fa-dollar fa-3x"></i>
                 <input id="montoPagar" name="montoPagar" type="text" required autocomplete="off">
                 <label for="montoPagar" class="active">Monto a Pagar </label>
             </div>
             <!--   Nombre Propietario o Inquilino   -->
-            <div class="input-field col m3 s12">
+            <div class="input-field col m4 s12">
                 <i class="prefix fa fa-comments-o fa-3x"></i>
                 <input id="concepto" name="concepto" type="text" required>
                 <label for="concepto" class="active">Concepto </label>
             </div>
+            <div class="input-field col m2 s12">
+                <input class="btn" value="Guardar" type="submit" required>
+            </div>
         </div>
 
-        <div class="row center">
-            <div class="input-field col m4 s12 offset-m1">
-                {% comment %} <label>Nombre Personas</label> {% endcomment %}
-                <select class=" " id="nombrePersona" name="nombrePersona">
-                    <option value="" disabled selected>Nombre Personas</option>
-                    {% for r in res %}
-                    <option value="{{ r }}">{{ r.nombre }}</option>
-                    {% endfor%}
-                </select>
-            </div>
-            <div class="input-field col m4 s12 offset-m2">
-                <select class=" " id="no_apartamento" name="no_apartamento">
+    </div>
+    <div class="row center buscar">
+        <!-- <div class="buscar"> -->
+        <h5 class=" col m12 s12 " style="text-align:left">Buscar por número de apartamento</h5>
+        <div class="input-field col m4 s12">
+            <select class=" " id="no_apartamento" name="no_apartamento">
                     <option value="" disabled selected>Apartamento</option>
                     {% for r in res %}
                     <option value="{{ r.edificio }}-{{r.no_apartamento}}">{{ r.edificio }}-{{r.no_apartamento}}</option>
                     {% endfor%}
                 </select>
-            </div>
         </div>
-
-        <div class="input-field ">
-            <input class="btn" value="Guardar" type="submit" required>
-        </div>
+        <!-- </div> -->
     </div>
 </div>
 <p class="no-datos hide">No se pueden obtener los datos solicitados.</p>

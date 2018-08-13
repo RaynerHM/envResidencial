@@ -36,5 +36,7 @@ urlpatterns = [
     path('ajax/', views.Ajax, name='ajax'),
     path('ajaxguardar/', views.AjaxGuardar, name='ajaxguardar'),
 ]
+admin.site.site_header = 'Admin - Residencial Brisa Fresca'
+
 # handler404 = 'Residencial.views.Login'
 # handler500 = 'Residencial.views.Sugerencias'

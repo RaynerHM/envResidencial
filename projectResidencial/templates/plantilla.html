@@ -51,10 +51,16 @@
             <a href="/" class="{% block activarEst %}{% endblock activarEst %} btn">
                 <i class=" fa fa-clipboard-list fa-2x"></i>Estado de Cuenta</a>
         </li>
+        {% if perms.Residencial.can_add_pago %}
         <li>
             <a href="{% url 'pagos' %}" class="btn{% block activarPag %}{% endblock activarPag %}">
                 <i class=" fas fa-dollar-sign fa-1x"></i>Registrar Pagos </a>
         </li>
+        <!--  -->
+        {% else %}
+        <!--  -->
+        {% endif %}
+
         <li>
             <div class="divider"></div>
         </li>
@@ -139,17 +145,14 @@
         </form>
     </div>
 
+
     <!-- Block para mostrar el contenido de la pagina -->
     {% block contenido %} {% endblock contenido %}
     <!-- Fin Block para mostrar el contenido de la pagina -->
 
 
     <!-- Block para cargar los static JS -->
-    {% block staticJS %}
-    <!-- <script src="{% static '/jquery/jquery-3.2.1.min.js' %}"></script>
-    <script src="{% static './materialize-v1.0.0-rc.2/js/materialize.min.js' %}"></script>
-    <script src="{% static '/style.js' %}"></script> -->
-    {% endblock staticJS %}
+    {% block staticJS %} {% endblock staticJS %}
     <!-- Fin  Block para cargar los static JS -->
 
 </body>

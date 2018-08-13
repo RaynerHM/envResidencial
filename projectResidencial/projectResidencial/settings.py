@@ -27,19 +27,24 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+#Enviar correos
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
 EMAIL_HOST_USER ='info.residencialbrisafrescar@gmail.com'
 EMAIL_HOST_PASSWORD = 'Brisafresca1'
 EMAIL_USE_TLS = True
 
-TIME= 5*60
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+#Cerrar sesion automaticamente
+TIME= 20*60
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 SESSION_EXPIRE_AT_BROWSER_CLOSE= True
-#SESSION_COOKIE_AGE = TIME
+SESSION_COOKIE_AGE = TIME
 SESSION_IDLE_TIMEOUT = TIME
 
 LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL ='/'
 
 # Application definition
 

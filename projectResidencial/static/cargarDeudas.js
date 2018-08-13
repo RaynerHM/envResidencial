@@ -8,11 +8,8 @@ $(document).ready(function() {
     */
     $('select#no_apartamento').on('change', function() {
         var valores = $(this).val();
-        $('#concepto').val('Prueba');
         var bloq = valores.split('-')[0];
         var apto = valores.split('-')[1];
-        console.log(bloq);
-        console.log(apto);
 
         $.ajax({
             type: "GET",
@@ -32,27 +29,26 @@ $(document).ready(function() {
                     $('.no-datos').addClass('hide');
                     $('#tabla').html("<div id='nombre'><p id='p'>" + data.residente[0].nombre + "</p></div>").after();
 
-                    var asd = "<form action='' method='GET'><table id='ta' class='centered striped highlight'><thead><tr><th>Seleccione</th><th>Deuda Pendiente</th><th>Recargo</th><th>Fecha Limite</th><th>Concepto Deuda</th><th>Total</th></tr></thead><tbody id='tbody'>";
+                    var asd = ("<form action='' method='GET'><table id='ta' class='centered striped highlight'><thead><tr><th style='width:190px;'>Seleccione</th><th style='width:150px;'>Deuda Pendiente</th><th style='width:130px;'>Recargo</th><th style='width:150px;'>Fecha Limite</th><th style='width:300px;'>Concepto Deuda</th><th style='width:130px;'>Total</th></tr></thead><tbody id='tbody'>");
                     $('#nombre').after(asd);
                     for (var i = 0; i < data.deuda.length; i++) {
-                        console.log(data.deuda.length);
-
                         $('#tbody').append(
-                            "<tr id='tr'><td><p><label><input type='checkbox' class='micheckbox' id='" + data.deuda[i].id + "' value='" + data.deuda[i].id + "'/> <span id='s" + data.deuda[i].id + "'>Seleccionar</span><label></p></td><td>RD$" + data.deuda[i].deuda_pendiente + "</td><td>RD$" + data.deuda[i].recargo + "</td>" +
-                            "</td><td>" + data.ajuste[0].fecha_Limite_Pago + "</td>" +
-                            "</td><td>" + data.deuda[i].concepto_deuda + "</td>" +
-                            "</td><td>RD$" + (parseInt(data.deuda[i].deuda_pendiente) + parseInt(data.deuda[i].recargo)) + "</td></tr>"
+                            ("<tr id='tr" + data.deuda[i].id + "'><td><p><label><input type='checkbox' class='micheckbox' id='" + data.deuda[i].id + "' value='" + data.deuda[i].id + "'/> <span id='s" + data.deuda[i].id + "'>Seleccionar</span><label></p></td><td>RD$" + data.deuda[i].deuda_pendiente + "</td><td>RD$" + data.deuda[i].recargo + "</td>" +
+                                "</td><td>" + data.ajuste[0].fecha_Limite_Pago + "</td>" +
+                                "</td><td>" + data.deuda[i].concepto_deuda + "</td>" +
+                                "</td><td>RD$" + (parseInt(data.deuda[i].deuda_pendiente) + parseInt(data.deuda[i].recargo)) + "</td></tr>")
                         );
                     }
                     $('#ta').after("<div class='input-field center'><input class='btn' value='Guardar' type='submit' required></div></form>");
 
                     $(".micheckbox").change(function() {
                         var chec = $(this).val();
-                        console.log('--------- ' + chec)
                         if (this.checked) {
                             $('#s' + chec).text('Seleccionado');
+                            $('#tr' + chec).addClass('seleccionado');
                         } else {
                             $('#s' + chec).text('Seleccionar');
+                            $('#tr' + chec).removeClass('seleccionado');
                         }
                     });
 

@@ -4,6 +4,7 @@ from .models import Residente, Apartamento, Pago, Ajuste
 
 from django.contrib import auth
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import redirect
 from django.http import HttpResponse
@@ -29,18 +30,25 @@ import json
 
 def Login(request):
 	mensaje = ''
-	print("\n\n-------------------------------------------------\n" ,
-	request.path,"\n-------------------------------------------------\n\n")
 	if request.method == 'POST':
 		v_usuario = request.POST.get('username')
 		v_clave = request.POST.get('password')
 
-		usuario = auth.authenticate(username=v_usuario, password=v_clave)
+		usuario = authenticate(username=v_usuario, password=v_clave)
+
 		if usuario is not None:
-			auth.login(request, usuario)
-			return redirect(EstadosCuenta)
+			print('El Usuario si existe.')
+			if usuario.is_active == False:
+				print('El Usuario no esta activo.')
+				mensaje = 'Su cuanta de usuario esta desactivada. \n\n Por favor, pongase en contacto con el administrador de este Website.'
+				print(mensaje)
+			else:
+				print('El Usuario esta activo.')
+				auth.login(request, usuario)
+				return redirect(EstadosCuenta)
 		else:
 			mensaje = 'Usuario o clave incorrecto'
+			print(mensaje)
 	return render(request, 'login.html', {'mensaje': mensaje})
 
 
@@ -111,6 +119,7 @@ def Logout(request):
 
 
 def RegistrarUsuario(request):
+	mensaje = ''
 	if request.method == 'POST':
 		v_nombre = request.POST.get('nombre')
 		v_apellido = request.POST.get('apellido')
@@ -129,80 +138,83 @@ def RegistrarUsuario(request):
 
 		if (v_nombre != '' and v_apellido != '' and v_correo != ''
 			and v_telefono != '' and   v_cedula != ''  and  v_clave!= ''):
+			
+			if User.objects.filter(username=v_correo).count():
+				mensaje='El correo "%s" ya esta registrado.\n\nPor favor valide que los datos sean correctos.' %v_correo
+			else:				
+				# Crear registro del Residente
+				residente = Residente.objects.create(
+												nombre=(v_nombre +
+												' ' + v_apellido),
+												no_apartamento=v_no_apartamento,
+												edificio=v_edificio,
+												correo=v_correo,
+												telefono=v_telefono,
+												cedula=v_cedula,
+												clave=v_clave
+												)
 
-			# Crear registro del Residente
-			residente = Residente.objects.create(
-											nombre=(v_nombre +
-											' ' + v_apellido),
-											no_apartamento=v_no_apartamento,
-											edificio=v_edificio,
-											correo=v_correo,
-											telefono=v_telefono,
-											cedula=v_cedula,
-											clave=v_clave
-											)
+				# Crear usuario del Residente, para poder iniciar sesion
+				usuario = User.objects.create_user(
+												username=v_correo,
+												password=v_clave,
+												first_name=v_nombre,
+												last_name=v_apellido,
+												email=v_correo
+												)
+				usuario.is_active = True
+				usuario.is_staff = False
+				usuario.save()
 
-			# Crear usuario del Residente, para poder iniciar sesion
-			usuario = User.objects.create_user(
-											username=v_correo,
-											password=v_clave,
-											first_name=v_nombre,
-											last_name=v_apellido,
-											email=v_correo
-											)
-			usuario.is_active = True
-			usuario.is_staff = True
-			usuario.save()
+				# Enviar correo con el usuario creado
+				try:
+					url = 'http://10.1.100.200:8000/login'
 
-			# Enviar correo con el usuario creado
-			try:
-				url = 'http://10.1.100.200:8000/login'
+					html_content = ("""
+						<style>
+							body { background-color: #fff;}
+							div { text-align: center; }
+							.padding { padding-top: 20px; }
+							.felicidad { color: #00c853; font-size: 46px }
+							h3 { font-size: 20px }
+							.color { color:blue; font-size: 24px; padding-bottom:0px; }
+							.usuario { margin-bottom:0px; padding-bottom:0px; font-size: 20px }
+							a { font-size: 16px }
+						</style>
 
-				html_content = ("""
-					<style>
-						body { background-color: #fff;}
-						div { text-align: center; }
-						.padding { padding-top: 20px; }
-						.felicidad { color: #00c853; font-size: 46px }
-						h3 { font-size: 20px }
-						.color { color:blue; font-size: 24px; padding-bottom:0px; }
-						.usuario { margin-bottom:0px; padding-bottom:0px; font-size: 20px }
-						a { font-size: 16px }
-					</style>
-
-					<div class="center-align padding">
 						<div class="center-align padding">
-							<div class="felicidad">¡Felicidades, %s!</div>
-							<h3>Su cuenta ha sido creada exitosamente.</h3>
+							<div class="center-align padding">
+								<div class="felicidad">¡Felicidades, %s!</div>
+								<h3>Su cuenta ha sido creada exitosamente.</h3>
+							</div>
+							<div class="padding usuario">
+							<h3> Su usuario es:</h3>
+							<div class="color"> %s</div>
+							</div>
+							<div class="padding">
+								<a href="%s" class="btn">Acceder a su cuenta</a>
+							</div>
 						</div>
-						<div class="padding usuario">
-						<h3> Su usuario es:</h3>
-						<div class="color"> %s</div>
-						</div>
-						<div class="padding">
-							<a href="%s" class="btn">Acceder a su cuenta</a>
-						</div>
-					</div>
-					""" %(v_nombre, v_correo, url))
+						""" %(v_nombre, v_correo, url))
 
-				subject, from_email, to = 'Cuenta Residencial Brisa Fresca', 'raynel95@gmail.com', v_correo
-				text_content = 'Credenciales de su cuenta Residencial Brisa Fresca.'
-				msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
-				msg.attach_alternative(html_content, "text/html")
-				msg.send()
-			except BadHeaderError:
-				return HttpResponse('No se pudo enviar el correo.')
-
-			return render(request, "felicidades.html",
-			{'nombre': v_nombre, 'correo': v_correo})
+					subject, from_email, to = 'Cuenta Residencial Brisa Fresca', 'raynel95@gmail.com', v_correo
+					text_content = 'Credenciales de su cuenta Residencial Brisa Fresca.'
+					msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+					msg.attach_alternative(html_content, "text/html")
+					msg.send()
+				except BadHeaderError:
+					return HttpResponse('No se pudo enviar el correo.')
+					
+				return render(request, "felicidades.html",
+				{'nombre': v_nombre, 'correo': v_correo})
 		else:
 			return render(request, "registro_residente.html")
-	return render(request, "registro_residente.html")
+	return render(request, "registro_residente.html", {'mensaje': mensaje})
 
 
 # ------------ Pendiente por terminar ------------
 @login_required()
-@permission_required('Residencial.RegistrarPagos', raise_exception=True)
+#@permission_required('Residencial.add_pago', raise_exception=True)
 def CambiarClave(request):
 	mensaje = ''
 
@@ -232,13 +244,13 @@ def CambiarClave(request):
 
 @login_required()
 def RegistrarPagos(request):
-	print('GET --------------- ', request.GET)
 	lista_personas = []
+	print('GET --------------- ', request.GET)
 	print('POST -------------- ', request.POST)
 
 
 	v_nombre = request.POST.get('persona', '')
-
+	print(v_nombre)
 	# v_nombre = ""
 	if v_nombre != "":
 		residente = Residente.objects.filter(nombre__contains=v_nombre)
@@ -269,28 +281,6 @@ def RegistrarPagos(request):
 		})
 
 
-"""
-	Residente:
-		nombre
-		correo
-		clave
-		telefono
-		cedula
-		no_apartamento
-		edificio
-	-----------------------
-	Pago:
-		propietario
-		fecha
-		no_edificio
-		pagos
-		concepto
-		deuda_pendiente
-		recargo
-		concepto_deuda
-"""
-
-
 def AjaxGuardar(request):
 	print('-----------',request.GET)
 	return None
@@ -299,7 +289,6 @@ def AjaxGuardar(request):
 def Ajax(request):
 	bloq = request.GET.get('bloq')
 	apto = request.GET.get('apto')
-	print(bloq+' - '+apto)
 
 	ajuste = Ajuste.objects.all()
 	ajuste = [ajuste_serializer(ajuste) for ajuste in ajuste]

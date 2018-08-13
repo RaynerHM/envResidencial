@@ -430,8 +430,17 @@ nav .nav-wrapper i {
     border-bottom: 1px solid #fff;
 }
 
+.usuario-existe {
+    font-size: 25px;
+    text-align: center;
+}
+
 #residente {
     font-family: Cambria;
+}
+
+#residente .input-field {
+    margin-bottom: 0px;
 }
 
 #residente button,
@@ -585,12 +594,12 @@ h3 {
 }
 
 .collapsible div.collapsible-header:hover {
-    background-color: #26a69a;
+    background-color: var(--verde);
     color: #fff;
 }
 
 .collapsible div.collapsible-header:active {
-    background-color: #26a69a;
+    background-color: var(--verde);
     color: #fff;
 }
 
@@ -639,7 +648,8 @@ table.bordered tbody tr:hover {
 
 .sidenav li>a.btn {
     margin: 5px;
-    padding: 0 20px
+    padding: 0 20px;
+    background-color: var(--verde);
 }
 
 #bPassword .container {
@@ -692,7 +702,7 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
     padding-bottom: 10px;
     padding-top: 10px;
     padding-left: 35px;
-    color: #26A69A;
+    color: var(--verde);
     vertical-align: auto;
 }
 
@@ -735,8 +745,8 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
 }
 
 .espacio {
-    padding-bottom: 50px;
-    padding-top: 50px;
+    padding-bottom: 0px;
+    padding-top: 0px;
 }
 
 #tabla #nombre {
@@ -771,6 +781,31 @@ table.striped>tbody>tr:nth-child(odd) {
 #tabla tr {
     padding: 0px 0px;
     height: 10px;
+}
+
+tbody tr.seleccionado {
+    background-color: #02ff0254;
+}
+
+table.highlight>tbody>tr:hover.seleccionado {
+    background-color: #02ff0254;
+}
+
+table.striped>tbody>tr:nth-child(odd).seleccionado {
+    background-color: #02ff0254;
+}
+
+@media only screen and (min-width: 993px) {
+    .container {
+        width: 100%;
+    }
+}
+
+.buscar {
+    background-color: #e7f5fd;
+    border-radius: 10px;
+    margin: 15px;
+    color: #34afb5;
 }
 
 
