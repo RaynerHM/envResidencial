@@ -10,9 +10,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
 
+    <link rel="shortcut icon" type="image/x-icon" href="{% static '/media/favicon.png' %}">
     <!-- Block para cargar los static CSS -->
-    {% block staticCSS %}
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"> {% endblock staticCSS %}
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '/materialize-v1.0.0-rc.2/css/materialize.min.css' %}" media="screen,projection">
+    <link rel="stylesheet" href="{% static '/font-awesome-5.2.0/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/sugerencia.css' %}">
+    <link rel="stylesheet" href="{% static '/css/style.css' %}"> {% block staticCSS %} {% endblock staticCSS %}
     <!-- Fin Block para cargar los static CSS -->
 
 </head>
@@ -29,14 +33,14 @@
 
                 <!-- --- --- Boton Menu Lado Izquierdo --- --- -->
                 <span class="left brand-logo text-darken-2">
-                    <i data-target="slide-out" id="btnMenu" class="sidenav-trigger deslizar icono-menu fa fa-bars fa-1x "></i>
+                    <i data-target="slide-out" id="btnMenu" class="sidenav-trigger show-on-large deslizar icono-menu fa fa-bars fa-1x "></i>
                 </span>
                 <!-- --- --- Fin Boton Menu Lado Izquierdo --- --- -->
             </div>
         </nav>
     </div>
 
-    <ul id="slide-out" class="sidenav ">
+    <ul id="slide-out" class="sidenav">
         <li class="">
             <div class="datos">
                 <span class="usuario"> {{ usuariofull }}</span>
@@ -65,30 +69,38 @@
             <div class="divider"></div>
         </li>
         <li class=" ">
-            <a onclick="Materialize.toast('Su sesión se cerro exitosamente')" href="#modal1" class="btn modal-trigger">
+            <a href="#modal1" class="btn modal-trigger">
                 <i class=" fa fa-comments fa-1x"></i>Sugerencias</a>
-        </li>
-        <li>
-            <div class="divider"></div>
         </li>
         <li>
             <a href="" class="disabled btn">
                 <i class=" fas fa-globe fa-1x"></i>Hacer Publicación </a>
         </li>
-        <li class=" ">
-            <a href="" class="disabled btn">
-                <i class=" fas fa-users-cog fa-1x"></i>Configuración de Usuarios</a>
-        </li>
-        <li class=" ">
-            <a href="" class="disabled btn">
-                <i class=" fa fa-cog fa-1x"></i>Opciones</a>
-        </li>
         <li>
             <div class="divider"></div>
         </li>
         <li class=" ">
-            <a href="{% url 'clave' %}" class="btn {% block activarPass %}{% endblock activarPass %}">
-                <i class=" fa fa-key fa-1x"></i>Cambiar Contraseña</a>
+            <a class="btn opcion">
+                <i class=" fa fa-cog fa-1x "></i>Opciones
+            </a>
+            <!-- <a href="" class="btn opcion">
+            </a> -->
+            <ul class="opcion1">
+                <li class=" ">
+                    <a href="{% url 'clave' %}" class="btn {% block activarPass %}{% endblock activarPass %}">
+                        <i class=" fa fa-key fa-1x"></i>Cambiar Contraseña</a>
+                </li>
+
+                <li class=" ">
+                    <a class=" btn" onclick="M.toast({html: '<span>No se pudo enviar su sugerencia. Favor cantacte con la Administración</span>', classes: 'rounded red accent-4',
+                    'displayLength': 10000, outDuration: 5000, inDuration: 5000})">
+                        <i class=" fas fa-users-cog fa-1x"></i>Configuración de Usuarios
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <div class="divider"></div>
         </li>
         <li class=" ">
             <!-- <a onclick="M.toast({html: 'I am a toast'})" class="btn">Toast!</a> -->
@@ -110,39 +122,34 @@
 
     <!-- Modal Structure -->
     <div id="modal1" class="modal modal-fixed-footer white-text">
-        <form action="sugerencias/" method="post">{% csrf_token %}
-            <div class="modal-content row">
-
-                <div class="h">
-                    <h4 class="">Sugerencias</h4>
-                </div>
-
-                <div class=" col m7 sugerencia">
-                    <div class="input-field col s12">
-                        <input type="hidden" name="correo" value="{{ email }}">
-                        <input type="text" name="titulo" id="titulo" placeholder="Titulo de la Sugerencia" autocomplete="off" required>
-                    </div>
-
-                    <div class="input-field col s12">
-                        <textarea id="textarea1" class="materialize-textarea" name="sugerencia" placeholder="Sugerencia" required></textarea>
-                    </div>
-                </div>
-
-                <div class="tema col m5 white-text">
-                    <p>Tomate una tasa de cafe, Relajate y Envianos tus Sugerencias</p>
-                </div>
-
+        <!-- <form action="#" method="post">  -->
+        {% csrf_token %}
+        <div class="modal-content row">
+            <div class="h">
+                <h4 class="">Sugerencias</h4>
             </div>
-
-            <div class="modal-footer row">
-                <div class=" asdf center col m6 s6">
-                    <input type="button" class="modal-close waves-effect waves-green btn red" value="Cancelar">
+            <div class=" col m12 sugerencia">
+                <div class="input-field col s12">
+                    <input type="hidden" name="user_id" id="user_id" value="{{ user.id }}">
+                    <input type="text" name="titulo" id="titulo" placeholder="Titulo de la Sugerencia" autocomplete="off" required>
                 </div>
-                <div class="asdf center col m6 s6">
-                    <input type="submit" class="waves-effect waves-green btn" value="Enviar">
+
+                <div class="input-field col s12">
+                    <textarea id="textarea1" class="materialize-textarea" name="sugerencia" placeholder="Sugerencia" required>{% lorem how_many_paragraphs %}{% lorem how_many_paragraphs %}
+                        </textarea>
                 </div>
             </div>
-        </form>
+        </div>
+
+        <div class="modal-footer row asdf  ">
+            <div class="center col m6 s6">
+                <input id="cerrar" type="button" class="modal-close waves-effect waves-green btn red" value="Cancelar">
+            </div>
+            <div class="center col m6 s6">
+                <input id="idEnviar" type="submit" class="waves-effect waves-green btn" value="Enviar">
+            </div>
+        </div>
+        <!-- </form> -->
     </div>
 
 
@@ -150,8 +157,11 @@
     {% block contenido %} {% endblock contenido %}
     <!-- Fin Block para mostrar el contenido de la pagina -->
 
-
     <!-- Block para cargar los static JS -->
+    <script src="{% static '/jquery/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static '/materialize-v1.0.0-rc.2/js/materialize.min.js' %}"></script>
+    <script src="{% static '/js/sugerencias.js' %}"></script>
+    <script src="{% static '/js/style.js' %}"></script>
     {% block staticJS %} {% endblock staticJS %}
     <!-- Fin  Block para cargar los static JS -->
 

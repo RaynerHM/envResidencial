@@ -2,10 +2,16 @@ from django.db import models
 # Create your models here.
 from datetime import date
 from django.utils.translation import gettext as _
+from django.contrib.auth.models import User
+
 
 class Residente(models.Model):
 	nombre = models.CharField(max_length=30, blank=False, null=False)
 	correo = models.EmailField(max_length=50, blank=True, null=True)
+	# nombre = models.ForeignKey(
+	# 	User, blank=True, null=True, on_delete=models.SET_NULL)
+	# correo = models.ForeignKey(
+	# 	User, related_name='email', blank=True, null=True, on_delete=models.SET_NULL)
 	clave = models.CharField(max_length=15, blank=False, null=False)
 	telefono = models.CharField(max_length=10, blank=False, null=False)
 	cedula = models.CharField(max_length=11, blank=False, null=False)
@@ -39,7 +45,7 @@ class Pago(models.Model):
 		'Estado', on_delete=models.CASCADE, blank=False, null=False, default='1')
 
 	def __str__(self):
-		return self.fecha.strftime('%M')
+		return str(self.deuda_pendiente)
 		# return self.recargo
 
 
@@ -59,3 +65,24 @@ class Estado(models.Model):
 
 	def __str__(self):
 		return self.estado
+
+
+class Sugerencia(models.Model):
+	propietario = models.ForeignKey(
+		User, on_delete=models.CASCADE, blank=False, null=False)
+	titulo = models.CharField(max_length=50, blank=False, null=False)
+	sugerencia = models.TextField(blank=False, null=False)
+	estado = models.CharField(max_length=15, blank=False, null=False)
+
+	def __str__(self):
+		return self.titulo
+
+
+
+class Edificio(models.Model):
+	bloque = models.IntegerField()
+	apartamento = models.IntegerField()
+
+	def __str__(self):
+		return ('%s - %s' %(self.bloque, self.apartamento))
+

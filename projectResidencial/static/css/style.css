@@ -22,7 +22,7 @@ body {
 @media only screen and (max-width: 1364px) {
     .sidenav {
         position: fixed;
-        width: 300px;
+        width: 330px;
     }
     .sidenav li>a.btn {
         font-size: 13px;
@@ -42,6 +42,10 @@ strong {
 
 th {
     font-weight: 600
+}
+
+.btn {
+    background-color: var(--verde);
 }
 
 .sidenav li>a>i {
@@ -178,7 +182,8 @@ li {
 }
 
 #login {
-    background: url(/static/image/login.jpg)no-repeat;
+    background: -webkit-linear-gradient(1000deg, #66AAB3 50%, #26a69a 30%);
+    /*background: url(/static/image/login.jpg)no-repeat;*/
     background-size: cover;
     background-attachment: fixed;
     overflow: auto;
@@ -302,10 +307,17 @@ nav .nav-wrapper i {
     font-size: 18px;
 }
 
+
+/*
 #modal1 {
     background: url(/static/media/image/modal.jpg)no-repeat;
     background-size: cover;
     border-radius: 10px;
+}
+*/
+
+.sugerencia {
+    height: 300px;
 }
 
 .modal {
@@ -354,7 +366,7 @@ nav .nav-wrapper i {
 }
 
 #modal1 input[type="text"] {
-    color: #fff;
+    color: black;
     max-height: 45px;
     min-height: 45px;
     height: 45px;
@@ -363,17 +375,6 @@ nav .nav-wrapper i {
     background-color: #ffffff17;
     border-radius: 10px;
     padding: 0 10px;
-}
-
-#modal1 textarea {
-    color: #fff;
-    max-height: 160px;
-    min-height: 160px;
-    height: 160px;
-    border: gray 1px solid !important;
-    background-color: #ffffff17;
-    border-radius: 10px;
-    padding: 10px;
 }
 
 #modal1 .tema {
@@ -402,14 +403,6 @@ nav .nav-wrapper i {
 
 .modal.modal-fixed-footer {
     height: 450px;
-}
-
-.h {
-    /* background-color: var(--verde); */
-    text-align: center;
-    color: #fff;
-    margin-top: 10px;
-    padding: 10px;
 }
 
 .h h4 {
@@ -536,6 +529,21 @@ h3 {
     position: relative;
     left: 5px;
     content: "✗";
+}
+
+.izquierda {
+    text-align: left;
+}
+
+#no_apartamento {
+    width: 200px;
+}
+
+#buscar_deuda {
+    width: 100px;
+    text-align: center;
+    font-size: 20px;
+    margin-left: 20px;
 }
 
 
@@ -696,6 +704,10 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
     }
 }
 
+#qwer {
+    padding-right: 20px;
+}
+
 #tabla.nombre {
     font-size: 16px;
     font-weight: 500;
@@ -749,7 +761,7 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
     padding-top: 0px;
 }
 
-#tabla #nombre {
+#tabla #qw {
     margin-top: 15px;
     background-color: #e7f5fd;
     width: 350px;
@@ -805,7 +817,16 @@ table.striped>tbody>tr:nth-child(odd).seleccionado {
     background-color: #e7f5fd;
     border-radius: 10px;
     margin: 15px;
-    color: #34afb5;
+    color: var(--verde);
+}
+
+.buscar h5 {
+    margin: 0px;
+    font-size: 1.54rem;
+}
+
+.buscar h4 {
+    margin-top: 35px;
 }
 
 
@@ -815,3 +836,11 @@ margin: 0px 15px;
 
 
 /* tipo de fuente: poppins,sans-serif */
+
+.opcion1 {
+    display: none;
+}
+
+ul.opcion1 li a.btn {
+    padding: 0px 30px;
+}

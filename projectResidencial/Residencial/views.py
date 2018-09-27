@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Residente, Apartamento, Pago, Ajuste
+from Residencial.models import *
 
 from django.contrib import auth
 from django.contrib.auth.models import User
@@ -36,14 +36,12 @@ def Login(request):
 
 		usuario = authenticate(username=v_usuario, password=v_clave)
 
-		if usuario is not None:
-			print('El Usuario si existe.')
+		if usuario is not None:			
 			if usuario.is_active == False:
 				print('El Usuario no esta activo.')
 				mensaje = 'Su cuanta de usuario esta desactivada. \n\n Por favor, pongase en contacto con el administrador de este Website.'
 				print(mensaje)
-			else:
-				print('El Usuario esta activo.')
+			else:				
 				auth.login(request, usuario)
 				return redirect(EstadosCuenta)
 		else:
@@ -142,18 +140,6 @@ def RegistrarUsuario(request):
 			if User.objects.filter(username=v_correo).count():
 				mensaje='El correo "%s" ya esta registrado.\n\nPor favor valide que los datos sean correctos.' %v_correo
 			else:				
-				# Crear registro del Residente
-				residente = Residente.objects.create(
-												nombre=(v_nombre +
-												' ' + v_apellido),
-												no_apartamento=v_no_apartamento,
-												edificio=v_edificio,
-												correo=v_correo,
-												telefono=v_telefono,
-												cedula=v_cedula,
-												clave=v_clave
-												)
-
 				# Crear usuario del Residente, para poder iniciar sesion
 				usuario = User.objects.create_user(
 												username=v_correo,
@@ -165,6 +151,18 @@ def RegistrarUsuario(request):
 				usuario.is_active = True
 				usuario.is_staff = False
 				usuario.save()
+
+				# Crear registro del Residente
+				residente = Residente.objects.create(
+												nombre=(v_nombre +
+												' ' + v_apellido),
+												no_apartamento=v_no_apartamento,
+												edificio=v_edificio,
+												correo=v_correo,
+												telefono=v_telefono,
+												cedula=v_cedula,
+												clave=v_clave
+												)
 
 				# Enviar correo con el usuario creado
 				try:
@@ -197,7 +195,7 @@ def RegistrarUsuario(request):
 						</div>
 						""" %(v_nombre, v_correo, url))
 
-					subject, from_email, to = 'Cuenta Residencial Brisa Fresca', 'raynel95@gmail.com', v_correo
+					subject, from_email, to = 'Cuenta Residencial Brisa Fresca', settings.EMAIL_HOST_USER, v_correo
 					text_content = 'Credenciales de su cuenta Residencial Brisa Fresca.'
 					msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
 					msg.attach_alternative(html_content, "text/html")
@@ -244,11 +242,49 @@ def CambiarClave(request):
 
 @login_required()
 def RegistrarPagos(request):
+	
+	deuda = 0
+	ajuste = Ajuste.objects.all()[:1]
+	
+
+
+	if request.method == 'POST':
+		v_apartamento = request.POST.get('apartamento')
+		v_bloque = request.POST.get('bloque')
+		v_montoPagar = request.POST.get('montoPagar')
+		v_concepto = request.POST.get('concepto')
+		monto_Manteniento = int(ajuste[0].monto_Manteniento)
+
+		if int(v_montoPagar) < monto_Manteniento:
+			deuda = int(v_montoPagar) - monto_Manteniento
+		else:
+			deuda = 0
+
+		"""
+		pago= Pago.objects.create(
+
+		propietario,
+		fecha,
+		no_edificio,
+		pagos = v_montoPagar,
+		concepto = v_concepto,
+		deuda_pendiente = deuda,
+		recargo,
+		concepto_deuda,
+		estado
+		)
+		"""
+
+
+
+		print(deuda)
+		print('\n\nBloque:__________ %s\nApartamento:_____ %s\nMonto:___________ %s\nConcepto:________ %s\n' %(v_bloque, v_apartamento, v_montoPagar, v_concepto))
+
+
+
+
+
 	lista_personas = []
-	print('GET --------------- ', request.GET)
-	print('POST -------------- ', request.POST)
-
-
 	v_nombre = request.POST.get('persona', '')
 	print(v_nombre)
 	# v_nombre = ""
@@ -282,41 +318,62 @@ def RegistrarPagos(request):
 
 
 def AjaxGuardar(request):
-	print('-----------',request.GET)
-	return None
+	print(request.POST)
+	if request.method == 'POST':
+		id_deuda = request.POST.get('deudas')
+		# print(id_deuda.split(','))
+		# id_deuda=id_deuda.split(',')
+		# print('Tipo',type(id_deuda))
+		# print(id_deuda)
+		# pago = Pago.objects.filter(id=id_deuda.split(','))
+		# id_deuda=[2,3,5]
+		# pago = [Pago.objects.filter(id=asd for asd in id_deuda)]
+		# print(str(pago[0].deuda_pendiente))
+		# print(str(pago[0].estado))
+		# print(str(pago[1].deuda_pendiente))
+		# print(str(pago[1].estado))
+		# print(str(pago[2].deuda_pendiente))
+		# print(str(pago[2].estado))
+		# print(str(pago[3].deuda_pendiente))
+		# print(str(pago[3].estado))
+		#pago.deuda_pendiente
+		mensaje = '¡El pago se ha generado satisfactoriamente!'
 
-
-def Ajax(request):
-	bloq = request.GET.get('bloq')
-	apto = request.GET.get('apto')
-
-	ajuste = Ajuste.objects.all()
-	ajuste = [ajuste_serializer(ajuste) for ajuste in ajuste]
-
-	residente = Residente.objects.filter(no_apartamento=apto, edificio=bloq)
-	id_residente = residente[0].id
-	residente = [residente_serializer(residente) for residente in residente]
-
-	deuda = Pago.objects.filter(propietario=id_residente, deuda_pendiente__gte=1)
-	deuda = [deuda_serializer(deuda) for deuda in deuda]
-
-	print("------------------------------")
-	print('residente --- %s' %residente)
-	print('deuda ------- %s' %deuda)
-	print("------------------------------")
-
-
-	#return HttpResponse(json.dumps(residente), content_type='application/json')
-
-
-	return HttpResponse(
-		json.dumps({
-			'residente': residente,
-			'deuda': deuda,
-			'ajuste': ajuste
+		return HttpResponse(
+			json.dumps({
+				'mensaje': mensaje,
 			}),
 			content_type="application/json"
 		)
+
+
+
+def AjaxBuscarDeuda(request):
+	if request.method == 'POST':
+		bloq = request.POST.get('bloq')
+		apto = request.POST.get('apto')
+
+		ajuste = Ajuste.objects.all()
+		ajuste = [ajuste_serializer(ajuste) for ajuste in ajuste]
+
+		residente = Residente.objects.filter(
+			no_apartamento=apto, edificio=bloq)
+		id_residente = residente[0].id
+		residente = [residente_serializer(residente)
+		 for residente in residente]
+
+		deuda = Pago.objects.filter(
+			propietario=id_residente, deuda_pendiente__gte=1)
+		deuda = [deuda_serializer(deuda) for deuda in deuda]
+
+		return HttpResponse(
+			json.dumps({
+				'residente': residente,
+				'deuda': deuda,
+				'ajuste': ajuste
+				}),
+				content_type="application/json"
+			)
 
 
 def residente_serializer(residente):
@@ -345,10 +402,11 @@ def ajuste_serializer(ajuste):
 
 @login_required()
 def EstadosCuenta(request):
-	usuario= request.user.get_full_name()
+	id_usuario= request.user.id
+	print(id_usuario)
 	ajuste = Ajuste.objects.all()
 
-	pago = Pago.objects.all().filter(propietario__nombre=usuario)
+	pago = Pago.objects.all().filter(propietario=47)
 	deuda=0
 	deuda_pendiente=0
 	total_pagado=0
@@ -366,6 +424,7 @@ def EstadosCuenta(request):
 				'usuariofull': request.user.get_full_name,
 				'email': request.user.email,
 			})
+
 
 # ------------ Pendiente por terminar ------------
 @login_required()
@@ -521,34 +580,29 @@ class ReportePersonasPDF(View):
 
 
 
+def SugerenciasAjax(request):
+	if request.method == 'POST':
+		user_id = int(request.POST.get('user_id'))
+		titulo = request.POST.get('titulo')
+		sugerencia = request.POST.get('sugerencia')
+		estado = 'Pendiente'
+
+		if user_id and titulo and sugerencia and estado:
+			sugerencias = Sugerencia.objects.create(
+					propietario_id = user_id,
+					titulo = titulo,
+					sugerencia = sugerencia,
+					estado = estado
+				)
+			print('Datos Guardados\n\n')
+
+		mensaje = 'Su Sugerencia ha sido enviada. ¡Muchas gracias, la tomaremos en cuenta!'
 
 
+		return HttpResponse(
+				json.dumps({
+					'mensaje': mensaje,                
+				}),
+				content_type="application/json"
+			)
 
-def Sugerencias(request):
-	print('\n\n-----------------------------------------------')
-	print('Titulo		------->	', request.POST.get('titulo'))
-	print('Sugerencia	------->	', request.POST.get('sugerencia'))
-	print('Correo		------->	', request.POST.get('correo'))
-	print('-----------------------------------------------\n\n')
-
-	ajuste = Ajuste.objects.all()
-
-	return render(request, 'plantilla.html', {
-		'usuariofull': request.user.get_full_name,
-		'email': request.user.email,
-		'ajuste': ajuste,
-	})
-
-
-
-
-
-
-# Libreria para PDF -- wkxhtm2pdf
-"""
-# 'propietario': str(deuda.propietario),
-# 'fecha': str(deuda.fecha),
-# 'no_edificio': str(deuda.no_edificio),
-# 'pagos': str(deuda.pagos),
-# 'concepto': str(deuda.concepto),
-"""
