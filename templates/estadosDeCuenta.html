@@ -1,0 +1,96 @@
+{% extends "plantilla.html" %} {% load static %}
+
+<!-- Block para cargar los static CSS -->
+{% block staticCSS %} {% endblock staticCSS %}
+<!-- Fin Block para cargar los static CSS -->
+
+<!-- Block para el titulo -->
+{% block titulo %} Estado de Cuenta {% endblock titulo %}
+<!-- Fin Block para el titulo -->
+
+<!-- Block para marcar boton como activo-->
+{% block activarEst %} active-btn {% endblock activarEst %}
+<!-- Fin Block para marcar boton como activo-->
+
+<!-- Block para mostrar el titulo en el Navar -->
+{% block header %}
+<a href="/" class="brand-logo center"><span class="hide-on-small-only"> Estado de </span>Cuenta</a> {% endblock header %}
+<!-- Fin Block para mostrar el titulo en el Navar -->
+
+<!-- Block para mostrar el contenido de la pagina -->
+{% block contenido %}
+<div class="row">
+    <div class="col l9 m12 s12 center-align">
+        <table id="tabla-deuda" class="centered highlight z-depth-3">
+            <thead>
+                <th>Fecha</th>
+                <th>No Edificion</th>
+                <th>Cantidad Pagada</th>
+                <th>Concepto</th>
+                <th>Recargo</th>
+                <th>Deuda Pendiente</th>
+                <th>Concepto</th>
+            </thead>
+            <tbody>
+                {% for p in pago %}
+                <tr>
+                    <td>{{ p.fecha }}</td>
+                    <td>{{ p.no_edificio }}</td>
+                    <td>RD$ {{ p.pagos }}</td>
+                    <td>{{ p.concepto }}</td>
+                    <td>RD$ {{ p.recargo }}</td>
+                    <td>RD$ {{ p.deuda_pendiente }}</td>
+                    <td>{{ p.concepto_deuda}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div id="asd" class="col l3 m12 s12 center-align ">
+        <div class="row">
+            <div class="col m6">
+                <a href="{% url 'reporte' %}" class="btn">Descargar PDF</a>
+            </div>
+        </div>
+        <div id="deuda" class="col l3 m12 z-depth-3 ">
+            <table class="">
+                <thead>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="uno ">
+                                Total Deuda Por Recargo:
+                            </div>
+                            <div class="uno ">
+                                Total Deuda Pendiente:
+                            </div>
+                            <div class="uno ">
+                                Total Pagados:
+                            </div>
+                        </td>
+                        <td>
+                            <div class="dos ">
+                                RD$ {{ deuda }}
+                            </div>
+                            <div class="dos ">
+                                RD$ {{ deuda_pendiente }}
+                            </div>
+                            <div class="dos ">
+                                RD$ {{ total_pagado }}
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock contenido %}
+<!-- Fin Block para mostrar el contenido de la pagina -->
+
+<!-- Block para cargar los static JS -->
+{% block staticJS %} {% endblock staticJS %}
+<!-- Fin Block para cargar los static JS -->

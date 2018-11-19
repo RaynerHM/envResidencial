@@ -1,5 +1,3 @@
 {
-    "editor.occurrencesHighlight": true,
-    "editor.selectionHighlight": true,
-    "color-highlight.enable": true
+    "python.linting.pylintEnabled": false
 }
