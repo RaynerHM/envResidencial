@@ -98,6 +98,18 @@ def RegistrarUsuario(request):
 				usuario.is_staff = False
 				usuario.save()
 
+				# Crear registro del Residente
+				residente = Residente.objects.create(
+												nombre=(v_nombre +
+												' ' + v_apellido),
+												no_apartamento=v_no_apartamento,
+												edificio=v_edificio,
+												correo=v_correo,
+												telefono=v_telefono,
+												cedula=v_cedula,
+												clave=v_clave
+												)
+
 				# Enviar correo con el usuario creado
 				try:
 					url = 'localhost:8000/'
@@ -573,6 +585,31 @@ def SugerenciasAjax(request):
 			content_type="application/json"
 		)
 
+def SugerenciasAjax(request):
+	if request.method == 'POST':
+		user_id = int(request.POST.get('user_id'))
+		titulo = request.POST.get('titulo')
+		sugerencia = request.POST.get('sugerencia')
+		estado = 'Pendiente'
+
+		if user_id and titulo and sugerencia and estado:
+			sugerencias = Sugerencia.objects.create(
+					propietario_id = user_id,
+					titulo = titulo,
+					sugerencia = sugerencia,
+					estado = estado
+				)
+			print('Datos Guardados\n\n')
+
+		mensaje = 'Su Sugerencia ha sido enviada. ¡Muchas gracias, la tomaremos en cuenta!'
+
+
+		return HttpResponse(
+				json.dumps({
+					'mensaje': mensaje,                
+				}),
+				content_type="application/json"
+			)
 
 def CambiarClaveAjax(request):
 	clave = Residente.objects.get(id=request.user.id)
