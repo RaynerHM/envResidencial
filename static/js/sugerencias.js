@@ -2,10 +2,10 @@ $(document).ready(function() {
 
     $('#idEnviar').on('click', function() {
 
-        user_id = $('#user_id').val()
-        titulo = $('#titulo').val()
-        sugerencia = $('#textarea1').val()
-        token = $('input[name="csrfmiddlewaretoken"]').val()
+        var user_id = $('#user_id').val()
+        var titulo = $('#titulo').val()
+        var sugerencia = $('#textarea1').val()
+        var token = $('input[name="csrfmiddlewaretoken"]').val()
 
         console.log('Token', token)
         console.log('ID Usuario', user_id)
@@ -14,7 +14,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "/sugerenciasAjax/",
+            url: "/sugerencias_ajax/",
             data: {
                 'user_id': user_id,
                 'titulo': titulo,
@@ -38,7 +38,7 @@ $(document).ready(function() {
 
             error: function(data) {
                 var contenido = {
-                    'html': '<span>La sugerencia no pudo ser enviada. Favor contacte con la Administración.</span>',
+                    'html': '<span>' + data.mensaje + '</span>',
                     'classes': 'rounded red text-white',
                     'displayLength': 10000,
                     'outDuration': 5000,

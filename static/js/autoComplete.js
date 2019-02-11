@@ -3,7 +3,7 @@ $(document).ready(function() {
 
     $.ajax({
         type: "POST",
-        url: "/CargarNombresAjax/",
+        url: "/cargar_nombres_ajax/",
         data: {
             'csrfmiddlewaretoken': token,
         },

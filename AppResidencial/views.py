@@ -30,7 +30,7 @@ from django.core import serializers
 import json
 
 
-def Login(request):
+def login(request):
 	mensaje = ''
 	if request.method == 'POST':
 		v_usuario = request.POST.get('username')
@@ -41,11 +41,14 @@ def Login(request):
 		if usuario is not None:
 			if usuario.is_active == False:
 				print('El Usuario no esta activo.')
-				mensaje = 'Su cuanta de usuario esta desactivada. \n\n Por favor, pongase en contacto con el administrador de este Website.'
+				mensaje = """
+				Su cuanta de usuario esta desactivada.
+				Por favor, pongase en contacto con el administrador de este
+				Website."""
 				print(mensaje)
 			else:
 				auth.login(request, usuario)
-				return redirect(EstadosCuenta)
+				return redirect(estados_cuenta)
 		else:
 			mensaje = 'Usuario o clave incorrecto'
 			print(mensaje)
@@ -53,12 +56,12 @@ def Login(request):
 
 
 @login_required()
-def Logout(request):
+def logout(request):
 	auth.logout(request)
 	return HttpResponseRedirect("/login")
 
 
-def RegistrarUsuario(request):
+def registrar_usuario(request):
 	mensaje = ''
 	if request.method == 'POST':
 		v_nombre = request.POST.get('nombre')
@@ -78,37 +81,38 @@ def RegistrarUsuario(request):
 		v_cedula = v_cedula
 
 		if (v_nombre != '' and v_apellido != '' and v_correo != ''
-						and v_telefono != '' and v_cedula != '' and v_clave != ''):
+			and v_telefono != '' and v_cedula != '' and v_clave != ''):
 
 			if Residente.objects.filter(username=v_correo).count():
-				mensaje = "El correo '%s' ya esta registrado.\n\nPor favor valide que los datos sean correctos." % v_correo
+				mensaje = """El correo '%s' ya esta registrado.
+					Por favor valide que los datos sean correctos.""" %v_correo
 			else:
 				usuario = Residente.objects.create_user(
-									username=v_correo,
-									password=v_clave,
-									first_name=v_nombre,
-									last_name=v_apellido,
-									email=v_correo,
-									no_apartamento=v_no_apartamento,
-									edificio=v_edificio,
-									telefono=v_telefono,
-									cedula=v_cedula,
-								)
+					username=v_correo,
+					password=v_clave,
+					first_name=v_nombre,
+					last_name=v_apellido,
+					email=v_correo,
+					no_apartamento=v_no_apartamento,
+					edificio=v_edificio,
+					telefono=v_telefono,
+					cedula=v_cedula,
+				)
 				usuario.is_active = True
 				usuario.is_staff = False
 				usuario.save()
 
 				# Crear registro del Residente
 				residente = Residente.objects.create(
-												nombre=(v_nombre +
-												' ' + v_apellido),
-												no_apartamento=v_no_apartamento,
-												edificio=v_edificio,
-												correo=v_correo,
-												telefono=v_telefono,
-												cedula=v_cedula,
-												clave=v_clave
-												)
+					nombre=(v_nombre +
+					' ' + v_apellido),
+					no_apartamento=v_no_apartamento,
+					edificio=v_edificio,
+					correo=v_correo,
+					telefono=v_telefono,
+					cedula=v_cedula,
+					clave=v_clave
+				)
 
 				# Enviar correo con el usuario creado
 				try:
@@ -116,14 +120,35 @@ def RegistrarUsuario(request):
 
 					html_content = ("""
 						<style>
-							body { background-color: #fff;}
-							div { text-align: center; }
-							.padding { padding-top: 20px; }
-							.felicidad { color: #00c853; font-size: 46px }
-							h3 { font-size: 20px }
-							.color { color:blue; font-size: 24px; padding-bottom:0px; }
-							.usuario { margin-bottom:0px; padding-bottom:0px; font-size: 20px }
-							a { font-size: 16px }
+							body {
+								background-color: #fff;
+							}
+							div {
+								text-align: center;
+							}
+							.padding {
+								padding-top: 20px;
+							}
+							.felicidad {
+								color: #00c853;
+								font-size: 46px
+							}
+							h3 {
+								font-size: 20px
+							}
+							.color {
+								color: blue;
+								font-size: 24px;
+								padding-bottom:0px;
+							}
+							.usuario {
+								margin-bottom: 0px;
+								padding-bottom: 0px;
+								font-size: 20px
+							}
+							a {
+								font-size: 16px
+							}
 						</style>
 
 						<div class="center-align padding">
@@ -141,16 +166,27 @@ def RegistrarUsuario(request):
 						</div>
 						""" % (v_nombre, v_correo, url))
 
-					subject, from_email, to = 'Cuenta Residencial Brisa Fresca', settings.EMAIL_HOST_USER, v_correo
-					text_content = 'Credenciales de su cuenta Residencial Brisa Fresca.'
-					msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+					subject, from_email, to = (
+						'Cuenta Residencial Brisa Fresca',
+						settings.EMAIL_HOST_USER, v_correo
+					)
+					text_content = (
+						'Credenciales de su cuenta Residencial Brisa Fresca.'
+					)
+					msg = EmailMultiAlternatives(
+						subject, text_content, from_email, [to]
+					)
 					msg.attach_alternative(html_content, "text/html")
 					msg.send()
 				except BadHeaderError:
 					return HttpResponse('No se pudo enviar el correo.')
 
-				return render(request, "felicidades.html",
-									{'nombre': v_nombre, 'correo': v_correo})
+				datos = {
+					'nombre': v_nombre,
+					'correo': v_correo
+				}
+
+				return render(request, "felicidades.html", datos)
 		else:
 			return render(request, "registro_residente.html")
 	return render(request, "registro_residente.html", {'mensaje': mensaje})
@@ -158,12 +194,12 @@ def RegistrarUsuario(request):
 # ------------ Pendiente por terminar ------------
 @login_required()
 #@permission_required('Residencial.add_pago', raise_exception=True)
-def CambiarClave(request):
+def cambiar_clave(request):
 	return render(request, "password.html")
 
 
 @login_required()
-def RegistrarPagos(request):
+def registrar_pagos(request):
 
 	deuda = 0
 	ajuste = Ajuste.objects.all()[:1]
@@ -182,16 +218,15 @@ def RegistrarPagos(request):
 
 		"""
 		pago= Pago.objects.create(
-
-		propietario,
-		fecha,
-		no_edificio,
-		pagos = v_montoPagar,
-		concepto = v_concepto,
-		deuda_pendiente = deuda,
-		recargo,
-		concepto_deuda,
-		estado
+			propietario,
+			fecha,
+			no_edificio,
+			pagos = v_montoPagar,
+			concepto = v_concepto,
+			deuda_pendiente = deuda,
+			recargo,
+			concepto_deuda,
+			estado
 		)
 		"""
 
@@ -210,12 +245,12 @@ def RegistrarPagos(request):
 
 	for r in residente:
 		p_dic = {
-					'nombre': '',
-					'apartamento': '',
-					'pago': [],
-				}
+			'nombre': '',
+			'apartamento': '',
+			'pago': [],
+		}
 		p_dic['nombre'] = r.username
-		p_dic['apartamento'] = r.edificio+'-'+r.no_apartamento
+		p_dic['apartamento'] = r.edificio + '-' + r.no_apartamento
 
 		pago = Pago.objects.all().filter(propietario__username=r.username)
 		for p in pago:
@@ -238,14 +273,33 @@ def EnviarCorreo(request):
 
 		html_content = ("""
 			<style>
-				body { background-color: #fff;}
-				div { text-align: center; }
-				.padding { padding-top: 20px; }
-				.felicidad { color: #00c853; font-size: 46px }
-				h3 { font-size: 20px }
-				.color { color:blue; font-size: 24px; padding-bottom:0px; }
-				.usuario { margin-bottom:0px; padding-bottom:0px; font-size: 20px }
-				a { font-size: 16px }
+				body {
+					background-color: #fff;
+				}
+				div {
+					text-align: center;
+				}
+				.padding {
+					padding-top: 20px;
+				}
+				.felicidad {
+					color: #00c853; font-size: 46px
+				}
+				h3 {
+					font-size: 20px
+				}
+				.color {
+					color:blue; font-size: 24px;
+					padding-bottom:0px;
+				}
+				.usuario {
+					margin-bottom:0px;
+					padding-bottom:0px;
+					font-size: 20px;
+				}
+				a {
+					font-size: 16px
+				}
 			</style>
 
 			<div class="center-align padding">
@@ -264,7 +318,9 @@ def EnviarCorreo(request):
 			</div>
 			""" % (usuario, correo, url))
 
-		subject, from_email, to = 'Cuenta Residencial Brisa Fresca', 'raynel95@gmail.com', correo
+		subject, from_email, to = (
+			'Cuenta Residencial Brisa Fresca', 'raynel95@gmail.com', correo
+		)
 		text_content = 'Credenciales de su cuenta Residencial Brisa Fresca.'
 		msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
 		msg.attach_alternative(html_content, "text/html")
@@ -289,7 +345,7 @@ def EnviarCorreo(request):
 	#     return HttpResponse('Asegúrese de que todos los campos estén ingresados ​​y sean válidos.')
 
 
-def AjaxGuardar(request):
+def guardar_ajax(request):
 	print(request.POST)
 	if request.method == 'POST':
 		id_deuda = request.POST.get('deudas')
@@ -319,7 +375,7 @@ def AjaxGuardar(request):
 		)
 
 
-def AjaxBuscarDeuda(request):
+def buscar_deuda_ajax(request):
 	if request.method == 'POST':
 		bloq = request.POST.get('bloq')
 		apto = request.POST.get('apto')
@@ -328,20 +384,45 @@ def AjaxBuscarDeuda(request):
 		ajuste = [ajuste_serializer(ajuste) for ajuste in ajuste]
 
 		residente = Residente.objects.filter(
-			no_apartamento=apto, edificio=bloq)
+			no_apartamento=apto, edificio=bloq
+		)
 		id_residente = residente[0].id
-		residente = [residente_serializer(residente)
-		for residente in residente]
+		# residente = [residente_serializer(residente)
+		# for residente in residente]
 
 		deuda = Pago.objects.filter(
-			propietario=id_residente, deuda_pendiente__gte=1)
-		deuda = [deuda_serializer(deuda) for deuda in deuda]
+			propietario=id_residente, deuda_pendiente__gte=1
+		)
+		# deuda = [deuda_serializer(deuda) for deuda in deuda]
 
+		print('\n\n**************' )
+		print(residente)
+		print(type(residente))
+		print('**************' )
+		for residente in residente:
+			print(residente )
+		print('**************\n\n' )
+
+		datos_residente = {
+			# 'nombre': residente.get_full_name(),
+			'nombre': str(residente.last_name),
+			'correo': residente.email,
+			'telefono': residente.telefono,
+			'cedula': residente.cedula,
+			'no_apartamento': residente.no_apartamento
+		}
+
+		# deuda_residente = {
+		# 	'id': str(deuda.id),
+		# 	'deuda_pendiente': str(deuda.deuda_pendiente),
+		# 	'recargo': str(deuda.recargo),
+		# 	'concepto_deuda': str(deuda.concepto_deuda)
+		# }
 		return HttpResponse(
 			json.dumps({
 				'residente': residente,
-				'deuda': deuda,
-				'ajuste': ajuste
+				'ajuste': ajuste,
+				# 'deuda': deuda,
 			}),
 			content_type="application/json"
 		)
@@ -349,7 +430,7 @@ def AjaxBuscarDeuda(request):
 
 def residente_serializer(residente):
 	return {
-		'nombre': residente.first_name,
+		'nombre': residente.get_full_name(),
 		'correo': residente.email,
 		'telefono': residente.telefono,
 		'cedula': residente.cedula,
@@ -359,22 +440,22 @@ def residente_serializer(residente):
 
 def deuda_serializer(deuda):
 	return {
-			'id': str(deuda.id),
-		  		'deuda_pendiente': str(deuda.deuda_pendiente),
-		  		'recargo': str(deuda.recargo),
-		  		'concepto_deuda': str(deuda.concepto_deuda)
-		}
+		'id': str(deuda.id),
+		'deuda_pendiente': str(deuda.deuda_pendiente),
+		'recargo': str(deuda.recargo),
+		'concepto_deuda': str(deuda.concepto_deuda)
+	}
 
 
 def ajuste_serializer(ajuste):
 	return {
-			'fecha_Limite_Pago': str(ajuste.fecha_Limite_Pago),
-		  		'pago_Recargo': str(ajuste.pago_Recargo)
-		}
+		'fecha_Limite_Pago': str(ajuste.fecha_Limite_Pago),
+		'pago_Recargo': str(ajuste.pago_Recargo)
+	}
 
 
 @login_required()
-def EstadosCuenta(request):
+def estados_cuenta(request):
 	id_usuario = request.user.id
 	ajuste = Ajuste.objects.all()
 
@@ -386,14 +467,15 @@ def EstadosCuenta(request):
 		deuda += p.recargo
 		deuda_pendiente = (p.deuda_pendiente + p.recargo)
 		total_pagado += p.pagos
-	return render(request, "estadosDeCuenta.html",
-			   {
-				   'ajuste': ajuste,
-					'pago': pago,
-					'deuda': deuda,
-					'deuda_pendiente': deuda_pendiente,
-					'total_pagado': total_pagado,
-			   })
+
+	datos = {
+		'ajuste': ajuste,
+		'pago': pago,
+		'deuda': deuda,
+		'deuda_pendiente': deuda_pendiente,
+		'total_pagado': total_pagado,
+	}
+	return render(request, "estadosDeCuenta.html", datos)
 
 
 @login_required()
@@ -411,7 +493,7 @@ def GenerarFactura(request):
 	return render(request, )
 
 
-class ReportePersonasPDF(View):
+class reporte_estado_de_cuenta_personal(View):
 
 	def cabecera(self, request, fecha, pdf):
 		usuario = request.user.get_full_name()
@@ -420,39 +502,49 @@ class ReportePersonasPDF(View):
 		archivo_imagen = settings.MEDIA_ROOT + 'Logo.png'
 
 		#Definimos el tamaño de la imagen a cargar y las coordenadas correspondientes
-		pdf.drawImage(archivo_imagen, 30, 700, 120, 90, preserveAspectRatio=True)
+		pdf.drawImage(archivo_imagen, 30, 700, 120, 90,
+			preserveAspectRatio=True
+		)
 		pdf.setFont("Helvetica", 9)
 		# pdf.drawString(550, 770, u"%s" %time.strftime("%x"))
-		pdf.drawString(500, 760, u"Fecha:  %s/%s/%s" % (fecha.day, fecha.month, fecha.year))
-		pdf.drawString(500, 750, u"Hora:           %s:%s" %
-		               (fecha.hour, fecha.minute))
+		pdf.drawString(500, 760, u"Fecha:  %s/%s/%s"
+			%(fecha.day, fecha.month, fecha.year)
+		)
+		pdf.drawString(500, 750, u"Hora:           %s:%s"
+			%(fecha.hour, fecha.minute)
+		)
 
 		#Creamos una tupla de encabezados para neustra tabla
 		encabezados = ['Estado de Cuenta'.upper()]
 
 		#Creamos una lista de tuplas que van a contener a las personas
 		detalles = [
-			('%s, Edificio %s, Apartamento %s' % (usuario, p.edificio,
-			p.no_apartamento)) for p in Residente.objects.filter(id=request.user.id)
+			('%s, Edificio %s, Apartamento %s'
+			%(usuario, p.edificio,
+			p.no_apartamento)) for p in
+			Residente.objects.filter(id=request.user.id)
 		]
 
 		#Establecemos el tamaño de cada una de las columnas de la tabla
 		detalle_orden = Table([encabezados] + [detalles],
-							  rowHeights=50, colWidths=[575])
+			rowHeights=50, colWidths=[575]
+		)
 
 		#Aplicamos estilos a las celdas de la tabla
-		detalle_orden.setStyle(TableStyle(
-			[
-				#La primera fila(encabezados) va a estar centrada
-				('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
-				('ALIGN', (0, 0), (0, -1), 'CENTER'),
-				('FONTSIZE', (0, 0), (-1, -1), 12),
-				('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
-				('ALIGN', (0, 0), (0, 0), 'CENTER'),
-				('FONTSIZE', (0, 0), (-1, 0), 16),
-				('TEXTCOLOR', (0, 1), (-1, -1), colors.black),
-			]
-		))
+		detalle_orden.setStyle(
+			TableStyle(
+				[
+					#La primera fila(encabezados) va a estar centrada
+					('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+					('ALIGN', (0, 0), (0, -1), 'CENTER'),
+					('FONTSIZE', (0, 0), (-1, -1), 12),
+					('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+					('ALIGN', (0, 0), (0, 0), 'CENTER'),
+					('FONTSIZE', (0, 0), (-1, 0), 16),
+					('TEXTCOLOR', (0, 1), (-1, -1), colors.black),
+				]
+			)
+		)
 
 		#Establecemos el tamaño de la hoja que ocupará la tabla
 		detalle_orden.wrapOn(pdf, 1000, 800)
@@ -464,12 +556,23 @@ class ReportePersonasPDF(View):
 		encabezados = ('FECHA', 'PAGO', 'CONCEPTO', 'PENDIENTE',
 					   'RECARGO', 'CONCEPTO RECARGO')
 		#Creamos una lista de tuplas que van a contener a las personas
-		detalles = [(p.fecha, 'RD$%s%s' % (p.pagos, '.00'), p.concepto, 'RD$%s%s' % (p.deuda_pendiente, '.00'), 'RD$%s%s' % (
-			p.recargo, '.00'), p.concepto_deuda) for p in pago]
+		detalles = [(p.fecha, 'RD$%s%s' %(p.pagos, '.00'),
+			p.concepto, 'RD$%s%s' %(p.deuda_pendiente, '.00'), 'RD$%s%s'
+			%(p.recargo, '.00'), p.concepto_deuda) for p in pago
+		]
 
 		#Establecemos el tamaño de cada una de las columnas de la tabla
-		detalle_orden = Table([encabezados] + detalles, rowHeights=15, colWidths=[
-			12 * 5, 15 * 5, 30 * 5, 15 * 5, 15 * 5, 30 * 5])
+		detalle_orden = Table(
+			[encabezados] + detalles, rowHeights=15, colWidths=
+			[
+				12 * 5,
+				15 * 5,
+				30 * 5,
+				15 * 5,
+				15 * 5,
+				30 * 5
+			]
+		)
 		#Aplicamos estilos a las celdas de la tabla
 		detalle_orden.setStyle(TableStyle(
 			[
@@ -500,34 +603,35 @@ class ReportePersonasPDF(View):
 		deuda = 0
 		deuda_pendiente = 0
 		total_pagado = 0
-		
+
 		for p in pago:
 			deuda += p.recargo
 			deuda_pendiente = (p.deuda_pendiente + p.recargo)
 			total_pagado += p.pagos
 
 		detalles = [
-			['Total Deuda                                   RD$%s.00' % deuda],
-			['Total Deuda Por Recargo              RD$%s.00' %
-				deuda_pendiente],
-			['Total Pagado                                 RD$%s.00' %
-				total_pagado]
+			['Total Deuda                                   RD$%s.00' %deuda],
+			['Total Deuda Por Recargo             RD$%s.00' %deuda_pendiente],
+			['Total Pagado                                 RD$%s.00'
+			%total_pagado]
 		]
 		#Establecemos el tamaño de cada una de las columnas de la tabla
 		detalle_orden = Table([encabezados] + detalles,
 							  rowHeights=15, colWidths=[43 * 5])
 		#Aplicamos estilos a las celdas de la tabla
-		detalle_orden.setStyle(TableStyle(
-			[
-				('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
-				('BACKGROUND', (0, 0), (8, 0), colors.lightblue),
-				('INNERGRID', (0, 0), (0, 0), 0.25, colors.black),
-				('ALIGN', (0, 0), (-1, -1), 'LEFT'),
-				('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
-				('ALIGN', (0, 0), (0, 0), 'CENTER'),
-				('TEXTCOLOR', (0, 1), (-1, -1), colors.black),
-			]
-		))
+		detalle_orden.setStyle(
+			TableStyle(
+				[
+					('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+					('BACKGROUND', (0, 0), (8, 0), colors.lightblue),
+					('INNERGRID', (0, 0), (0, 0), 0.25, colors.black),
+					('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+					('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+					('ALIGN', (0, 0), (0, 0), 'CENTER'),
+					('TEXTCOLOR', (0, 1), (-1, -1), colors.black),
+				]
+			)
+		)
 		#Establecemos el tamaño de la hoja que ocupará la tabla
 		detalle_orden.wrapOn(pdf, 1000, 800)
 		#Definimos la coordenada donde se dibujará la tabla
@@ -539,7 +643,9 @@ class ReportePersonasPDF(View):
 		fechaAct = "%s-%s-%s" % (fecha.day, fecha.month, fecha.year)
 		#Indicamos el tipo de contenido a devolver, en este caso un pdf
 		response = HttpResponse(content_type='application/pdf')
-		response['Content-Disposition'] = 'filename="Estado de Cuenta-'+fechaAct+'.pdf"'
+		response['Content-Disposition'] = (
+			'filename="Estado de Cuenta-' + fechaAct+'.pdf"'
+		)
 		#La clase io.BytesIO permite tratar un array de bytes como un fichero binario, se utiliza como almacenamiento temporal
 		buffer = BytesIO()
 		#Canvas nos permite hacer el reporte con coordenadas X y Y
@@ -560,23 +666,35 @@ class ReportePersonasPDF(View):
 		return response
 
 
-def SugerenciasAjax(request):
+def sugerencias_ajax(request):
 	if request.method == 'POST':
 		user_id = int(request.POST.get('user_id'))
 		titulo = request.POST.get('titulo')
 		sugerencia = request.POST.get('sugerencia')
 		estado = 'Pendiente'
 
-		if user_id and titulo and sugerencia and estado:
-			sugerencias = Sugerencia.objects.create(
-				propietario_id=user_id,
-				titulo=titulo,
-				sugerencia=sugerencia,
-				estado=estado
-			)
-			print('Datos Guardados\n\n')
+		try:
+			if user_id and titulo and sugerencia and estado:
+				sugerencias = Sugerencia.objects.create(
+					propietario_id = user_id,
+					titulo = titulo,
+					sugerencia = sugerencia,
+					estado = estado
+				)
 
-		mensaje = 'Su sugerencia ha sido enviada. \n¡Muchas gracias, la tomaremos en cuenta!'
+				mensaje = (
+					"""
+					Su sugerencia ha sido enviada.
+					¡Muchas gracias, la tomaremos en cuenta!
+					"""
+				)
+				print('Datos Guardados\n\n')
+		except Exception as ex:
+			mensaje =("""
+			La sugerencia no pudo ser enviada. Favor contacte con la Administración. \n%s
+			""" %ex)
+			print('\nERROR: %s\n\n' %ex)
+
 
 		return HttpResponse(
 			json.dumps({
@@ -585,33 +703,8 @@ def SugerenciasAjax(request):
 			content_type="application/json"
 		)
 
-def SugerenciasAjax(request):
-	if request.method == 'POST':
-		user_id = int(request.POST.get('user_id'))
-		titulo = request.POST.get('titulo')
-		sugerencia = request.POST.get('sugerencia')
-		estado = 'Pendiente'
 
-		if user_id and titulo and sugerencia and estado:
-			sugerencias = Sugerencia.objects.create(
-					propietario_id = user_id,
-					titulo = titulo,
-					sugerencia = sugerencia,
-					estado = estado
-				)
-			print('Datos Guardados\n\n')
-
-		mensaje = 'Su Sugerencia ha sido enviada. ¡Muchas gracias, la tomaremos en cuenta!'
-
-
-		return HttpResponse(
-				json.dumps({
-					'mensaje': mensaje,                
-				}),
-				content_type="application/json"
-			)
-
-def CambiarClaveAjax(request):
+def cambiar_clave_ajax(request):
 	clave = Residente.objects.get(id=request.user.id)
 	print(clave)
 	print(request.user)
@@ -619,9 +712,9 @@ def CambiarClaveAjax(request):
 	estado = 0
 
 	cont = {
-            'estado': 0,
-			'mensaje': '',
-        }
+		'estado': 0,
+		'mensaje': '',
+	}
 	if request.method == 'POST':
 		v_clave_Nueva1 = request.POST.get("pass-new")
 		print(v_clave_Nueva1)
@@ -640,12 +733,12 @@ def CambiarClaveAjax(request):
 			cont['estado'] = 0
 
 	return HttpResponse(
-            json.dumps(cont),
-            content_type="application/json"
-        )
+		json.dumps(cont),
+		content_type="application/json"
+	)
 
 
-def CargarNombresAjax(request):
+def cargar_nombres_ajax(request):
 	if request.method == 'POST':
 		datos = {	}
 
@@ -665,7 +758,7 @@ def CargarNombresAjax(request):
 	)
 
 
-def ConfigurarUsuarios(request):
+def configurar_usuarios(request):
 	usuarios = Residente.objects.all()
 	contenido={
 		'usuarios': usuarios,

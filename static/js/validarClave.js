@@ -125,7 +125,7 @@ $(document).ready(function() {
         var token = $('input[name="csrfmiddlewaretoken"]').val()
         $.ajax({
             type: "POST",
-            url: "/cambiarclaveAjax/",
+            url: "/cambiar_clave_ajax/",
             data: {
                 'pass-new': $('#clave').val(),
                 'csrfmiddlewaretoken': token,

@@ -13,7 +13,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "/ajaxbuscardeuda/",
+            url: "/buscar_deuda_ajax/",
             data: {
                 'bloq': bloq,
                 'apto': apto,
@@ -26,9 +26,10 @@ $(document).ready(function() {
                     $('#ta').remove('#ta');
                     $('#tabla').removeClass('hide');
                     $('.no-datos').addClass('hide');
-                    var h4 = "<h4 id='nombre-h4'>" + data.residente[0].nombre + "</h4>";
-                    $('#nombre').html(h4);
-                    $('#tabla').html("<div id='qw'><p id='p'>" + data.residente[0].nombre + "</p></div>").after();
+                    // var h4 = "<h4 id='nombre-h4'>" + data.residente[0].nombre + "</h4>";
+                    // $('#nombre').html(h4);
+                    $('#nombre').text(data.residente.nombre);
+                    $('#tabla').html("<div id='qw'><p id='p'>" + data.residente.nombre + "</p></div>").after();
 
                     var asd = ("<table id='ta' class='centered striped highlight'><thead><tr><th style='width:190px;'>Seleccione</th><th style='width:150px;'>Deuda Pendiente</th><th style='width:130px;'>Recargo</th><th style='width:150px;'>Fecha Limite</th><th style='width:300px;'>Concepto Deuda</th><th style='width:130px;'>Total</th></tr></thead><tbody id='tbody'>");
                     $('#qw').after(asd);
@@ -63,7 +64,7 @@ $(document).ready(function() {
 
                         $.ajax({
                             type: "POST",
-                            url: "/ajaxguardar/",
+                            url: "/guardar_ajax/",
                             data: {
                                 'deudas': deudas.toString(),
                                 'csrfmiddlewaretoken': token,

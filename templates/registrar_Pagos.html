@@ -19,7 +19,7 @@
 
 <!-- Block para mostrar el contenido de la pagina -->
 {% block contenido %}
-<div class=" center">
+<div class="center">
 
     <div class="container center">
         <form action="" method="POST">{% csrf_token %}
@@ -32,9 +32,9 @@
                     <datalist id="lista">
                         <!-- <option value="Prueba 2">Prueba 2</option>
                         <option value="Prueba 3">Prueba 3</option> -->
-                        
+
                     {% for r in res %}
-                    <option value="{{ r.edificio }}-{{r.no_apartamento}}">{{ r.edificio }}-{{r.no_apartamento}}</option>  
+                    <option value="{{ r.edificio }}-{{r.no_apartamento}}">{{ r.edificio }}-{{r.no_apartamento}}</option>
                     <!-- <option value="{{ r.edificio }}-{{r.no_apartamento}}">{{ r.edificio }}-{{r.no_apartamento}}</option> -->
                     {% endfor %}
                     </datalist>
@@ -67,7 +67,7 @@
 
     <div class="row center buscar">
         <div class="input-field col m4 s12 izquierda">
-            <h5 class="  " style="text-align:left">Buscar por número de apartamento</h5>
+            <h5 class="" style="text-align:left">Buscar por número de apartamento</h5>
             <input type="text" id="no_apartamento" name="no_apartamento" minlength="6" maxlength="6" list="lista1" autocomplete="off">
             <!-- <input type="text" id="no_apartamento" name="no_apartamento" minlength="6" maxlength="6" list="lista1" autocomplete="off">
             <datalist id="lista1">
@@ -77,14 +77,15 @@
             </datalist> -->
             <input id="buscar_deuda" type="button" class="btn" value="Buscar">
 
-            <!-- <select class=" " id="no_apartamento" name="no_apartamento">
+            <!-- <select class="" id="no_apartamento" name="no_apartamento">
                 <option value="" disabled selected>Apartamento</option>
                 {% for r in res %}
                 <option value="{{ r.edificio }}-{{r.no_apartamento}}">{{ r.edificio }}-{{r.no_apartamento}}</option>
                 {% endfor%}
             </select> -->
         </div>
-        <div id="nombre" class="col m8 s12 right-align">
+        <div class="col m8 s12 right-align">
+            <h4 id="nombre"></h4>
         </div>
     </div>
 </div>
