@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+    "settings": {
+        "git.ignoreLimitWarning": true,
+        "files.autoSave": "onFocusChange",
+        "workbench.editor.tabSizing": "shrink"
+    }
+}

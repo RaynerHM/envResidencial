@@ -166,7 +166,7 @@ def RegistrarUsuario(request):
 
 				# Enviar correo con el usuario creado
 				try:
-					url = 'http://10.1.100.200:8000/login'
+					url = 'http://127.0.0.1:8000/login'
 
 					html_content = ("""
 						<style>
@@ -403,7 +403,6 @@ def ajuste_serializer(ajuste):
 @login_required()
 def EstadosCuenta(request):
 	id_usuario= request.user.id
-	print(id_usuario)
 	ajuste = Ajuste.objects.all()
 
 	pago = Pago.objects.all().filter(propietario=47)
@@ -555,7 +554,6 @@ class ReportePersonasPDF(View):
 		detalle_orden.wrapOn(pdf, 1000, 800)
 		#Definimos la coordenada donde se dibujará la tabla
 		detalle_orden.drawOn(pdf, 380, 50)
-
 
 	def get(self, request, *args, **kwargs):
 		#Indicamos el tipo de contenido a devolver, en este caso un pdf

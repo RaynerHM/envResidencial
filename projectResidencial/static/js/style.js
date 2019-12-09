@@ -1,24 +1,15 @@
 $(document).ready(function() {
+
     $('.opcion').click(function() {
         $('.opcion1').toggle('slow')
     });
 
     $('select').formSelect();
-});
 
-$(document).ready(function() {
     $('#username').focus();
     $('.tooltipped').tooltip({ delay: 50 });
-    $('select').formSelect();
-});
 
-/*  ------------------------------------------ Menu SideNav ------------------------------------------*/
-
-// $(document).ready(function() {
-//     $('.sidenav').sidenav();
-// });
-
-$(document).ready(function() {
+    /*  --------------------------------------- Menu SideNav ---------------------------------------*/
     $('.sidenav').sidenav({
         menuWidth: 350,
         closeOnClick: true,
@@ -26,21 +17,16 @@ $(document).ready(function() {
         onOpen: function(el) { /* Do Stuff */ }, // A function to be called when sideNav is opened
         onClose: function(el) { /* Do Stuff */ }, // A function to be called when sideNav is closed
     });
-});
 
 
-/*  ----------------------------------------- Inicial Modal -----------------------------------------*/
-
-$(document).ready(function() {
+    /*  -------------------------------------- Inicial Modal --------------------------------------*/
     $('.modal').modal({
         dismissible: false,
     });
-});
 
-/*  ---------------------------- Formulario Registro de Nuevos Usuarios ----------------------------*/
-$('#nombre').focus();
+    $('#nombre').focus();
 
-$(document).ready(function() {
+    /*  ------------------------- Formulario Registro de Nuevos Usuarios -------------------------*/
     $("#telefono").keydown(function() {
         var asd = $(this).val();
 
