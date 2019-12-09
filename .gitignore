@@ -1,12 +1,11 @@
-*.pyc
-Residencial/__pycache__
+migrations
 __pycache__
+*.pyc
 .DS_Store
 *.sublime-workspace
 lib
 include
 bin
-pip-selfcheck.json
 Scripts
 tcl
 lib64

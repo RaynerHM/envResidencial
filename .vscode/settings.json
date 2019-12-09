@@ -1,5 +1,12 @@
 {
-    "editor.occurrencesHighlight": true,
-    "editor.selectionHighlight": true,
-    "color-highlight.enable": true
+    "python.linting.pylintEnabled": false,
+    "editor.formatOnPaste": true,
+    "editor.hideCursorInOverviewRuler": true,
+    "editor.useTabStops": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "files.trimTrailingWhitespace": true,
+    "editor.wordWrap": "on",
+    "editor.renderWhitespace": "all",
+    "auto-close-tag.SublimeText3Mode": true,
+    "auto-close-tag.fullMode": true
 }

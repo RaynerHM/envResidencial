@@ -1,0 +1,154 @@
+{% extends "plantilla.html" %} {% load static %}
+
+<!-- Block para cargar los static CSS -->
+{% block staticCSS %} {% endblock staticCSS %}
+<!-- Fin Block para cargar los static CSS -->
+
+<!-- Block para el titulo -->
+{% block titulo %} Usuarios {% endblock titulo %}
+<!-- Fin Block para el titulo -->
+
+<!-- Block para marcar boton como activo-->
+{% block activarPass %} active-btn {% endblock activarPass %}
+<!-- Fin Block para marcar boton como activo-->
+
+<!-- Block para mostrar el titulo en el Navar -->
+{% block header %}
+<a href="/" class="brand-logo center">Usuarios</a> {% endblock header %}
+<!-- Fin Block para mostrar el titulo en el Navar -->
+
+<!-- Block para mostrar el contenido de la pagina -->
+{% block contenido %}
+<div class="center">
+    <div id="div-usuario" class="row ">
+        <ul>
+            {% for us in usuarios %}
+            <li>
+                <div id="as2" class="col m12 s12 x12 ">
+                    <div id="card-usuario" class="card small  as1">
+                        <div class="card-image ">
+                            <img src="{{MEDIA_URL}}{{ us.avatar }}" class="materialboxed" width="100%">
+                        </div>
+                        <div id="datos-usuario1{{ us.id }}" class="card-content">
+                            <div id="datos_usu">
+                                <p class="nombre">{{ us.first_name }}</p>
+                                <span>{{ us.last_name }}</span>
+                                <!-- <p class="nombre">{{ us.last_name }}</p> -->
+                                <span class="card-title activator ">
+                                    <i class="tooltip fas fa-info-circle right" data-position="bottom" data-tooltip="Mas información"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div id="datos-usuario2{{ us.id }}" class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">
+                                Datos <i class="fas fa-times-circle right"></i>
+                            </span>
+                            <span class="span-datos">
+                               Apartamento: <p class="apartamento">{{us.no_apartamento }}</p>
+                            </span>
+                            <span class="span-datos">
+                               Edificio: <p class="edificio">{{ us.edificio }}</p>
+                            </span>
+                            <span class="span-datos">
+                               Cedula: <p class="cedula">{{ us.cedula }}</p>
+                            </span>
+                            <span class="span-datos">
+                               Celular: <p class="telefono">{{ us.telefono }}</p>
+                            </span>
+                            <span class="span-datos correo">
+                                Correo: <p class="email">{{ us.email }}</p>
+                            </span>
+                            <div class="footer">
+                                <a class="modal-trigger" href="#modal-editar">
+                                    <i class="editar tooltip fas fa-edit right" data-position="bottom" data-tooltip="Editar" value="{{ us.id }}"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<!-- Modal EDITAR -->
+<div id="modal-editar" class="modal modal-fixed-footer">
+    {% csrf_token %}
+    <div class="modal-content">
+        <div class="h">
+            <h4 class=" ">Editar Usuario</h4>
+        </div>
+        <div class="container row">
+
+            <!--   Nombre Propietario o Inquilino   -->
+            <div class="input-field col m6 s12">
+                <i class="prefix fa fa-user fa-2x"></i>
+                <input id="nombre" name="nombre" type="text" required autocomplete="off">
+                <label for="nombre" class="active">Nombre </label>
+            </div>
+
+            <!--   Apellido Propietario o Inquilino   -->
+            <div class="input-field col m6 s12">
+                <i class="prefix fa fa-user fa-2x"></i>
+                <input id="apellido" name="apellido" type="text" required autocomplete="off">
+                <label for="apellido" class="active">Apellido</label>
+            </div>
+
+            <!--   Edificio Propietario o Inquilino   -->
+            <div class="input-field col m6 s12">
+                <i class="prefix fas fa-building fa-2x"></i>
+                <input id="edificio" name="edificio" type="text" required autocomplete="off">
+                <label for="edificio" class="active">Edificio</label>
+            </div>
+            <!--   Apartamento Propietario o Inquilino   -->
+            <div class="input-field col m6 s12">
+                <i class="prefix fas fa-building fa-2x"></i>
+                <input id="apartamento" name="apartamento" type="text" required autocomplete="off">
+                <label for="apartamento" class="active">Apartamento </label>
+            </div>
+
+            <!--  Cedula Propietario o Inquilino  -->
+            <div class="input-field col m6 s12">
+                <i class="prefix fa fa-id-card fa-2x"></i>
+                <input id="cedula" name="cedula" type="text" maxlength="13" required autocomplete="off">
+                <label for="cedula" class="active">Cedula</label>
+            </div>
+
+            <!--  Correo Propietario o Inquilino  -->
+            <div class="input-field col m6 s12">
+                <i class="prefix fa fa-at fa-2x"></i>
+                <input id="correo" name="correo" type="email" required autocomplete="off">
+                <label for="correo" class="active">Correo</label>
+            </div>
+
+            <!--  Telefono Propietario o Inquilino  -->
+            <div class="input-field col m6 s12">
+                <i class="prefix fa fa-phone fa-2x"></i>
+                <input id="telefono" name="telefono" type="text" maxlength="12" required autocomplete="off" data-inputmask="'mask': '999-999-9999'">
+                <label for="telefono" class="active">Telefono</label>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer row asdf">
+        <div class="center col m6 s6">
+            <input id="cerrar" type="button" class="modal-close waves-effect waves-green btn red" value="Cancelar">
+        </div>
+        <div class="center col m6 s6">
+            <input id="idEnviar" type="submit" class="waves-effect waves-green btn" value="Enviar">
+        </div>
+    </div>
+</div>
+
+<!-- Fin Modal EDITAR -->
+
+{% endblock contenido %}
+<!-- Fin Block para mostrar el contenido de la pagina -->
+
+<!-- Block para cargar los static JS -->
+{% block staticJS %}
+<script src="{% static '/js/validarTelefonoCedula.js' %} "></script>
+<script src="{% static '/js/usuarios.js' %} "></script>
+{% endblock staticJS %}
+<!-- Fin Block para cargar los static JS -->

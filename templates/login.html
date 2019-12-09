@@ -1,0 +1,75 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Iniciar Sesión</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+    <link rel="stylesheet" href="{% static '/css/fuentes.css' %}">
+    <link rel="stylesheet" href="{% static '/materialize/css/materialize.min.css' %}" media="screen,projection">
+    <link rel="stylesheet" href="{% static '/font-awesome/css/font-awesome.min.css' %}">
+    <!-- <link rel="stylesheet" href="{% static '/css/style.css' %}"> -->
+    <link rel="stylesheet" href="{% static '/css/login.css' %}">
+    <script src="{% static '/jquery/jquery-3.2.1.min.js' %}"></script>
+
+</head>
+
+<body id="login">
+    <div>
+        <h3 class="center">
+            RESIDENCIAL BRISA FRESCA
+        </h3>
+    </div>
+    <div class="container ">
+        <div class="row " style="display:flex;justify-content:center;align-items:center;">
+            <div class=" fondo z-depth-5 center">
+                <form method="POST" action="{% url 'login' %}">{% csrf_token %}
+                    <h4 class="hide-on-small-only">Iniciar Sesión</h4>
+                    <!--   Usuario   -->
+                    <div class="input-field">
+                        <i class="prefix fa fa-user fa-3x"></i>
+                        <input id="username" name="username" type="text" required autocomplete="off">
+                        <label for="username" class="active">Usuario</label>
+                    </div>
+
+                    <!--  Clave  -->
+                    <div class="input-field">
+                        <i class="prefix fa fa-key fa-3x"></i>
+                        <input id="password" name="password" type="password" required autocomplete="off">
+                        <label for="password" class="active">Clave</label>
+                    </div>
+
+                    <div class="row">
+                        <!--   Crear Cuenta   -->
+                        <div class="col m6 s12 center group navform wat-cf">
+                            <a class="btn hoverable waves-effect" href="/crear_cuenta"><i class="fa fa-user-plus"></i> Crear Cuenta</a>
+                        </div>
+                        <!--   Iniciar Sesion   -->
+                        <div class="col m6 s12 center group navform wat-cf">
+                            <button class="btn hoverable waves-effect" type="submit"><i class=" fa fa-power-off fa-1x"></i> Iniciar Sesion</button>
+                        </div>
+                    </div>
+                </form>
+                {% if mensaje %}
+                <div id="mensaje" class="red ">
+                    {{ mensaje }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('#username').focus();
+        });
+    </script>
+    <script src="{% static '/materialize/js/materialize.min.js' %}"></script>
+    <!-- <script src="{% static '/js/style.js' %}"></script> -->
+</body>
+
+</html>
